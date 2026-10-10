@@ -26,3 +26,11 @@ Die Karten übernehmen ihre Farben wie die übrigen GNOME-Einstellungszeilen aus
 | ChromaLeon/Dunkel | [ChromaLeon dunkel](screenshots/gnome/appearance-native-cards-chromaleon-dark.png) |
 
 Diese Änderung betrifft die Einstellungen und ihre Versionsnummer. Die zuvor geprüften Farb-Engines und AirDrop-Transporte wurden dabei nicht verändert; die 878 automatisierten Checks des [LightOS-5-Prüfberichts](chromaleon-validation.md) wurden für diese reine Darstellungsänderung nicht erneut ausgeführt.
+
+## LightOS 7: Abstand zwischen Engine und Farbkacheln
+
+Am 10. Oktober 2026 im aktuellen ZIP gebaut, in die VM installiert und nach einem GDM-Sitzungsneustart geprüft. Das Theme-Raster erhält oberhalb 12 Pixel Abstand, entsprechend seinem Zeilen- und Spaltenabstand. Damit stoßen die Farb-Engine-Zeile und die erste Kachelreihe nicht mehr aneinander.
+
+Aufnahmen aus LightOS 7: [Ocean/Hell](screenshots/gnome/appearance-spacing-light.png), [ChromaLeon/Hell](screenshots/gnome/appearance-spacing-chromaleon.png), [ChromaLeon/Dunkel](screenshots/gnome/appearance-spacing-dark.png). Die native Farb- und Modusauswahl funktioniert weiterhin. Abschließend Ocean/Hell, Version 7 ACTIVE und Shell Eval deaktiviert. Reine Abstandsänderung; keine neuen automatisierten Tests.
+
+ZIP SHA-256: `20457f7549f84b6c9e803bff12b607faf88616f94d985836cbf9cd4b1d5d8c75`.

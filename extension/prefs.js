@@ -69,7 +69,7 @@ export default class LightOSPreferences extends ExtensionPreferences {
             buttons.push([button,art,() => settings.get_string('appearance')===id]);
         });
         const themes=group('Themes','Sechs vorhandene Paletten · drei zusätzliche ChromaLeon-Farben aus dem Hintergrundbild.');
-        const grid=new Gtk.Grid({column_spacing:12,row_spacing:12,column_homogeneous:true}); themes.add(grid);
+        const grid=new Gtk.Grid({column_spacing:12,row_spacing:12,margin_top:12,column_homogeneous:true}); themes.add(grid);
         ['t3-code','t3-chat','grove','ocean','ember','iris'].forEach((id,i) => {
             const p=readPalette(this.dir,id);
             const selected=() => settings.get_string('color-engine')==='t3' && settings.get_string('palette')===id;
