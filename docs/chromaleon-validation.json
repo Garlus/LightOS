@@ -1,0 +1,299 @@
+{
+  "platform": "GNOME Shell 50.5",
+  "version": 5,
+  "automatedChecks": 878,
+  "checks": {
+    "gtkLightGeometry": true,
+    "gtk3OptOut": true,
+    "folderAndAppIconEngine": true,
+    "launcherRoundTrip": true,
+    "customColorsNoGeometry": true,
+    "customStyleVisibleRoundTrip": true,
+    "iconSettingRestored": true,
+    "gtkDarkGeometry": true,
+    "gnomeAccentMode": true,
+    "disableRestoresOriginalFiles": true
+  },
+  "geometry": {
+    "nativeLight": {
+      "HeaderBar": {
+        "width": 482,
+        "height": 46,
+        "padding": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "border": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "Button": {
+        "width": 398,
+        "height": 24,
+        "padding": [
+          5,
+          17,
+          5,
+          17
+        ],
+        "border": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "Entry": {
+        "width": 414,
+        "height": 34,
+        "padding": [
+          0,
+          9,
+          0,
+          9
+        ],
+        "border": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "Switch": {
+        "width": 40,
+        "height": 20,
+        "padding": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "border": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "chromaLight": {
+      "HeaderBar": {
+        "width": 482,
+        "height": 46,
+        "padding": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "border": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "Button": {
+        "width": 398,
+        "height": 24,
+        "padding": [
+          5,
+          17,
+          5,
+          17
+        ],
+        "border": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "Entry": {
+        "width": 414,
+        "height": 34,
+        "padding": [
+          0,
+          9,
+          0,
+          9
+        ],
+        "border": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "Switch": {
+        "width": 40,
+        "height": 20,
+        "padding": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "border": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "nativeDark": {
+      "HeaderBar": {
+        "width": 482,
+        "height": 46,
+        "padding": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "border": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "Button": {
+        "width": 398,
+        "height": 24,
+        "padding": [
+          5,
+          17,
+          5,
+          17
+        ],
+        "border": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "Entry": {
+        "width": 414,
+        "height": 34,
+        "padding": [
+          0,
+          9,
+          0,
+          9
+        ],
+        "border": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "Switch": {
+        "width": 40,
+        "height": 20,
+        "padding": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "border": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    },
+    "chromaDark": {
+      "HeaderBar": {
+        "width": 482,
+        "height": 46,
+        "padding": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "border": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "Button": {
+        "width": 398,
+        "height": 24,
+        "padding": [
+          5,
+          17,
+          5,
+          17
+        ],
+        "border": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "Entry": {
+        "width": 414,
+        "height": 34,
+        "padding": [
+          0,
+          9,
+          0,
+          9
+        ],
+        "border": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "Switch": {
+        "width": 40,
+        "height": 20,
+        "padding": [
+          3,
+          3,
+          3,
+          3
+        ],
+        "border": [
+          0,
+          0,
+          0,
+          0
+        ]
+      }
+    }
+  },
+  "wallpaperColors": [
+    "#e86a02",
+    "#e24658",
+    "#cb529b"
+  ],
+  "generatedIconTheme": "LightOSChromaLeon-e86a02-100",
+  "packageSha256": "703626cb4efa78d7f6f36973ff7c59869b912bb24b05efdd52c3b0707e9d17ad",
+  "finalState": {
+    "palette": "ocean",
+    "appearance": "light",
+    "colorEngine": "t3",
+    "customCss": false,
+    "optionalIconColors": false,
+    "airDrop": false,
+    "shellEval": false
+  }
+}

@@ -1,0 +1,1094 @@
+{
+  "platform": "GNOME Shell 50.5",
+  "palettes": {
+    "ocean-light": {
+      "gtkAccent": "#2672af;",
+      "editorScheme": "'lightos-ocean-light'",
+      "geometry": {
+        "HeaderBar": {
+          "width": 482,
+          "height": 46,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Button": {
+          "width": 398,
+          "height": 24,
+          "padding": [
+            5,
+            17,
+            5,
+            17
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Entry": {
+          "width": 414,
+          "height": 34,
+          "padding": [
+            0,
+            9,
+            0,
+            9
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Switch": {
+          "width": 40,
+          "height": 20,
+          "padding": [
+            3,
+            3,
+            3,
+            3
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "grove-light": {
+      "gtkAccent": "#1b7d50;",
+      "editorScheme": "'lightos-grove-light'",
+      "geometry": {
+        "HeaderBar": {
+          "width": 482,
+          "height": 46,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Button": {
+          "width": 398,
+          "height": 24,
+          "padding": [
+            5,
+            17,
+            5,
+            17
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Entry": {
+          "width": 414,
+          "height": 34,
+          "padding": [
+            0,
+            9,
+            0,
+            9
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Switch": {
+          "width": 40,
+          "height": 20,
+          "padding": [
+            3,
+            3,
+            3,
+            3
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "ember-light": {
+      "gtkAccent": "#ae552a;",
+      "editorScheme": "'lightos-ember-light'",
+      "geometry": {
+        "HeaderBar": {
+          "width": 482,
+          "height": 46,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Button": {
+          "width": 398,
+          "height": 24,
+          "padding": [
+            5,
+            17,
+            5,
+            17
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Entry": {
+          "width": 414,
+          "height": 34,
+          "padding": [
+            0,
+            9,
+            0,
+            9
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Switch": {
+          "width": 40,
+          "height": 20,
+          "padding": [
+            3,
+            3,
+            3,
+            3
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "iris-light": {
+      "gtkAccent": "#7253b9;",
+      "editorScheme": "'lightos-iris-light'",
+      "geometry": {
+        "HeaderBar": {
+          "width": 482,
+          "height": 46,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Button": {
+          "width": 398,
+          "height": 24,
+          "padding": [
+            5,
+            17,
+            5,
+            17
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Entry": {
+          "width": 414,
+          "height": 34,
+          "padding": [
+            0,
+            9,
+            0,
+            9
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Switch": {
+          "width": 40,
+          "height": 20,
+          "padding": [
+            3,
+            3,
+            3,
+            3
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "t3-chat-light": {
+      "gtkAccent": "#db2777;",
+      "editorScheme": "'lightos-t3-chat-light'",
+      "geometry": {
+        "HeaderBar": {
+          "width": 482,
+          "height": 46,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Button": {
+          "width": 398,
+          "height": 24,
+          "padding": [
+            5,
+            17,
+            5,
+            17
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Entry": {
+          "width": 414,
+          "height": 34,
+          "padding": [
+            0,
+            9,
+            0,
+            9
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Switch": {
+          "width": 40,
+          "height": 20,
+          "padding": [
+            3,
+            3,
+            3,
+            3
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "t3-code-light": {
+      "gtkAccent": "#1b4ed8;",
+      "editorScheme": "'lightos-t3-code-light'",
+      "geometry": {
+        "HeaderBar": {
+          "width": 482,
+          "height": 46,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Button": {
+          "width": 398,
+          "height": 24,
+          "padding": [
+            5,
+            17,
+            5,
+            17
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Entry": {
+          "width": 414,
+          "height": 34,
+          "padding": [
+            0,
+            9,
+            0,
+            9
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Switch": {
+          "width": 40,
+          "height": 20,
+          "padding": [
+            3,
+            3,
+            3,
+            3
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "ocean-dark": {
+      "gtkAccent": "#70b9ee;",
+      "editorScheme": "'lightos-ocean-dark'",
+      "geometry": {
+        "HeaderBar": {
+          "width": 482,
+          "height": 46,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Button": {
+          "width": 398,
+          "height": 24,
+          "padding": [
+            5,
+            17,
+            5,
+            17
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Entry": {
+          "width": 414,
+          "height": 34,
+          "padding": [
+            0,
+            9,
+            0,
+            9
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Switch": {
+          "width": 40,
+          "height": 20,
+          "padding": [
+            3,
+            3,
+            3,
+            3
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "grove-dark": {
+      "gtkAccent": "#69d69a;",
+      "editorScheme": "'lightos-grove-dark'",
+      "geometry": {
+        "HeaderBar": {
+          "width": 482,
+          "height": 46,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Button": {
+          "width": 398,
+          "height": 24,
+          "padding": [
+            5,
+            17,
+            5,
+            17
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Entry": {
+          "width": 414,
+          "height": 34,
+          "padding": [
+            0,
+            9,
+            0,
+            9
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Switch": {
+          "width": 40,
+          "height": 20,
+          "padding": [
+            3,
+            3,
+            3,
+            3
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "ember-dark": {
+      "gtkAccent": "#f09a64;",
+      "editorScheme": "'lightos-ember-dark'",
+      "geometry": {
+        "HeaderBar": {
+          "width": 482,
+          "height": 46,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Button": {
+          "width": 398,
+          "height": 24,
+          "padding": [
+            5,
+            17,
+            5,
+            17
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Entry": {
+          "width": 414,
+          "height": 34,
+          "padding": [
+            0,
+            9,
+            0,
+            9
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Switch": {
+          "width": 40,
+          "height": 20,
+          "padding": [
+            3,
+            3,
+            3,
+            3
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "iris-dark": {
+      "gtkAccent": "#9d7df2;",
+      "editorScheme": "'lightos-iris-dark'",
+      "geometry": {
+        "HeaderBar": {
+          "width": 482,
+          "height": 46,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Button": {
+          "width": 398,
+          "height": 24,
+          "padding": [
+            5,
+            17,
+            5,
+            17
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Entry": {
+          "width": 414,
+          "height": 34,
+          "padding": [
+            0,
+            9,
+            0,
+            9
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Switch": {
+          "width": 40,
+          "height": 20,
+          "padding": [
+            3,
+            3,
+            3,
+            3
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "t3-chat-dark": {
+      "gtkAccent": "#a3004c;",
+      "editorScheme": "'lightos-t3-chat-dark'",
+      "geometry": {
+        "HeaderBar": {
+          "width": 482,
+          "height": 46,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Button": {
+          "width": 398,
+          "height": 24,
+          "padding": [
+            5,
+            17,
+            5,
+            17
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Entry": {
+          "width": 414,
+          "height": 34,
+          "padding": [
+            0,
+            9,
+            0,
+            9
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Switch": {
+          "width": 40,
+          "height": 20,
+          "padding": [
+            3,
+            3,
+            3,
+            3
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    },
+    "t3-code-dark": {
+      "gtkAccent": "#346bf1;",
+      "editorScheme": "'lightos-t3-code-dark'",
+      "geometry": {
+        "HeaderBar": {
+          "width": 482,
+          "height": 46,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Button": {
+          "width": 398,
+          "height": 24,
+          "padding": [
+            5,
+            17,
+            5,
+            17
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Entry": {
+          "width": 414,
+          "height": 34,
+          "padding": [
+            0,
+            9,
+            0,
+            9
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        },
+        "Switch": {
+          "width": 40,
+          "height": 20,
+          "padding": [
+            3,
+            3,
+            3,
+            3
+          ],
+          "border": [
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      }
+    }
+  },
+  "checks": {
+    "search-calculator": [
+      {
+        "id": "calculation",
+        "label": "= 84, 12 * (3 + 4) · Enter kopiert das Ergebnis"
+      },
+      {
+        "id": "org.gnome.Nautilus.desktop:file:///home/lightos/LightOS-GNOME/gnome/lightos@lightos.dev/licenses/LightOS-GPL-3.0.txt",
+        "label": "LightOS-GPL-3.0.txt, Files · /home/lightos/LightOS-GNOME/gnome/lightos@lightos.dev/licenses"
+      }
+    ],
+    "search-files": [
+      {
+        "id": "window:3188957507",
+        "label": "Willkommen.md (~/Documents/LightOS) - Text Editor, Text Editor · Offenes Fenster"
+      },
+      {
+        "id": "org.gnome.Nautilus.desktop:file:///home/lightos/Documents/LightOS/Willkommen.md",
+        "label": "Willkommen.md, Files · /home/lightos/Documents/LightOS"
+      }
+    ],
+    "search-settings": [
+      {
+        "id": "app:org.kde.kdeconnect.nonplasma.desktop",
+        "label": "KDE Connect Indicator, App öffnen"
+      },
+      {
+        "id": "org.gnome.Settings.desktop:display",
+        "label": "Displays, Settings · Use Night Light and choose how to use connected monitors and projectors"
+      },
+      {
+        "id": "org.gnome.Settings.desktop:color",
+        "label": "Color Management, Settings · Calibrate the color of your devices, such as displays, cameras or printers"
+      },
+      {
+        "id": "org.gnome.Settings.desktop:notifications",
+        "label": "Notifications, Settings · Control which notifications are displayed and what they show"
+      },
+      {
+        "id": "org.gnome.Nautilus.desktop:file:///home/lightos/LightOS-GNOME/gnome/lightos@lightos.dev/licenses/LightOS-GPL-3.0.txt",
+        "label": "LightOS-GPL-3.0.txt, Files · /home/lightos/LightOS-GNOME/gnome/lightos@lightos.dev/licenses"
+      },
+      {
+        "id": "org.gnome.Software.desktop:system/package/fedora/net.displaycal.DisplayCAL/*",
+        "label": "DisplayCAL, Software · Display calibration and profiling with a focus on accuracy and versatility"
+      },
+      {
+        "id": "org.gnome.Software.desktop:system/package/fedora/org.gnome.NetworkDisplays.desktop/*",
+        "label": "GNOME Network Displays, Software · Screencasting for GNOME"
+      }
+    ],
+    "search-apps": [
+      {
+        "id": "window:3188957509",
+        "label": "LightOS, Files · Offenes Fenster"
+      },
+      {
+        "id": "app:org.gnome.Nautilus.desktop",
+        "label": "Files, Laufende App"
+      },
+      {
+        "id": "app:org.gnome.TextEditor.desktop",
+        "label": "Text Editor, Laufende App"
+      },
+      {
+        "id": "app:org.kde.filelight.desktop",
+        "label": "Filelight, App öffnen"
+      },
+      {
+        "id": "app:org.kde.dolphin.desktop",
+        "label": "Dolphin, App öffnen"
+      },
+      {
+        "id": "org.gnome.Settings.desktop:privacy",
+        "label": "Privacy & Security, Settings · Control access to your data and hardware, device security"
+      },
+      {
+        "id": "org.gnome.Nautilus.desktop:file:///home/lightos/palette-probe/build/CMakeCache.txt",
+        "label": "CMakeCache.txt, Files · /home/lightos/palette-probe/build"
+      }
+    ],
+    "trayItems": [],
+    "gtkTheme": "'Adwaita'",
+    "font": "'Adwaita Sans 11'",
+    "icons": "'Adwaita'",
+    "extraCoverage": [
+      "KDE colors",
+      "kwrite colors",
+      "kate colors",
+      "dolphin colors",
+      "konsole colors",
+      "Code",
+      "org.gnome.Calculator: GTK 3.0",
+      "org.gnome.Calculator: GTK 4.0"
+    ],
+    "gtk4Terminal": "Ptyxis 50.1, twelve native palettes",
+    "unitTests": [
+      "456 GNOME checks passed",
+      "299 GTK4 terminal checks passed",
+      "49 extra app color checks passed"
+    ],
+    "keyboardShortcut": "QMP Super + Space, Enter copied 84",
+    "searchTitle": "Suche",
+    "emptyButtonRowVisible": false,
+    "removedPanelItems": [
+      "lightos-running",
+      "lightos-search"
+    ],
+    "liveRestoration": "real backend settings and all unchanged managed files restored",
+    "syntaxSchemaZip": "passed",
+    "shellEvalDisabled": true
+  },
+  "geometryBaseline": {
+    "HeaderBar": {
+      "width": 482,
+      "height": 46,
+      "padding": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "Button": {
+      "width": 398,
+      "height": 24,
+      "padding": [
+        5,
+        17,
+        5,
+        17
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "Entry": {
+      "width": 414,
+      "height": 34,
+      "padding": [
+        0,
+        9,
+        0,
+        9
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "Switch": {
+      "width": 40,
+      "height": 20,
+      "padding": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "geometryBaselineDark": {
+    "HeaderBar": {
+      "width": 482,
+      "height": 46,
+      "padding": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "Button": {
+      "width": 398,
+      "height": 24,
+      "padding": [
+        5,
+        17,
+        5,
+        17
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "Entry": {
+      "width": 414,
+      "height": 34,
+      "padding": [
+        0,
+        9,
+        0,
+        9
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "Switch": {
+      "width": 40,
+      "height": 20,
+      "padding": [
+        3,
+        3,
+        3,
+        3
+      ],
+      "border": [
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "package": {
+    "version": 2,
+    "file": "dist/lightos@lightos.dev.shell-extension.zip",
+    "sha256": "5f77aafa42fb792ff7fdb5fac58a36e994b2acb209c190173c68785079e29110"
+  }
+}

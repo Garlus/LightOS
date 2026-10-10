@@ -1,0 +1,2 @@
+# Preserve upstream templates byte-for-byte, including their original whitespace.
+extension/chromaleon/vendor/templates/* -whitespace

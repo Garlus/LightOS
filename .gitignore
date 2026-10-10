@@ -1,0 +1,8 @@
+.cache/
+__pycache__/
+*.pyc
+*.compiled
+dist/
+
+# Separate prototype repositories are not part of LightOS.
+/prototypes/

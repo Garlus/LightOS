@@ -1,0 +1,33 @@
+{
+  "date": "2026-10-09",
+  "platform": "Fedora 44 / GNOME Shell 50.5 / Wayland",
+  "extensionVersion": 4,
+  "automatedChecks": {
+    "gnome": 456,
+    "terminal": 299,
+    "extraApps": 49,
+    "airdrop": 10,
+    "total": 814
+  },
+  "interactive": {
+    "nativeToggleAndMenu": true,
+    "mdnsPeerDiscovery": true,
+    "multipleFileChooser": true,
+    "tlsSendByteComparison": true,
+    "sendCancellation": true,
+    "receiveConsent": true,
+    "tlsReceiveByteComparison": true,
+    "disableCleanupWhileReceiving": true,
+    "missingAwdlStaysOff": true
+  },
+  "appleRadioTransferTested": false,
+  "transportFixture": "VM-only temporary dummy awdl0; local TLS peer",
+  "finalState": {
+    "enabled": true,
+    "airdropEnabled": false,
+    "testInterfaceRemoved": true,
+    "fixtureStopped": true,
+    "shellEvalEnabled": false
+  },
+  "zipSha256": "5fcd1bb2fdfefb7d9bf06edbd14a59aea5ba4ee4dd318032d7f9385c8f2d5d53"
+}

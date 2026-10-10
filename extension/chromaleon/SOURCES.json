@@ -1,0 +1,96 @@
+{
+  "repository": "https://github.com/Fabito02/ChromaLeon",
+  "revision": "b2c5cd2cf410c14c22278b894d04ab8d60f5eb59",
+  "files": [
+    {
+      "file": "extension/chromaleon/vendor/cancellation.js",
+      "upstreamFile": "utils/cancellation.js",
+      "upstreamSha256": "d884f7936eb1c9430360724a8c6ea81d7b11ff1ec6d6430a8935ae45385ae4ac",
+      "modified": false
+    },
+    {
+      "file": "extension/chromaleon/vendor/colorUtils.js",
+      "upstreamFile": "utils/colorUtils.js",
+      "upstreamSha256": "36d2308e55d87bf6a8b053ec0c74f86ff4163470bba2e214fc4999885171303a",
+      "modified": true
+    },
+    {
+      "file": "extension/chromaleon/vendor/recolorUtils.js",
+      "upstreamFile": "utils/recolorUtils.js",
+      "upstreamSha256": "19f5ba7f21831d1e296d1a2c7c4861d3e60183a1cfa07fdb406eaa15108a9db5",
+      "modified": true
+    },
+    {
+      "file": "extension/chromaleon/vendor/templates/gtk3_dark_tinted.template.css",
+      "upstreamFile": "templates/gtk3_dark_tinted.template.css",
+      "upstreamSha256": "c0529274bb5c8472af4830f6cf57371ade6991f7131775d87926598bedf05c57",
+      "modified": false
+    },
+    {
+      "file": "extension/chromaleon/vendor/templates/gtk3_darker_tinted.template.css",
+      "upstreamFile": "templates/gtk3_darker_tinted.template.css",
+      "upstreamSha256": "4e9c7d10c345845658be5ea638e618f364344e7c7228b0ca11119eb3170d63d9",
+      "modified": false
+    },
+    {
+      "file": "extension/chromaleon/vendor/templates/gtk3_light_tinted.template.css",
+      "upstreamFile": "templates/gtk3_light_tinted.template.css",
+      "upstreamSha256": "3dbf618b09ee30ca71403b8711f5afad975ec03805bc1f9bbc283ae00caca72f",
+      "modified": false
+    },
+    {
+      "file": "extension/chromaleon/vendor/templates/gtk4_darker_tinted.template.css",
+      "upstreamFile": "templates/gtk4_darker_tinted.template.css",
+      "upstreamSha256": "8d0b5c4300949a17221e1309577373e48e4493964572d839381cd416ad129232",
+      "modified": false
+    },
+    {
+      "file": "extension/chromaleon/vendor/templates/gtk4_tinted.template.css",
+      "upstreamFile": "templates/gtk4_tinted.template.css",
+      "upstreamSha256": "269e8e9683fc5ba48f9180a0cc4f71e7cccac046ff851abd1f05aeb6ef80e81b",
+      "modified": false
+    },
+    {
+      "file": "extension/chromaleon/vendor/templates/light_full.template.css",
+      "upstreamFile": "templates/light_full.template.css",
+      "upstreamSha256": "b706d1722807fca5998b2d4a06329b39c8c2c32b5bb57031e03ba2ac9d8f0997",
+      "modified": false
+    },
+    {
+      "file": "extension/chromaleon/vendor/templates/shell_accent_dark.template.css",
+      "upstreamFile": "templates/shell_accent_dark.template.css",
+      "upstreamSha256": "e6741c1ccb4a16ab5c9a2174d757bfe3a572d88233c9e168e00f04ee0f0b1be1",
+      "modified": false
+    },
+    {
+      "file": "extension/chromaleon/vendor/templates/shell_accent_light.template.css",
+      "upstreamFile": "templates/shell_accent_light.template.css",
+      "upstreamSha256": "77ada1f904b164e36702c768a53659f0130deffe34ade79767feeb577d6cfaf6",
+      "modified": false
+    },
+    {
+      "file": "extension/chromaleon/vendor/templates/tinted_dark.template.css",
+      "upstreamFile": "templates/tinted_dark.template.css",
+      "upstreamSha256": "41fd096539631af0185e9b104b4424c0e4c5fb9a9caa6bb2551a3d27b6e62f9c",
+      "modified": false
+    },
+    {
+      "file": "extension/chromaleon/vendor/templates/tinted_darker.template.css",
+      "upstreamFile": "templates/tinted_darker.template.css",
+      "upstreamSha256": "1073eab83b11a984e2aad1831b78de325694b5e576a197c37594bf4a5ff61333",
+      "modified": false
+    },
+    {
+      "file": "extension/chromaleon/vendor/templates/tinted_light.template.css",
+      "upstreamFile": "templates/tinted_light.template.css",
+      "upstreamSha256": "d3bb5ae72f720e7b7c725e28de3cfca2bbe1c5f5770eccf6ff7b94d5ae25c7db",
+      "modified": false
+    },
+    {
+      "file": "extension/chromaleon/vendor/templates/tinted_light_full.template.css",
+      "upstreamFile": "templates/tinted_light_full.template.css",
+      "upstreamSha256": "8660014bb57d1bd3b79ab362c5069e3a85d89a32cab9f366ed7b1c483cfcd449",
+      "modified": false
+    }
+  ]
+}

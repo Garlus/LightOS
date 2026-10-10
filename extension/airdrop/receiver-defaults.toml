@@ -1,0 +1,2 @@
+# LightOS owns its configuration; do not read Omdrop's user settings.
+max_receive_percent = 30

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist>
+  <schema id="org.gnome.shell.extensions.lightos" path="/org/gnome/shell/extensions/lightos/">
+    <key name="palette" type="s"><default>'ocean'</default><summary>T3 Code palette</summary></key>
+    <key name="appearance" type="s"><default>'light'</default><summary>light, dark, or system</summary></key>
+    <key name="color-apps" type="b"><default>true</default><summary>Apply color variables to GTK apps</summary></key>
+    <key name="search-shortcut" type="as"><default>['&lt;Super&gt;space']</default><summary>Open search</summary></key>
+    <key name="color-engine" type="s"><default>'t3'</default><summary>color-engine</summary></key>
+    <key name="chroma-accent" type="s"><default>'#3584e4'</default><summary>chroma-accent</summary></key>
+    <key name="chroma-colors" type="as"><default>[]</default><summary>chroma-colors</summary></key>
+    <key name="chroma-wallpaper" type="s"><default>''</default><summary>chroma-wallpaper</summary></key>
+    <key name="chroma-choices" type="s"><default>'{}'</default><summary>chroma-choices</summary></key>
+    <key name="chroma-error" type="s"><default>''</default><summary>chroma-error</summary></key>
+    <key name="chroma-custom-path" type="s"><default>''</default><summary>chroma-custom-path</summary></key>
+    <key name="chroma-strength" type="i"><default>1</default><summary>chroma-strength</summary></key>
+    <key name="chroma-hot-reload" type="i"><default>1</default><summary>chroma-hot-reload</summary></key>
+    <key name="chroma-gnome-colors" type="b"><default>false</default><summary>chroma-gnome-colors</summary></key>
+    <key name="chroma-persistent" type="b"><default>true</default><summary>chroma-persistent</summary></key>
+    <key name="chroma-prefer-light" type="b"><default>true</default><summary>chroma-prefer-light</summary></key>
+    <key name="chroma-full-light" type="b"><default>false</default><summary>chroma-full-light</summary></key>
+    <key name="chroma-tint-shell" type="b"><default>true</default><summary>chroma-tint-shell</summary></key>
+    <key name="chroma-tint-panel" type="b"><default>true</default><summary>chroma-tint-panel</summary></key>
+    <key name="chroma-tint-apps" type="b"><default>true</default><summary>chroma-tint-apps</summary></key>
+    <key name="chroma-tint-gtk3" type="b"><default>true</default><summary>chroma-tint-gtk3</summary></key>
+    <key name="chroma-darker" type="b"><default>false</default><summary>chroma-darker</summary></key>
+    <key name="chroma-recolor-folders" type="b"><default>false</default><summary>chroma-recolor-folders</summary></key>
+    <key name="chroma-recolor-apps" type="b"><default>false</default><summary>chroma-recolor-apps</summary></key>
+    <key name="chroma-morewaita" type="b"><default>false</default><summary>chroma-morewaita</summary></key>
+    <key name="chroma-custom-css" type="b"><default>false</default><summary>chroma-custom-css</summary></key>
+    <key name="chroma-flatpak" type="b"><default>true</default><summary>chroma-flatpak</summary></key>
+    <key name="chroma-create-shortcut" type="b"><default>false</default><summary>chroma-create-shortcut</summary></key>
+  </schema>
+</schemalist>
