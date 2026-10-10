@@ -43,16 +43,18 @@ echte Funkübertragungen zu Apple-Geräten lassen sich darin nicht prüfen.
 Die bisherigen lokalen Transporttests und ihre Grenzen stehen im
 [AirDrop-Prüfbericht](airdrop-validation.md).
 
-Der am 10. Oktober 2026 aktualisierte Stand ist **LightOS 7** mit AirDrop,
+Der am 10. Oktober 2026 aktualisierte Stand ist **LightOS 8** mit AirDrop,
 den sechs bisherigen Farbpaletten und der zusätzlichen ChromaLeon-Engine im
-Reiter **Appearance**. Die abschließenden Tests und Aufnahmen stehen im
+Reiter **Appearance**, einschließlich des automatischen Wechsels bei Sonnenaufgang
+und Sonnenuntergang. Die Automatik ist in dieser Test-VM eingeschaltet;
+[Prüfbericht zur Automatik](solar-validation.md). Die abschließenden Tests und Aufnahmen stehen im
 [ChromaLeon-Prüfbericht](chromaleon-validation.md) und die aktuellen
 [Appearance-Aufnahmen](appearance-styling.md).
 [Aufnahme der laufenden Sitzung](screenshots/gnome/vm-access-desktop.png).
 
 Zugangsprüfung: noVNC-HTML und JavaScript-Module antworten mit HTTP 200;
 QEMU akzeptiert den WebSocket-Handshake mit HTTP 101 und liefert das binäre
-VNC-Protokoll `RFB 003.008`. SSH funktioniert, LightOS 7 ist `ACTIVE`,
+VNC-Protokoll `RFB 003.008`. SSH funktioniert, LightOS 8 ist `ACTIVE`,
 und Shell Eval bleibt deaktiviert. Ein steuerbarer Browser ist in der
 Agent-Umgebung nicht verfügbar; die Browseroberfläche konnte deshalb hier
 nicht durchgeklickt werden. Die Aufnahme stammt direkt aus der laufenden VM.

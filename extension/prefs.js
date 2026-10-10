@@ -68,6 +68,11 @@ export default class LightOSPreferences extends ExtensionPreferences {
             schemeGrid.attach(button,i,0,1,1);
             buttons.push([button,art,() => settings.get_string('appearance')===id]);
         });
+        const schedule=group('Automatischer Darstellungsmodus');
+        const automatic=new Adw.SwitchRow({title:'Bei Sonnenaufgang und Sonnenuntergang wechseln',
+            subtitle:'Tagsüber hell, nachts dunkel. Eine manuelle Wahl gilt bis zum nächsten Sonnenwechsel.'});
+        settings.bind('auto-appearance',automatic,'active',Gio.SettingsBindFlags.DEFAULT); schedule.add(automatic);
+        const solarInfo=new Adw.ActionRow({title:'Sonnenzeiten'}); schedule.add(solarInfo);
         const themes=group('Themes','Sechs vorhandene Paletten · drei zusätzliche ChromaLeon-Farben aus dem Hintergrundbild.');
         const grid=new Gtk.Grid({column_spacing:12,row_spacing:12,margin_top:12,column_homogeneous:true}); themes.add(grid);
         ['t3-code','t3-chat','grove','ocean','ember','iris'].forEach((id,i) => {
@@ -142,6 +147,9 @@ export default class LightOSPreferences extends ExtensionPreferences {
         search.add(new Adw.ActionRow({title:'GNOME-Suchanbieter',subtitle:'Dateien, Rechner und Einstellungen unter GNOME Einstellungen → Suchen aktivieren.'}));
         const restore=new Adw.PreferencesGroup({title:'Wiederherstellung',description:'Beim Deaktivieren werden verwaltete Farben und Icon-Einstellungen wiederhergestellt. Eigene CSS-Regeln bleiben erhalten.'}); layout.add(restore);
         const sync=() => {
+            let solar; try {solar=JSON.parse(settings.get_string('solar-status'));} catch {solar={enabled:false};}
+            solarInfo.visible=settings.get_boolean('auto-appearance');
+            solarInfo.subtitle=solar.enabled ? `${solar.source}\n${solar.date} · ${solar.polar ? (solar.polar==='day' ? 'Polartag: durchgehend hell' : 'Polarnacht: durchgehend dunkel') : `Sonnenaufgang ${solar.sunrise} · Sonnenuntergang ${solar.sunset}`}\n${solar.manual ? 'Manuell bis zum nächsten Sonnenwechsel' : (solar.next==='—' ? 'Sonnenzeiten werden täglich neu berechnet' : `Nächster Wechsel ${solar.next}`)}` : 'Sonnenzeiten werden berechnet …';
             for(const [button,art,selected] of buttons) {
                 const label=button.get_child().get_last_child();
                 if(selected()) label.add_css_class('accent'); else label.remove_css_class('accent');

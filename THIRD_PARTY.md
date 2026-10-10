@@ -56,3 +56,12 @@ is not copied into LightOS. noVNC v1.6.0 is downloaded to `.cache/novnc` only
 by the local viewer tool, retaining its original MPL-2.0 license files. QEMU
 provides the WebSocket transport. None of these tools install a desktop theme
 on the host.
+
+## Night Theme Switcher / Sonnenzeiten
+
+- Quelle: [rmnvgr/nightthemeswitcher-gnome-shell-extension](https://gitlab.com/rmnvgr/nightthemeswitcher-gnome-shell-extension), Revision `87ef3094137c7943b3d0a8fdf7420ea57827653b`.
+- Übernommen: der NOAA-basierte Formelblock aus `src/modules/Timer.js` in `extension/solar/solar.js`. Die SPDX-Autorenangabe bleibt erhalten.
+- Änderungen: reine UTC-Berechnung, lokaler Kalendertag, Koordinatenvalidierung, Polartag/-nacht, Datumsgrenze. Zeitplan, Zeitzonenschätzung, optionale GeoClue-Anbindung und LightOS-Einstellungen sind eigene Adapter.
+- Lizenz: GPL-3.0-or-later, im ZIP unter `licenses/Night-Theme-Switcher-GPL-3.0.txt`. Quellpfad und SHA-256 stehen in `solar/SOURCES.json`.
+- IANA-Zeitzonendaten: die installierten `zone1970.tab` und `zone.tab` werden nur gelesen. Diese Tabellendaten sind public domain; sie werden nicht mitkopiert. [IANA tzdb](https://www.iana.org/time-zones), [Tabellenformat](https://github.com/eggert/tz/blob/main/zone1970.tab).
+- GeoClue ist ein optionaler Systemdienst, kein mitkopierter Bestandteil. Ohne freigegebene Standortdienste, Bibliothek oder Standort bleibt die Zeitzonenschätzung aktiv.

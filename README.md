@@ -138,6 +138,40 @@ müssen neu geöffnet werden. Flatpak-Berechtigungen werden nicht erweitert.
 Die Farbauswahl verwendet native GNOME-Karten ohne eigene Kachelumrandung;
 [Aktuelle Aufnahmen in Hell und Dunkel](docs/appearance-styling.md).
 
+## Automatisch Hell und Dunkel wechseln
+
+Im Reiter **Appearance** lässt sich „Bei Sonnenaufgang und Sonnenuntergang
+wechseln“ aktivieren. Die Option ist standardmäßig aus. Tagsüber verwendet
+LightOS die helle, nachts die dunkle Variante der gewählten T3- oder
+ChromaLeon-Palette. Die Einstellungen zeigen die Standortbasis, die heutigen
+Sonnenzeiten und den nächsten Wechsel.
+
+Wenn GNOMEs Standortdienste aktiviert sind, fragt LightOS den Systemstandort
+über **GeoClue** ab, mit der höchsten verfügbaren Genauigkeit. Dieser kann von
+GPS oder anderen System-Standortquellen stammen. Ohne freigegebenen Standort,
+verfügbares GeoClue oder GPS-Fix greift sofort die **grobe Zeitzonenschätzung**:
+der Referenzort der Systemzeitzone aus den installierten IANA-Zeitzonendaten.
+Eine Zeitzone deckt oft eine große Region ab; deren Sonnenzeiten können vom
+wirklichen Wohnort deutlich abweichen. Bei einer reinen UTC-Versatz-Zeitzone
+wird zusätzlich ein Ort am Äquator geschätzt. Es werden keine Standortdienste
+aktiviert und keine Standortkoordinaten gespeichert.
+
+Die Sonnenzeiten werden lokal aus Datum und Koordinaten berechnet. Sommerzeit,
+Zeitzonenwechsel und Polartag/-nacht werden berücksichtigt. Nach dem Aufwachen
+wird der Modus neu geprüft; Änderungen der Systemzeit werden spätestens bei
+der nächsten Prüfung innerhalb einer Minute berücksichtigt. Eine manuelle
+Hell-/Dunkelwahl, auch über GNOMEs Quick Settings, bleibt bis zum nächsten
+Sonnenwechsel erhalten. Die Auswahl „System“ schaltet die Automatik aus.
+Beim Deaktivieren von LightOS werden Timer und Standortabfrage beendet und
+GNOMEs ursprüngliche Farbeinstellungen über die bestehenden Sicherungen
+wiederhergestellt.
+
+Die Sonnenformeln sind aus [Night Theme Switcher](https://gitlab.com/rmnvgr/nightthemeswitcher-gnome-shell-extension)
+adaptiert, Revision `87ef3094137c7943b3d0a8fdf7420ea57827653b`, GPL-3.0-or-later.
+Die GeoClue-Anbindung, Zeitzonenschätzung und Einbindung in LightOS sind separat
+implementiert. [Herkunft und Anpassungen](extension/solar/SOURCES.json),
+[VM-Prüfbericht und Aufnahmen](docs/solar-validation.md).
+
 ## Quellen und Übernahme anderer Projekte
 
 LightOS enthält bewusst begrenzte Übernahmen; die ursprünglichen Projekte und
@@ -146,6 +180,7 @@ Revisionen, Dateien, lokale Anpassungen und die mitgelieferten Lizenzen.
 
 | Projekt / Autor | Verwendung | Lizenz / Revision |
 |---|---|---|
+| [Night Theme Switcher · Romain Vigier / Contributors](https://gitlab.com/rmnvgr/nightthemeswitcher-gnome-shell-extension) | Sonnenformeln für den automatischen Darstellungsmodus | GPL-3.0-or-later · `87ef3094137c7943b3d0a8fdf7420ea57827653b` |
 | [ChromaLeon · Fabito02](https://github.com/Fabito02/ChromaLeon) | Zusätzliche Farb-Engine, Hintergrundbild-Analyse, Templates und SVG-Farben | GPL-3.0-or-later; Shell-Templates mit ihren LGPL-2.1-Hinweisen · `b2c5cd2cf410c14c22278b894d04ab8d60f5eb59` |
 | [Omdrop · Brent Kearney](https://github.com/brentkearney/omdrop-plugin) | AirDrop-Empfang, Identität und Zertifikate, mit LightOS-Anpassungen | MIT · `58fca678b08d3a7c875c83c7dfc2f0d3251cce44` |
 | [t3code · T3 Tools Inc.](https://github.com/pingdotgg/t3code) | Sechs vorhandene Farbpaletten | MIT · `e803242d936af3e052757d59ab32bc7c4fcc2390` |

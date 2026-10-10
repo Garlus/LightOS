@@ -3,6 +3,8 @@
   <schema id="org.gnome.shell.extensions.lightos" path="/org/gnome/shell/extensions/lightos/">
     <key name="palette" type="s"><default>'ocean'</default><summary>T3 Code palette</summary></key>
     <key name="appearance" type="s"><default>'light'</default><summary>light, dark, or system</summary></key>
+    <key name="auto-appearance" type="b"><default>false</default><summary>Switch light and dark at sunrise and sunset</summary></key>
+    <key name="solar-status" type="s"><default>'{"enabled":false}'</default><summary>Computed solar schedule for preferences</summary></key>
     <key name="color-apps" type="b"><default>true</default><summary>Apply color variables to GTK apps</summary></key>
     <key name="search-shortcut" type="as"><default>['&lt;Super&gt;space']</default><summary>Open search</summary></key>
     <key name="color-engine" type="s"><default>'t3'</default><summary>color-engine</summary></key>

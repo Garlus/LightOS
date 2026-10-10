@@ -10,12 +10,14 @@ import {Extension} from 'resource:///org/gnome/shell/extensions/extension.js';
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
 import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js';
 import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
+import * as LoginManager from 'resource:///org/gnome/shell/misc/loginManager.js';
 import * as SystemActions from 'resource:///org/gnome/shell/misc/systemActions.js';
 import {AppColors, PALETTES, LABELS, readPalette, readFile, writeFile} from './palette.js';
 import {LightSearch, recentFiles} from './search.js';
 import {AppThemes} from './appThemes.js';
 import {NativeTray} from './tray.js';
 import {AirDrop} from './airdrop.js';
+import {SolarAppearance} from './solar/runtime.js';
 import {ChromaLeon} from './chromaleon/runtime.js';
 import {optionsFor, dynamicPalette, appCss, shellCss} from './chromaleon/engine.js';
 
@@ -88,7 +90,7 @@ export default class LightOS extends Extension {
             else this._applyColors(false);
         });
         this._connect(this._settings, 'changed', (_settings, key) => {
-            if (['chroma-colors','chroma-wallpaper','chroma-choices','chroma-error'].includes(key)) return;
+            if (['chroma-colors','chroma-wallpaper','chroma-choices','chroma-error','auto-appearance','solar-status'].includes(key)) return;
             if (key === 'search-shortcut') this._removeShortcutConflicts();
             else {
                 if (['color-engine','chroma-flatpak','chroma-tint-gtk3'].includes(key)) this._appThemes.restore();
@@ -106,6 +108,10 @@ export default class LightOS extends Extension {
         this._buildSystemMenu();
         this._buildActiveMenu();
         this._applyColors(true);
+        this._solar = new SolarAppearance(this._settings);
+        this._connect(LoginManager.getLoginManager(), 'prepare-for-sleep', (_manager, preparing) => {
+            if (!preparing) this._solar?.refresh();
+        });
     }
 
     _connect(object, signal, callback) {
@@ -292,6 +298,7 @@ export default class LightOS extends Extension {
     }
 
     disable() {
+        this._solar?.destroy(); this._solar = null;
         if (this._appRefresh) GLib.source_remove(this._appRefresh);
         this._appRefresh = 0;
         for (const [object, id] of this._signals ?? []) object.disconnect(id);

@@ -1,0 +1,17 @@
+{
+  "project": "Night Theme Switcher",
+  "author": "Night Theme Switcher Contributors / Romain Vigier",
+  "repository": "https://gitlab.com/rmnvgr/nightthemeswitcher-gnome-shell-extension",
+  "revision": "87ef3094137c7943b3d0a8fdf7420ea57827653b",
+  "license": "GPL-3.0-or-later",
+  "upstreamFile": "src/modules/Timer.js",
+  "upstreamSha256": "f33368e407f24911efd9b320fffa982146cd0ffca0681f6c1ef8e84ff6239aed",
+  "localFile": "solar.js",
+  "changes": [
+    "Extracted solar equations into a pure function",
+    "UTC timestamps anchored to a local calendar day",
+    "Validate coordinates; handle polar day/night and date-line zones",
+    "Original timezone fallback and lifecycle-safe optional GeoClue scheduler in runtime.js"
+  ],
+  "timezoneData": "Reads the installed public-domain IANA zone1970.tab / zone.tab; no database copied into the ZIP"
+}
