@@ -45,7 +45,7 @@ function preview(colors, scheme = false, selected = () => false) {
 function choice(title, artwork, onClick) {
     const box = new Gtk.Box({orientation:Gtk.Orientation.VERTICAL,spacing:8});
     box.append(artwork); box.append(new Gtk.Label({label:title}));
-    const button = new Gtk.Button({child:box,hexpand:true,css_classes:['lightos-choice']});
+    const button = new Gtk.Button({child:box,hexpand:true,css_classes:['card']});
     button.connect('clicked',onClick);
     return button;
 }
@@ -54,9 +54,6 @@ export default class LightOSPreferences extends ExtensionPreferences {
         window.set_default_size(980,820);
         const settings = this.getSettings();
         const iface = new Gio.Settings({schema_id:'org.gnome.desktop.interface'});
-        const provider = new Gtk.CssProvider();
-        provider.load_from_string('.lightos-choice { border: 1px solid alpha(currentColor, .16); background: transparent; } .lightos-choice.selected { border-color: @accent_bg_color; background: alpha(@accent_bg_color, .06); }');
-        Gtk.StyleContext.add_provider_for_display(Gdk.Display.get_default(),provider,Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
         const page = new Adw.PreferencesPage({title:'Appearance',icon_name:'preferences-desktop-appearance-symbolic'});
         window.add(page);
         const buttons=[];
@@ -86,7 +83,7 @@ export default class LightOSPreferences extends ExtensionPreferences {
         for(let i=0;i<3;i++) {
             const box=new Gtk.Box({orientation:Gtk.Orientation.VERTICAL,spacing:8});
             const label=new Gtk.Label();
-            const button=new Gtk.Button({child:box,hexpand:true,css_classes:['lightos-choice']});
+            const button=new Gtk.Button({child:box,hexpand:true,css_classes:['card']});
             button.connect('clicked',() => {
                 const color=settings.get_strv('chroma-colors')[i];
                 chooseColor(settings,settings.get_string('chroma-wallpaper'),color);
@@ -145,7 +142,11 @@ export default class LightOSPreferences extends ExtensionPreferences {
         search.add(new Adw.ActionRow({title:'GNOME-Suchanbieter',subtitle:'Dateien, Rechner und Einstellungen unter GNOME Einstellungen → Suchen aktivieren.'}));
         const restore=new Adw.PreferencesGroup({title:'Wiederherstellung',description:'Beim Deaktivieren werden verwaltete Farben und Icon-Einstellungen wiederhergestellt. Eigene CSS-Regeln bleiben erhalten.'}); layout.add(restore);
         const sync=() => {
-            for(const [button,art,selected] of buttons) {if(selected()) button.add_css_class('selected'); else button.remove_css_class('selected'); art.queue_draw();}
+            for(const [button,art,selected] of buttons) {
+                const label=button.get_child().get_last_child();
+                if(selected()) label.add_css_class('accent'); else label.remove_css_class('accent');
+                art.queue_draw();
+            }
             const isChroma=settings.get_string('color-engine')==='chromaleon';
             engine.selected=isChroma ? 1 : 0;
             const extracted=settings.get_strv('chroma-colors').slice(0,3);
@@ -159,7 +160,7 @@ export default class LightOSPreferences extends ExtensionPreferences {
                 box.prepend(view); chromaButtons[i].art=view;
                 if(!label.get_parent()) box.append(label);
                 label.label=color ? `ChromaLeon · ${i+1}  ${color.toUpperCase()}` : `ChromaLeon · ${i+1}  —`;
-                if(selected()) button.add_css_class('selected'); else button.remove_css_class('selected');
+                if(selected()) label.add_css_class('accent'); else label.remove_css_class('accent');
             });
             const uri=settings.get_string('chroma-wallpaper');
             if (previewUri !== uri) {
@@ -183,7 +184,6 @@ export default class LightOSPreferences extends ExtensionPreferences {
             customRow.sensitive=isChroma && !!settings.get_string('chroma-custom-path');
         };
         const signal=settings.connect('changed',sync); sync();
-        window.connect('close-request',() => {settings.disconnect(signal); open.disconnect(openHandler);
-            Gtk.StyleContext.remove_provider_for_display(Gdk.Display.get_default(),provider); return false;});
+        window.connect('close-request',() => {settings.disconnect(signal); open.disconnect(openHandler); return false;});
     }
 }

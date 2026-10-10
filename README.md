@@ -135,6 +135,8 @@ vorherigen Wert sofort wieder her. Apps, die das Signal nicht verarbeiten,
 müssen neu geöffnet werden. Flatpak-Berechtigungen werden nicht erweitert.
 
 [Prüfbericht und laufende VM-Aufnahmen](docs/chromaleon-validation.md).
+Die Farbauswahl verwendet native GNOME-Karten ohne eigene Kachelumrandung;
+[LightOS-6-Aufnahmen in Hell und Dunkel](docs/appearance-styling.md).
 
 ## Quellen und Übernahme anderer Projekte
 
