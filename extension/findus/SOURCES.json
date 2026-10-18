@@ -1,0 +1,31 @@
+{
+  "project": "Findus",
+  "url": "https://github.com/Garlus/findus",
+  "revision": "f92572baeacd408570d5ab2bfeedf64d49900599",
+  "workingTree": "Includes local, uncommitted modifications; SHA-256 pins exact source bytes. Full working tree and Git history archived separately.",
+  "license": "GPL-3.0-or-later",
+  "sources": [
+    {
+      "path": "extension.js",
+      "sha256": "987588da77ae210438b969b6c9b0507d65f71f0474a2ca18f57a51dac8ee8b1d"
+    },
+    {
+      "path": "modules/geometry.js",
+      "sha256": "f0eef576a252cacbd2b03d1b1354661f5dd992f594b065ecc0a78288f464cac1"
+    },
+    {
+      "path": "modules/fontRendering.js",
+      "sha256": "c2ebd50fa358053d147f21ac7275b31a4990491d8a6453459dddd14952e43120"
+    },
+    {
+      "path": "modules/interactionAnimations.js",
+      "sha256": "bb4d62f87d8b8c8a3fa9ad1af5ad79a01f80406b3b0c6b122408bf8845940e35"
+    }
+  ],
+  "adaptations": [
+    "Window centering extracted into a lifecycle controller; Wayland acknowledgement, cancellation and reduced motion.",
+    "Font rendering uses a persistent default-aware journal and independent opt-in.",
+    "Press feedback is independently opt-in, respects reduced motion and restores transforms immediately.",
+    "System menu delegates to GNOME SystemActions and native screenshot UI; native icons retained."
+  ]
+}

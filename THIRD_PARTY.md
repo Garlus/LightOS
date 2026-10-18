@@ -5,6 +5,30 @@ licenses retain their original terms. Source revisions are pinned deliberately.
 This repository does not include the VM disks, SSH keys, generated AirDrop
 identities, viewer dependencies or the separate prototype repository.
 
+## Findus
+
+Source: https://github.com/Garlus/findus, revision
+`f92572baeacd408570d5ab2bfeedf64d49900599` plus the local working tree.
+Exact source-file hashes are recorded in `extension/findus/SOURCES.json`.
+License: GPL-3.0-or-later, included as `extension/licenses/Findus-GPL-3.0.txt`.
+
+- Window centering from `extension.js` and `modules/geometry.js` is adapted in
+  `extension/windowCentering.js`, with separate lifecycle, guarded Wayland
+  restore, cancellation and reduced-motion handling.
+- `modules/fontRendering.js` is adapted in `extension/fontRendering.js` with a
+  persistent journal retaining user overrides versus defaults and preserving
+  subsequent external changes. The option defaults to off.
+- `modules/interactionAnimations.js` is adapted in
+  `extension/interactionAnimations.js` with an independent off-by-default
+  switch, reduced-motion handling, key-repeat filtering and transform cleanup.
+- The additional system-menu actions use GNOME's own SystemActions and
+  screenshot UI. Findus's custom icons, notification styling, font selection,
+  Stage Manager, global menu and Quick Settings layout are not imported.
+
+The complete Findus repository, including uncommitted files and nested Git
+history, is preserved in the external archive referenced by
+`docs/findus-archive.json`. No source repository or disk image is deleted.
+
 ## ChromaLeon
 
 Source: https://github.com/Fabito02/ChromaLeon, Fabito02,

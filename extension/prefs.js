@@ -65,6 +65,10 @@ export default class LightOSPreferences extends ExtensionPreferences {
         ['system','light','dark'].forEach((id,i) => {
             const art = preview(id==='system' ? [base.light,base.dark] : [base[id]],true);
             const button = choice(['System','Hell','Dunkel'][i],art,() => settings.set_string('appearance',id));
+            // Native cards have no content padding; keep previews and labels inset.
+            const content = button.get_child();
+            content.margin_top = content.margin_bottom = 12;
+            content.margin_start = content.margin_end = 12;
             schemeGrid.attach(button,i,0,1,1);
             buttons.push([button,art,() => settings.get_string('appearance')===id]);
         });
@@ -145,8 +149,17 @@ export default class LightOSPreferences extends ExtensionPreferences {
         const search=new Adw.PreferencesGroup({title:'Top Bar und Suche'}); layout.add(search);
         search.add(new Adw.ActionRow({title:'Suche öffnen',subtitle:'Super + Leertaste'}));
         search.add(new Adw.ActionRow({title:'GNOME-Suchanbieter',subtitle:'Dateien, Rechner und Einstellungen unter GNOME Einstellungen → Suchen aktivieren.'}));
+        const interaction=new Adw.PreferencesGroup({title:'Fenster und Bedienung'}); layout.add(interaction);
+        const centerRow=new Adw.ActionRow({title:'Fenster zentrieren',subtitle:'Auf der Arbeitsfläche des aktuellen Monitors. Auch im Menü der aktiven Anwendung verfügbar.'});
+        const centerKey=new Gtk.ShortcutLabel({accelerator:settings.get_strv('center-window')[0] ?? '',valign:Gtk.Align.CENTER});
+        centerRow.add_suffix(centerKey); interaction.add(centerRow);
+        const smoothing=new Adw.SwitchRow({title:'Graustufen-Schriftglättung ohne Hinting',subtitle:'Globale GNOME-/GTK-Einstellung. Schriftfamilien und Schriftgrößen bleiben erhalten. Ausgangswerte werden beim Ausschalten wiederhergestellt.'});
+        settings.bind('font-smoothing-enabled',smoothing,'active',Gio.SettingsBindFlags.DEFAULT); interaction.add(smoothing);
+        const presses=new Adw.SwitchRow({title:'Druckanimationen',subtitle:'Kurze Druckrückmeldung für Schaltflächen in Top Bar und Schnelleinstellungen. Beachtet GNOMEs Einstellung für reduzierte Bewegung.'});
+        settings.bind('press-animations-enabled',presses,'active',Gio.SettingsBindFlags.DEFAULT); interaction.add(presses);
         const restore=new Adw.PreferencesGroup({title:'Wiederherstellung',description:'Beim Deaktivieren werden verwaltete Farben und Icon-Einstellungen wiederhergestellt. Eigene CSS-Regeln bleiben erhalten.'}); layout.add(restore);
         const sync=() => {
+            centerKey.accelerator=settings.get_strv('center-window')[0] ?? '';
             let solar; try {solar=JSON.parse(settings.get_string('solar-status'));} catch {solar={enabled:false};}
             solarInfo.visible=settings.get_boolean('auto-appearance');
             solarInfo.subtitle=solar.enabled ? `${solar.source}\n${solar.date} · ${solar.polar ? (solar.polar==='day' ? 'Polartag: durchgehend hell' : 'Polarnacht: durchgehend dunkel') : `Sonnenaufgang ${solar.sunrise} · Sonnenuntergang ${solar.sunset}`}\n${solar.manual ? 'Manuell bis zum nächsten Sonnenwechsel' : (solar.next==='—' ? 'Sonnenzeiten werden täglich neu berechnet' : `Nächster Wechsel ${solar.next}`)}` : 'Sonnenzeiten werden berechnet …';

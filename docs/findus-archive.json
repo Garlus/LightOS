@@ -1,0 +1,17 @@
+{
+  "repository": "https://github.com/Garlus/findus",
+  "revision": "f92572baeacd408570d5ab2bfeedf64d49900599",
+  "date": "2026-10-18",
+  "archive": "/home/otium/Dokumente/[2] Freizeit/[6] Dev/archives/findus-2026-10-18-complete.tar.gz",
+  "sha256": "eea855729267d183fb33c895283410a572395403d95b8881281e83abb478cab6",
+  "verifiedRegularFiles": 394,
+  "includes": [
+    "Complete working tree, including uncommitted and untracked files",
+    "Top-level .git history and nested orbit-global-menu .git history"
+  ],
+  "gitStatus": " M PROJECT_CONTEXT.md\n M README.md\n M THIRD_PARTY.md\n M extension.js\n M icons/findus-lock-symbolic.svg\n M icons/findus-log-out-symbolic.svg\n M icons/findus-power-off-symbolic.svg\n M icons/findus-restart-symbolic.svg\n M icons/findus-screenshot-symbolic.svg\n M icons/findus-settings-symbolic.svg\n M icons/findus-suspend-symbolic.svg\n M icons/findus-switch-user-symbolic.svg\n M modules/globalMenu.js\n M modules/interactionAnimations.js\n M modules/quickSettings.js\n M modules/quickSettingsModel.js\n M modules/systemUi.js\n M prefs.js\n M schemas/gschemas.compiled\n M schemas/org.gnome.shell.extensions.findus.gschema.xml\n M stylesheet.css\n M tests/README.md\n M tests/experimental.test.js\n M tests/notificationStyle.test.js\n M tests/quickSettingsLayout.test.js\n?? modules/monitorModel.js\n?? modules/notificationMotion.js\n?? modules/quickSettingsEditor.js\n?? modules/systemMonitor.js\n?? modules/weatherWidget.js\n?? orbit-global-menu/\n?? tests/monitorModel.test.js\n?? tests/notificationMotion.test.js\n?? tests/quickSettingsEditor.integration.js\n?? tests/widgets.shell-smoke.js\n",
+  "originalWorkingDirectoryPreserved": true,
+  "successor": "https://github.com/Garlus/LightOS",
+  "githubArchived": true,
+  "githubArchiveVerified": "gh repo view: isArchived=true"
+}

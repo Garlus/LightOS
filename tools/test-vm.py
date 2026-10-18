@@ -45,6 +45,9 @@ gjs -m tests/test_gnome_terminal.js
 gjs -m tests/test_gnome_extra.js
 gjs -m tests/test_chromaleon.js
 gjs -m tests/test_solar.js
+gjs -m tests/test_orb_motion.js
+gjs -m tests/test_font_rendering.js
+gjs -m tests/test_interaction_animations.js
 python3 -B tests/test_airdrop.py
 '''
     subprocess.run(ssh_args() + [command], check=True)

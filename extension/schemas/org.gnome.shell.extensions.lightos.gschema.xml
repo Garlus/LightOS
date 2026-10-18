@@ -31,5 +31,8 @@
     <key name="chroma-custom-css" type="b"><default>false</default><summary>chroma-custom-css</summary></key>
     <key name="chroma-flatpak" type="b"><default>true</default><summary>chroma-flatpak</summary></key>
     <key name="chroma-create-shortcut" type="b"><default>false</default><summary>chroma-create-shortcut</summary></key>
+    <key name="center-window" type="as"><default>['&lt;Control&gt;&lt;Super&gt;c']</default><summary>Aktives Fenster auf seinem Monitor zentrieren</summary></key>
+    <key name="font-smoothing-enabled" type="b"><default>false</default><summary>Globale Graustufen-Schriftglättung ohne Hinting</summary></key>
+    <key name="press-animations-enabled" type="b"><default>false</default><summary>Druckanimationen in Top Bar und Schnelleinstellungen</summary></key>
   </schema>
 </schemalist>

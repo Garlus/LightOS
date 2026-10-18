@@ -14,8 +14,20 @@ LightOS wird als eine GNOME-Shell-Erweiterung mit stabiler UUID `lightos@lightos
 | `extraThemes.js` | Farb-Schnittstellen für Qt/KDE-Apps, Code/VSCodium und private Flatpak-Konfigurationen |
 | `tray.js` | StatusNotifier und DBusMenu mit nativen GNOME-Menüs |
 | `prefs.js`, `schemas/` | Native Adwaita-Einstellungen und benutzerspezifisches GSettings-Schema |
+| `windowCentering.js` | Tastenkürzel und App-Menü-Aktion, Wayland-Größenbestätigung und bereinigbare Fensterbewegung |
+| `fontRendering.js` | Optionales globales Schriftglättungsprofil mit persistentem, defaultbewusstem Rücknahmejournal |
+| `interactionAnimations.js` | Optionale Druckrückmeldung an nativen Panel-/Quick-Settings-Actors, Eingabe- und Transform-Lifecycle |
 
-Alle Farb-Anbindungen verwenden vorhandene App-Schnittstellen. Es gibt keinen Plasma-/KWin-Unterbau, keinen nativen Desktop-Plugin-Build und keine systemweiten Style-, Schrift- oder Icon-Eingriffe. Die Qt-/KDE-App-Anbindung unterstützt solche Anwendungen unter GNOME. Die `org.kde.StatusNotifier*`-Namen stammen aus dem Tray-Protokoll und erfordern keine Plasma-Sitzung.
+Alle Farb-Anbindungen verwenden vorhandene App-Schnittstellen. Die Farb-Anbindungen enthalten keinen Plasma-/KWin-Unterbau, keinen nativen Desktop-Plugin-Build und keine systemweiten Style-, Schrift- oder Icon-Ersetzungen. Die Qt-/KDE-App-Anbindung unterstützt solche Anwendungen unter GNOME. Die `org.kde.StatusNotifier*`-Namen stammen aus dem Tray-Protokoll und erfordern keine Plasma-Sitzung.
+
+Als ausdrücklich freigegebene, unabhängige Option kann LightOS 9 die globale
+GNOME-Schriftglättung auf Graustufen ohne Hinting setzen. Das ist kein Bestandteil
+der Farb-Anbindungen; Schriftfamilien und Schriftgrößen bleiben erhalten.
+`font-rendering-backup.json` unter `~/.local/state/lightos-gnome/` unterscheidet
+ursprüngliche Benutzerwerte von Schema-Standardwerten. Nur noch unverändert
+LightOS-eigene Werte werden zurückgenommen. Druckrückmeldung verwendet temporäre
+Actor-Transformationen, lässt native CSS-Maße unverändert und beendet alle
+Eingabe-Hooks/Transformationen bei ausgeschalteten Systemanimationen.
 
 ## Weitere Apps anbinden
 

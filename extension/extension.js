@@ -12,11 +12,16 @@ import * as PanelMenu from 'resource:///org/gnome/shell/ui/panelMenu.js';
 import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
 import * as LoginManager from 'resource:///org/gnome/shell/misc/loginManager.js';
 import * as SystemActions from 'resource:///org/gnome/shell/misc/systemActions.js';
+import * as Screenshot from 'resource:///org/gnome/shell/ui/screenshot.js';
 import {AppColors, PALETTES, LABELS, readPalette, readFile, writeFile} from './palette.js';
 import {LightSearch, recentFiles} from './search.js';
 import {AppThemes} from './appThemes.js';
 import {NativeTray} from './tray.js';
 import {AirDrop} from './airdrop.js';
+import {DesktopOrb} from './orb.js';
+import {WindowCentering} from './windowCentering.js';
+import FontRendering from './fontRendering.js';
+import InteractionAnimations from './interactionAnimations.js';
 import {SolarAppearance} from './solar/runtime.js';
 import {ChromaLeon} from './chromaleon/runtime.js';
 import {optionsFor, dynamicPalette, appCss, shellCss} from './chromaleon/engine.js';
@@ -30,6 +35,9 @@ export default class LightOS extends Extension {
         this._appThemes = new AppThemes(this.dir);
         this._search = new LightSearch();
         this._actions = SystemActions.getDefault();
+        this._centering = new WindowCentering(this._settings);
+        this._fontRendering = new FontRendering(this._settings);
+        this._pressAnimations = new InteractionAnimations(this._settings);
         this._tracker = Shell.WindowTracker.get_default();
         this._apps = Shell.AppSystem.get_default();
         this._savedInterfacePath = GLib.build_filenamev([
@@ -37,11 +45,15 @@ export default class LightOS extends Extension {
         this._interfaceBackup = JSON.parse(readFile(this._savedInterfacePath) ?? '{}');
         this._chroma = new ChromaLeon(this);
         this._system = new PanelMenu.Button(0, 'LightOS Systemmenü');
-        this._system.add_child(new St.Icon({gicon: Gio.FileIcon.new(this.dir.get_child('orb-symbolic.svg')),
-            style_class: 'system-status-icon'}));
+        this._orb = new DesktopOrb(this._system);
+        this._system.menu.box.add_style_class_name('lightos-orb-menu');
+        this._system.menu.setSourceAlignment(0);
         Main.panel.addToStatusArea('lightos-system', this._system, 0, 'left');
         this._system.menu.connect('open-state-changed', (_menu, open) => {
-            if (open) this._buildSystemMenu();
+            if (open) {
+                this._buildSystemMenu();
+                this._actions.forceUpdate();
+            }
         });
 
         this._activeApp = new PanelMenu.Button(0, 'Aktive Anwendung');
@@ -67,6 +79,7 @@ export default class LightOS extends Extension {
         Main.wm.addKeybinding('search-shortcut', this._settings, Meta.KeyBindingFlags.NONE,
             Shell.ActionMode.NORMAL | Shell.ActionMode.OVERVIEW, () => this._search.toggle());
         this._connect(global.display, 'notify::focus-window', () => this._syncActive());
+        this._connect(this._actions, 'notify', () => this._syncSystemActions());
         // Discover config folders created by the first start of optional apps.
         this._connect(this._apps, 'app-state-changed', () => {
             if (this._appRefresh) GLib.source_remove(this._appRefresh);
@@ -90,6 +103,7 @@ export default class LightOS extends Extension {
             else this._applyColors(false);
         });
         this._connect(this._settings, 'changed', (_settings, key) => {
+            if (['center-window', 'font-smoothing-enabled', 'press-animations-enabled'].includes(key)) return;
             if (['chroma-colors','chroma-wallpaper','chroma-choices','chroma-error','auto-appearance','solar-status'].includes(key)) return;
             if (key === 'search-shortcut') this._removeShortcutConflicts();
             else {
@@ -159,6 +173,11 @@ export default class LightOS extends Extension {
         menu.addMenuItem(header);
         this._menuAction(menu, 'Übersicht', () => Main.overview.toggle(), 'view-grid-symbolic');
         this._menuAction(menu, 'Suchen', () => this._search.toggle(), 'edit-find-symbolic');
+        this._menuAction(menu, 'Bildschirmfoto …', () => {
+            // The screenshot UI owns its modal grab; release the menu first.
+            menu.close();
+            Screenshot.showScreenshotUI();
+        }, 'camera-photo-symbolic');
         menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
         this._menuAction(menu, 'Einstellungen', () => this._launch('org.gnome.Settings.desktop'), 'preferences-system-symbolic');
         this._menuAction(menu, 'Software', () => this._launch('org.gnome.Software.desktop'), 'org.gnome.Software-symbolic');
@@ -180,9 +199,25 @@ export default class LightOS extends Extension {
         });
         this._menuAction(menu, 'LightOS anpassen', () => this.openPreferences(), 'preferences-other-symbolic');
         menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-        this._menuAction(menu, 'Sperren', () => this._actions.activateLockScreen(), 'system-lock-screen-symbolic');
-        this._menuAction(menu, 'Abmelden …', () => this._actions.activateLogout(), 'system-log-out-symbolic');
-        this._menuAction(menu, 'Ausschalten …', () => this._actions.activatePowerOff(), 'system-shutdown-symbolic');
+        this._systemActions = [
+            ['Sperren', 'canLockScreen', 'activateLockScreen', 'system-lock-screen-symbolic'],
+            ['Bereitschaft', 'canSuspend', 'activateSuspend', 'media-playback-pause-symbolic'],
+            ['Benutzer wechseln …', 'canSwitchUser', 'activateSwitchUser', 'system-switch-user-symbolic'],
+            ['Abmelden …', 'canLogout', 'activateLogout', 'system-log-out-symbolic'],
+            ['Neustart …', 'canRestart', 'activateRestart', 'system-reboot-symbolic'],
+            ['Ausschalten …', 'canPowerOff', 'activatePowerOff', 'system-shutdown-symbolic'],
+        ].map(([label, capability, method, icon]) => ({
+            capability,
+            item: this._menuAction(menu, label, () => {
+                if (this._actions[capability]) this._actions[method]();
+            }, icon),
+        }));
+        this._syncSystemActions();
+    }
+
+    _syncSystemActions() {
+        for (const {item, capability} of this._systemActions ?? [])
+            item.setSensitive(this._actions[capability]);
     }
 
     _syncActive() {
@@ -203,6 +238,8 @@ export default class LightOS extends Extension {
                 this._menuAction(this._activeApp.menu, window.get_title(), () => Main.activateWindow(window));
             this._activeApp.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
             const window = this._focusedWindow;
+            const center = this._menuAction(this._activeApp.menu, 'Fenster zentrieren', () => this._centering.center(window));
+            center.setSensitive(!!window && window.allows_move() && !window.is_fullscreen());
             this._menuAction(this._activeApp.menu, 'Fenster schließen', () => window?.delete(global.get_current_time()));
         }
         this._menuAction(this._activeApp.menu, 'Alle Fenster anzeigen', () => Main.overview.show());
@@ -281,6 +318,12 @@ export default class LightOS extends Extension {
             catch (error) {this._settings.set_string('chroma-error',error.message);}
         } else this._chroma.customCss('',false);
         this._chroma.extras(chroma ? options.accent : '#3584e4',chroma);
+        // Match native Quick Settings content padding in the current theme.
+        const quickPadding = Main.panel.statusArea.quickSettings.menu.box.get_theme_node();
+        const sides = [St.Side.TOP, St.Side.RIGHT, St.Side.BOTTOM, St.Side.LEFT];
+        const scale = St.ThemeContext.get_for_stage(global.stage).scale_factor;
+        const padding = sides.map(side => quickPadding.get_padding(side) / scale);
+        css += `\n.lightos-orb-menu { padding: ${padding.map(value => `${value}px`).join(' ')}; }`;
         const theme = St.ThemeContext.get_for_stage(global.stage).get_theme();
         const path = GLib.build_filenamev([GLib.get_user_cache_dir(), 'lightos-gnome', 'shell-colors.css']);
         const folder = Gio.File.new_for_path(GLib.path_get_dirname(path));
@@ -298,6 +341,9 @@ export default class LightOS extends Extension {
     }
 
     disable() {
+        this._pressAnimations?.destroy(); this._pressAnimations = null;
+        this._fontRendering?.destroy(); this._fontRendering = null;
+        this._centering?.destroy(); this._centering = null;
         this._solar?.destroy(); this._solar = null;
         if (this._appRefresh) GLib.source_remove(this._appRefresh);
         this._appRefresh = 0;
@@ -314,7 +360,9 @@ export default class LightOS extends Extension {
         this._shortcutSettings = this._shortcutBackup = null;
         this._search?.destroy();
         this._search = null;
+        this._orb?.destroy(); this._orb = null;
         this._system?.destroy();
+        this._systemActions = null;
         this._activeApp?.destroy();
         this._tray?.destroy();
         this._tray = null;
