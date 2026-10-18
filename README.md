@@ -1,24 +1,24 @@
 # LightOS
 
-Eine GNOME-Shell-Erweiterung für GNOME 50 / Wayland.
+A GNOME Shell extension for GNOME 50 / Wayland.
 
-![LightOS-Suche unter GNOME 50, aufgenommen am 18. Oktober 2026](docs/screenshots/gnome/lightos.png)
+![LightOS search on GNOME 50, captured on October 18, 2026](docs/screenshots/gnome/lightos.png)
 
-## Funktionen
+## Features
 
-- Native Top Bar mit animiertem Orb, System- und App-Menü sowie StatusNotifier-Tray.
-- Suche mit **Super + Leertaste**: Apps, Fenster, Dateien, Berechnungen und Webadressen.
-- Sechs Farbpaletten und ChromaLeon-Farben aus dem Hintergrundbild, auch für unterstützte Apps.
-- Automatischer Hell-/Dunkelwechsel bei Sonnenaufgang und Sonnenuntergang.
-- Fensterzentrierung mit **Strg + Super + C**, optionale Schriftglättung und Druckanimationen.
-- AirDrop in den Quick Settings; benötigt eine funktionierende AWDL-Schnittstelle.
+- Native top bar with an animated Orb, system and app menus, and a StatusNotifier tray.
+- Search with **Super + Space**: apps, windows, files, calculations, and web addresses.
+- Six color palettes and ChromaLeon colors from your wallpaper, also applied to supported apps.
+- Automatic light/dark switching at sunrise and sunset.
+- Window centering with **Ctrl + Super + C**, optional font smoothing, and press feedback animations.
+- AirDrop in Quick Settings; requires a working AWDL interface.
 
-## Quellen
+## Sources
 
-- [Findus](https://github.com/Garlus/findus) – Fensterzentrierung, Schriftglättung und Druckanimationen.
-- [ChromaLeon](https://github.com/Fabito02/ChromaLeon) – Hintergrundbild-Farben und Farb-Engine.
-- [t3code](https://github.com/pingdotgg/t3code) – Farbpaletten.
-- [Night Theme Switcher](https://gitlab.com/rmnvgr/nightthemeswitcher-gnome-shell-extension) – Sonnenzeitberechnung.
-- [Omdrop](https://github.com/brentkearney/omdrop-plugin) – AirDrop-Empfang und Protokollbausteine.
+- [Findus](https://github.com/Garlus/findus) – window centering, font smoothing, and press feedback animations.
+- [ChromaLeon](https://github.com/Fabito02/ChromaLeon) – wallpaper colors and color engine.
+- [t3code](https://github.com/pingdotgg/t3code) – color palettes.
+- [Night Theme Switcher](https://gitlab.com/rmnvgr/nightthemeswitcher-gnome-shell-extension) – sunrise and sunset calculations.
+- [Omdrop](https://github.com/brentkearney/omdrop-plugin) – AirDrop reception and protocol components.
 
-[Installation und Bedienung](docs/guide.md) · [Quellnachweise und Lizenzen](THIRD_PARTY.md) · [GPL-3.0](LICENSE)
+[Installation and usage](docs/guide.md) · [Attribution and licenses](THIRD_PARTY.md) · [GPL-3.0](LICENSE)
