@@ -1,104 +1,108 @@
-# LightOS
+# Installation und Bedienung
 
-Eine umfangreiche, installierbare **GNOME-Shell-Erweiterung für GNOME 50 / Wayland**: Top Bar, Suche, sechs Farbpaletten in Hell und Dunkel und gemeinsame Farben für GNOME und weitere Apps. Standard ist Ocean mit Blau und Türkis. Entwickelt und geprüft in einer separaten Fedora-44-VM.
-
-![LightOS unter GNOME](screenshots/gnome/vm-access-desktop.png)
-
-Die Top Bar übernimmt LightOS' Anordnung: Systemmenü und aktive Anwendung links, native GNOME-Uhr mittig, Tray und native Systemsteuerung rechts. Der kleine Orb ist ein symbolisches GNOME-Icon. GNOMEs Übersicht bleibt über Super und das Systemmenü erreichbar. Die rechte Seite enthält keine laufenden App-Icons und keine Lupe. Die Suche öffnet sich über Super + Leertaste.
-
-Systemmenü, App-Menü, Kalender, Benachrichtigungen, Quick Settings und Einstellungen verwenden GNOMEs eigene Komponenten. Das App-Menü bietet Fensterwechsel und Schließen; GNOME bietet kein universelles globales GTK-Menü für alle GTK-Anwendungen. StatusNotifier-/DBusMenu-Anwendungen erhalten native GNOME-Menüs. Ein bereits vorhandener StatusNotifierWatcher wird mitbenutzt.
+LightOS benötigt GNOME Shell 50 unter Wayland. Die Standardpalette ist Ocean.
+App-Anbindungen ändern Farben; native Schriftgrößen, Abstände und Widgetformen
+bleiben erhalten.
 
 ## Installation
 
-Das Projekt enthält ausschließlich die GNOME-Erweiterung, ihre Tests und Entwicklungswerkzeuge. Es benötigt weder Plasma noch KWin. Das bisherige Plasma-Setup und der systemweite Desktop-Installer sind entfernt.
+Im Projektverzeichnis:
 
 ```bash
 python3 tools/build.py
 gnome-extensions install --force dist/lightos@lightos.dev.shell-extension.zip
 ```
 
-Danach unter Wayland einmal ab- und anmelden, damit GNOME die neue Erweiterung erkennt:
+Unter Wayland anschließend ab- und wieder anmelden. Das gilt auch bei Updates.
 
 ```bash
 gnome-extensions enable lightos@lightos.dev
 gnome-extensions prefs lightos@lightos.dev
 ```
 
-Die Erweiterungsinstallation benötigt kein sudo und richtet keine Dienste ein. Für die native GTK4-Terminaloberfläche wird **Ptyxis** verwendet, auf Fedora GNOME standardmäßig verfügbar. Falls es fehlt: `sudo dnf install ptyxis`, anschließend `ptyxis` starten. Die Erweiterung liefert und wählt dessen Farbpaletten; das bisherige GTK3-GNOME-Terminal bleibt ebenfalls unterstützt. Das ZIP enthält Layout, Suche, Farbpaletten und App-Anbindung. GNOME 49 und andere Shell-Versionen werden bisher nicht als kompatibel deklariert.
+Die Installation erfolgt im Benutzerprofil und benötigt kein sudo. Entwicklung
+und interaktive Tests erfolgen ausschließlich in der [isolierten VM](vm-access.md).
 
-## Farben und Apps
+## Bedienung
 
-Standard ist **Ocean, hell**: Blau `#2672af` und Türkis `#0a6f75`; dunkel `#70b9ee` und `#5bd0d6`. Weitere Paletten: Grove, Ember, Iris, T3 Chat und T3 Code. Alle sechs bieten Hell und Dunkel. „System“ stellt die ursprüngliche GNOME-Darstellung wieder her und folgt anschließend GNOMEs Farbpräferenz. Das Systemmenü bietet die Farbwahl, Quick Settings einen Hell-/Dunkel-Schalter.
+- **Super + Leertaste:** Suche öffnen. Pfeiltasten oder Tab wählen einen Treffer,
+  Enter aktiviert ihn, Esc schließt den Dialog. Bei Berechnungen kopiert Enter
+  das Ergebnis. Dateisuche außerhalb zuletzt verwendeter Dateien benötigt einen
+  aktivierten GNOME-Suchanbieter samt Index.
+- **Super:** GNOME-Übersicht öffnen.
+- **Strg + Super + C:** aktives Fenster auf seinem Monitor zentrieren. Die Aktion
+  steht auch im App-Menü. Maximierte Fenster werden vorher wiederhergestellt;
+  Vollbildfenster und nicht verschiebbare Fenster bleiben ausgenommen.
+- **Orb-Menü:** Systemaktionen und Farbwahl. Rechts befinden sich GNOMEs native
+  Quick Settings, Kalender und Benachrichtigungen.
 
-Die vollständigen Farbdaten stammen aus [t3codes gemeinsamer Paletten-Datei](https://github.com/pingdotgg/t3code/blob/e803242d936af3e052757d59ab32bc7c4fcc2390/packages/shared/src/themePalettes.ts), Revision `e803242d936af3e052757d59ab32bc7c4fcc2390`. OKLCH-Farben wurden nach sRGB umgerechnet. Lizenz und Herkunft sind im ZIP enthalten.
+Die Suche sichert eine kollidierende GNOME-Belegung für den Tastaturlayoutwechsel
+und stellt sie beim Deaktivieren wieder her. Das App-Menü bietet Fensteraktionen;
+es ist kein universelles globales GTK-Anwendungsmenü.
 
-| Anwendung | Anbindung |
-|---|---|
-| GTK 3 / GTK 4 / libadwaita | Farbvariablen in der benutzerspezifischen GTK-CSS; GTK 3 erhält zusätzlich ausschließlich Farbangaben für Fenster und Headerbars |
-| Dateien, Einstellungen, Rechner, Erweiterungseinstellungen | Dieselbe GTK-/libadwaita-Palette |
-| GNOME Texteditor / GtkSourceView 5 | Zwölf Farbschemata, native Adwaita-Syntaxbasis, automatische Auswahl im Texteditor |
-| Ptyxis (GTK 4 / libadwaita) | Zwölf native Terminalpaletten einschließlich Titelzeile, Cursor und ANSI-Farben; Auswahl im vorhandenen Standardprofil |
-| GNOME Terminal (GTK 3) | Farben des bestehenden Standardprofils, Cursor und Auswahl, passende native Hell-/Dunkeldarstellung |
-| GNOME Console 50 | Hell-/Dunkelmodus; eigene Terminalpalette bleibt erhalten |
-| KDE / Qt | Native `.colors`-Palette und Farbgruppen in `kdeglobals`; vorhandene KDE-App-Konfigurationen wählen sie explizit. Qt5ct/Qt6ct erhält eine native Farbpalette. Widget-Stil und Font bleiben erhalten |
-| KWrite / Kate | Native Syntax-Themes aus dem vorhandenen Schema; nur Farben werden abgeleitet, Formatierung und Fonts bleiben erhalten |
-| VS Code / VSCodium / Code OSS / Insiders | Oberfläche, Editor und Terminal über `workbench.colorCustomizations`, auch Benutzerprofile; vorhandenes Theme und andere Einstellungen bleiben erhalten |
-| Flatpak-GTK-Apps | Farbregeln in vorhandenen privaten `.var/app/<App-ID>/config/gtk-{3,4}.0/gtk.css` ohne zusätzliche Sandbox-Rechte |
-| Flatpak-KDE/Qt und Code | Entsprechende private App-Konfigurationen, wenn vorhanden bzw. für bekannte KDE/Qt-App-IDs |
-| Andere GTK-Apps | Übernehmen die Palette, soweit sie die Systemfarben verwenden |
+## Farben und Einstellungen
 
-**Radien, Padding, Margins, Schriftgrößen, Icons und Fensterknöpfe der Apps werden nicht geändert.** GNOME behält seine Formen und Abstände. Neue Farben werden für GTK-Apps nach einem Neustart der jeweiligen App wirksam; einige Apps aktualisieren ihren Stil schon während des Wechsels.
+Im Reiter **Appearance** stehen System, Hell und Dunkel zur Wahl. Die festen
+Paletten heißen Ocean, Grove, Ember, Iris, T3 Chat und T3 Code. ChromaLeon liefert
+zusätzlich bis zu drei Farben aus dem aktuellen Hintergrundbild. System stellt
+die ursprüngliche GNOME-Darstellung wieder her.
 
-Die Erweiterung nutzt jetzt die dokumentierten Farb-Schnittstellen von GTK, KDE/Qt und VS Code. Andere Electron-Apps und Webseiten brauchen eigene Farb-Schnittstellen; eine universelle Schnittstelle für alle privaten App-Themes gibt es nicht. Erst neu gestartete Apps werden automatisch auf neue Konfigurationsordner geprüft. GTK-/Qt-/Flatpak-Apps anschließend bei Bedarf neu öffnen. Flatpak-Berechtigungen werden nicht verändert. GNOME Console 50 verwirft eigene Paletten aufgrund eines [Fehlers im GVariant-Iterator](https://github.com/GNOME/console/blob/gnome-50/src/kgx-livery-manager.c#L307); Ptyxis ist die geprüfte GTK4-Alternative für vollständige Terminalfarben. Tray-Icons, die ausschließlich Pixmap-Daten liefern, erhalten derzeit ein Ersatzicon; Icons über Namen werden unterstützt.
+Die App-Farbanbindung unterstützt GTK 3/4, libadwaita, GtkSourceView, Ptyxis,
+GNOME Terminal, Qt/KDE-Anwendungen, Kate/KWrite und Code/VSCodium sowie vorhandene
+private Flatpak-Konfigurationen. Ptyxis unterstützt vollständige Terminalpaletten;
+GNOME Console übernimmt nur den Hell-/Dunkelmodus. Neue Farben erfordern je nach
+Anwendung einen Neustart. Flatpak-Berechtigungen werden nicht erweitert.
 
-## Suche statt KRunner
+Die optionale Sonnenautomatik verwendet GeoClue bei freigegebenen Standortdiensten,
+sonst eine grobe Zeitzonenschätzung. Diese kann von den örtlichen Sonnenzeiten
+abweichen. Koordinaten werden nicht gespeichert. Eine manuelle Moduswahl bleibt
+bis zum nächsten Sonnenwechsel erhalten; System schaltet die Automatik aus.
 
-**Super + Leertaste** öffnet einen kompakten Suchdialog mit GNOMEs eigenen Komponenten:
+Unter **LightOS → Fenster und Bedienung** sind Graustufen-Schriftglättung ohne
+Hinting und Druckanimationen unabhängig aktivierbar. Beide sind standardmäßig
+ausgeschaltet. Die Schriftoption lässt Familien und Größen unverändert;
+Druckanimationen beachten GNOMEs Einstellung für reduzierte Bewegung.
 
-- Apps starten und offene Fenster wechseln.
-- Zuletzt verwendete lokale Dateien öffnen.
-- GNOMEs aktivierte Suchanbieter verwenden, unter anderem Dateien, Einstellungen und Rechner.
-- Arithmetik mit Klammern, Potenzen, Modulo und Dezimalzahlen berechnen; Enter kopiert das Ergebnis.
-- HTTP-/HTTPS-Adressen im Standardbrowser öffnen.
-- Pfeiltasten und Tab wählen, Enter aktiviert, Esc und Außenklick schließen.
+## AirDrop
 
-Der Dialog heißt „Suche“. Eine unbenutzte Buttonzeile ist ausgeblendet; dadurch fällt der zusätzliche Abstand unter dem Bedienhinweis weg.
+Die Quick-Settings-Kachel schaltet den Empfang ein oder aus; ihr Pfeil öffnet
+**Dateien senden …**. AirDrop startet ausgeschaltet. Empfangene Dateien benötigen
+eine Bestätigung und landen im XDG-Downloads-Verzeichnis; vorhandene Dateien
+werden nicht überschrieben.
 
-Die Suche verwendet keine Shell-Ausführung und kein JavaScript-`eval()` für Berechnungen. Externe Suchanbieter werden parallel aufgerufen, abgebrochene Suchläufe verworfen. Die Liste respektiert GNOMEs Suchanbieter- und Jugendschutzeinstellungen. Dateisuche außerhalb der zuletzt verwendeten Dateien benötigt einen aktivierten GNOME-Dateisuchanbieter und dessen Index.
+Erforderlich sind Python ≥ 3.11, libadwaita ≥ 1.5 und ein bereits laufendes
+`awdl0` mit lokaler IPv6-Adresse, etwa über OWL mit geeigneter WLAN-Hardware.
+LightOS installiert keine Funkdienste oder Treiber.
 
-[Search Light](https://github.com/icedman/search-light) und [Ulauncher](https://ulauncher.io/) wurden als Alternativen betrachtet. Die integrierte Suche benötigt keinen zweiten Launcher und wird mit demselben ZIP installiert.
+Fedora:
 
-## Wiederherstellung
+```bash
+sudo dnf install python3-libarchive-c python3-zeroconf python3-gobject gtk4 libadwaita openssl
+```
+
+Debian/Ubuntu:
+
+```bash
+sudo apt install python3-libarchive-c python3-zeroconf python3-gi gir1.2-gtk-4.0 gir1.2-adw-1 openssl
+```
+
+Die Firewall muss mDNS und TCP 8771 auf der AWDL-Schnittstelle zulassen;
+LightOS verändert keine Firewall-Regeln. Am Apple-Empfänger AirDrop auf
+**Für jeden** stellen. Bluetooth-Wecksignal und **Nur Kontakte** sind nicht
+implementiert. Ein Funktransfer zu echten Apple-Geräten ist bisher ungeprüft;
+die normale Test-VM besitzt keine AWDL-Hardware.
+Details zur [Implementierung und Quellherkunft](../extension/airdrop/README.md).
+
+## Deaktivierung
 
 ```bash
 gnome-extensions disable lightos@lightos.dev
 ```
 
-Das entfernt die Panel-Elemente, stellt Aktivitäten und native Shell-Farben wieder her, entfernt verwaltete GTK-Farbblöcke und setzt verwaltete App-Einstellungen und Farbschemata zurück. Ursprüngliche Daten liegen bis dahin unter `~/.local/state/lightos-gnome/`. Qt-Farbeinstellungen und verwaltete Code-Farbwerte werden ebenfalls wiederhergestellt. Eigene CSS-Regeln bleiben erhalten, auch wenn sie während der Nutzung ergänzt wurden. Nachträglich abweichend geänderte App-Einstellungen werden nicht überschrieben. Die Sicherungen überstehen einen Shell-Neustart.
+LightOS entfernt seine Panel-Elemente und stellt die verwalteten Farb-, App-,
+Schrift- und Tastenkürzeleinstellungen wieder her. Ursprüngliche Werte liegen
+unter `~/.local/state/lightos-gnome/`. Nachträgliche Benutzeränderungen werden
+respektiert; eigene CSS-Regeln bleiben erhalten. Laufende AirDrop-Vorgänge enden.
 
-Super + Leertaste ist bei GNOME häufig mit dem Tastaturlayout-Wechsel belegt. Die Erweiterung sichert die kollidierende Belegung, lässt andere Layout-Shortcuts stehen und stellt die ursprüngliche Belegung beim Deaktivieren wieder her.
-
-## VM-Prüfung und Aufnahmen
-
-Siehe [Prüfbericht und alle Farbvarianten](gnome-validation.md). VM-Steuerung: `python3 tools/vm.py ssh|capture|key|click|install|start|stop`. Die VM nutzt SSH `127.0.0.1:2233`, VNC `127.0.0.1:5910` und QMP unter `.cache/vm-gnome/`. Die validierte VM verwendet eine bestehende QCOW2-Basis unter `.cache/`. Diese Basisdateien dürfen während des Betriebs nicht verändert oder gelöscht werden. Die Werkzeuge installieren und bedienen ausschließlich GNOME in der VM.
-
-`tools/validate-vm.py` ist ein Testwerkzeug für diese VM. Es benötigt GNOMEs Eval-Funktion im VM-Entwicklermodus; sie wird für die finale Sitzung wieder deaktiviert. Die installierbare Erweiterung benötigt diesen Modus nicht.
-
-## Projekt und Entwicklung
-
-
-| Pfad | Inhalt |
-|---|---|
-| `extension/` | Installierbare GNOME-Erweiterung, Einstellungen, Paletten und optionale App-Farbadapter |
-| `tools/` | ZIP-Build, VM-Steuerung, Tests und visuelle Validierung |
-| `tests/` | Rechnen, Farbregeln, App-Anbindung, Wiederherstellung und GTK-Geometrie |
-| `docs/` | Prüfberichte und echte GNOME-VM-Aufnahmen |
-| `dist/` | Erzeugtes Extension-ZIP |
-
-`python3 tools/test-vm.py` synchronisiert den GNOME-Projektstand und führt die isolierten GJS-Tests in der VM aus. Dabei werden temporäre XDG-Verzeichnisse und ein GSettings-Speicherbackend verwendet. [Architektur und Erweiterung der App-Anbindung](architecture.md), [Projektbereinigung](project-cleanup.md).
-
-## Neue Optionen in LightOS 5
-
-[Appearance und ChromaLeon](../README.md#appearance-und-chromaleon) ergänzt die
-bisherigen Themes. [AirDrop](../README.md#airdrop) sitzt in den Quick Settings.
-[Die bestehende Test-VM selbst bedienen](vm-access.md).
+Für Entwicklung: [Architektur und Build](architecture.md),
+[VM-Zugang und Prüfung](vm-access.md), [Quellnachweise](../THIRD_PARTY.md).

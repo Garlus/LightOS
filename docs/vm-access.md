@@ -1,87 +1,58 @@
-# Selbst in der GNOME-Test-VM testen
+# GNOME-Test-VM
 
-Die bestehende Fedora-44-VM enthält GNOME Shell 50.5 / Wayland und den
-zuletzt validierten LightOS-Stand. Sie benutzt dieselbe Disk wie die Prüfberichte;
-Änderungen in der VM bleiben nach einem Neustart erhalten.
+Die isolierte Fedora-44-VM verwendet GNOME Shell 50 / Wayland. Installation,
+Sitzungsneustarts und interaktive Tests erfolgen hier. Die VM-Disk, ihre
+QCOW2-Backing-Dateien und sämtliche vorhandenen Daten in `.cache/` erhalten.
 
-## Grafischer Zugang
-
-Im LightOS-Projektordner ausführen:
+## Browserzugang
 
 ```bash
 python3 tools/vm-view.py
 ```
 
-Das startet bei Bedarf die vorhandene VM und öffnet den lokalen
-[Browserzugang](http://127.0.0.1:6080/vnc.html?host=127.0.0.1&port=6081&path=.&encrypt=false&autoconnect=true&resize=scale).
-Beim ersten Aufruf wird noVNC 1.6.0 ausschließlich unter `.cache/` vorbereitet.
-QEMU liefert den WebSocket-Zugang direkt; Python dient als lokaler Webserver.
-Die Erweiterung wird dabei nicht auf dem Host
-installiert. Die VM meldet den Benutzer `lightos` automatisch an.
+Das Werkzeug startet bei Bedarf die bestehende VM und öffnet noVNC. Beim ersten
+Aufruf wird noVNC 1.6.0 unter `.cache/novnc` vorbereitet. Der Benutzer `lightos`
+wird automatisch angemeldet. Änderungen in der VM bleiben nach Neustarts erhalten.
+Während manueller Bedienung keine automatisierten Eingaben oder Neustarts ausführen.
 
-In den Desktop klicken, um ihn mit Maus und Tastatur zu bedienen. Im seitlichen
-noVNC-Menü gibt es Vollbild und zusätzliche Tasten. Super öffnet die GNOME-Übersicht;
-Super + Leertaste öffnet die LightOS-Suche. Falls der Host oder Browser diese
-Tasten abfängt, können sie über das noVNC-Tastenmenü oder die folgenden
-VM-Befehle gesendet werden:
+## Build und Installation
 
 ```bash
-python3 tools/vm.py key super
-python3 tools/vm.py key super spc
+python3 tools/build.py
+python3 tools/vm.py install
+python3 tools/vm.py ssh 'sudo systemctl restart gdm'
 ```
 
-Rechts oben öffnen sich die Quick Settings mit der AirDrop-Kachel. Die
-LightOS-Einstellungen lassen sich in der VM über „Erweiterungen“ öffnen.
-Alternativ öffnet dieser Befehl das Einstellungsfenster direkt:
+Der GDM-Neustart beendet die laufende VM-Sitzung. Anschließend wird das aktualisierte
+ZIP in einer neuen Wayland-Sitzung geladen. Installation und Tests verändern das
+Host-Desktopprofil nicht.
 
-```bash
-python3 tools/vm.py ssh 'XDG_RUNTIME_DIR=/run/user/1000 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus gnome-extensions prefs lightos@lightos.dev'
-```
-
-AirDrop ist zunächst Aus. Die VM besitzt keine AWDL-fähige WLAN-Karte;
-echte Funkübertragungen zu Apple-Geräten lassen sich darin nicht prüfen.
-Die bisherigen lokalen Transporttests und ihre Grenzen stehen im
-[AirDrop-Prüfbericht](airdrop-validation.md).
-
-Der am 10. Oktober 2026 aktualisierte Stand ist **LightOS 8** mit AirDrop,
-den sechs bisherigen Farbpaletten und der zusätzlichen ChromaLeon-Engine im
-Reiter **Appearance**, einschließlich des automatischen Wechsels bei Sonnenaufgang
-und Sonnenuntergang. Die Automatik ist in dieser Test-VM eingeschaltet;
-[Prüfbericht zur Automatik](solar-validation.md). Die abschließenden Tests und Aufnahmen stehen im
-[ChromaLeon-Prüfbericht](chromaleon-validation.md) und die aktuellen
-[Appearance-Aufnahmen](appearance-styling.md).
-[Aufnahme der laufenden Sitzung](screenshots/gnome/vm-access-desktop.png).
-
-Zugangsprüfung: noVNC-HTML und JavaScript-Module antworten mit HTTP 200;
-QEMU akzeptiert den WebSocket-Handshake mit HTTP 101 und liefert das binäre
-VNC-Protokoll `RFB 003.008`. SSH funktioniert, LightOS 8 ist `ACTIVE`,
-und Shell Eval bleibt deaktiviert. Ein steuerbarer Browser ist in der
-Agent-Umgebung nicht verfügbar; die Browseroberfläche konnte deshalb hier
-nicht durchgeklickt werden. Die Aufnahme stammt direkt aus der laufenden VM.
-
-## Terminalzugang und Lebenszyklus
+## Steuerung und Prüfung
 
 ```bash
 python3 tools/vm.py ssh
+python3 tools/vm.py key super spc
+python3 tools/vm.py capture /tmp/lightos.png
+python3 tools/test-vm.py
 python3 tools/vm.py stop
-python3 tools/vm-view.py
 ```
 
-SSH nutzt den bereits vorhandenen Schlüssel aus `.cache/vm-gnome/id_ed25519`.
-In der Test-VM kann `lightos` mit `sudo` ohne Passwort administrative Befehle
-ausführen. VM herunterfahren, wenn der Test abgeschlossen ist; der Browserzugang
-zeigt dann keine laufende Sitzung mehr. Ein Neustart verwendet dieselbe Disk.
-Nach `stop` das vollständige Herunterfahren abwarten; Fedora kann dabei auf
-seinen Paketdienst warten. Eine bereits mit älteren Werkzeugen gestartete VM
-muss einmal regulär heruntergefahren werden, damit der WebSocket-Anschluss
-beim nächsten Start bereitsteht.
+`tools/test-vm.py` synchronisiert den Quellstand und führt die isolierten Tests
+mit temporären XDG-Verzeichnissen und einem GSettings-Speicherbackend aus.
+Die Werkzeuge `tools/validate-*.py` dienen der gezielten Laufzeitprüfung und
+erzeugen bei Bedarf neue Prüfberichte und Aufnahmen. Shell Eval ist ausschließlich
+ein VM-Testhilfsmittel und muss nach der Prüfung deaktiviert werden.
 
-VNC (`127.0.0.1:5910`), WebSocket (`127.0.0.1:6081`), Browser (`127.0.0.1:6080`) und SSH
-(`127.0.0.1:2233`) sind nur auf diesem Rechner erreichbar. Der Browserzugang
-steuert dieselbe GNOME-Sitzung wie die Testwerkzeuge. Während eigener Tests
-sollten automatisierte Klicks und Sitzungsneustarts pausieren.
-Die VM-Disk und ihre Backing-Dateien in `.cache/` erhalten.
+SSH verwendet `127.0.0.1:2233` und `.cache/vm-gnome/id_ed25519`.
+VNC (`5910`), WebSocket (`6081`) und noVNC (`6080`) sind ebenfalls nur lokal
+erreichbar. QMP liegt unter `.cache/vm-gnome/`. `lightos` verfügt innerhalb der
+VM über passwortloses sudo. Nach `stop` das vollständige Herunterfahren abwarten.
 
-Quellen des zusätzlichen lokalen Viewers: [noVNC](https://github.com/novnc/noVNC)
-(MPL-2.0, Revision `a8dfd6a3ea3c74244f5ebdaa5a7f1023007a7820`) und
-[QEMUs nativer WebSocket-Zugang](https://www.qemu.org/docs/master/system/invocation.html).
+Die [aktuelle Aufnahme](screenshots/gnome/lightos.png) stammt vom 18. Oktober 2026:
+LightOS 9, GNOME Shell 50.5, aus dem aktuellen ZIP installiert und nach
+Sitzungsneustart als ACTIVE bestätigt. Die VM besitzt keine AWDL-fähige WLAN-Karte;
+echte AirDrop-Funktransfers lassen sich darin nicht prüfen.
+
+Viewer: [noVNC](https://github.com/novnc/noVNC), MPL-2.0,
+Revision `a8dfd6a3ea3c74244f5ebdaa5a7f1023007a7820`;
+Transport: [QEMU](https://www.qemu.org/docs/master/system/invocation.html).
