@@ -12,6 +12,9 @@ LightOS wird als eine GNOME-Shell-Erweiterung mit stabiler UUID `lightos@lightos
 | `appThemes.js` | Koordiniert optionale App-Farben und native Editor-/Terminaleinstellungen |
 | `terminalThemes.js` | Ptyxis-Paletten und dessen bestehendes Standardprofil |
 | `extraThemes.js` | Farb-Schnittstellen für Qt/KDE-Apps, Code/VSCodium und private Flatpak-Konfigurationen |
+| `systemMenu.js`, `systemStats.py` | Compact native panel menu, asynchronous read-only procfs/sysfs measurements and history graphs |
+| `systemTools.py` | Separate GTK 4 / libadwaita process for Flatpak, Homebrew, bounded cache cleanup and Tesseract OCR |
+| `workspaceMaximize.js` | Optional per-window workspace ownership and restoration on unmaximize, switch-off and extension disable |
 | `tray.js` | StatusNotifier und DBusMenu mit nativen GNOME-Menüs |
 | `prefs.js`, `schemas/` | Native Adwaita-Einstellungen und benutzerspezifisches GSettings-Schema |
 | `windowCentering.js` | Tastenkürzel, Wayland-Größenbestätigung und bereinigbare Fensterbewegung |
@@ -43,10 +46,11 @@ einschließlich Schriftregistrierung für eine spätere Wiederherstellung erhalt
 Externe Schriftwerte mit Geist behalten ebenfalls die benötigte Registrierung.
 
 Die Top Bar bleibt GNOME-nativ. `extension.js` ersetzt weder die
-Activities-Schaltfläche noch fügt es eigene System- oder Anwendungsmenüs hinzu.
-Eigene Panel-Indikatoren beschränken sich auf die StatusNotifier-Einträge aus
-`tray.js`; Quick Settings, Kalender und Benachrichtigungen bleiben unverändert.
-Damit entfallen auch strukturelle Laufzeitänderungen an der Top Bar.
+Activities-Schaltfläche. Neben den StatusNotifier-Einträgen aus `tray.js`
+trägt sie das ausdrücklich beauftragte System-Icon aus `systemMenu.js` direkt
+links neben Quick Settings ein. Quick Settings, Kalender und Benachrichtigungen
+behalten ihre nativen Widgets. Nur das eigene Systemmenü verwendet kompakte
+Zeilenabstände; globale Widgetmaße bleiben unverändert.
 
 ## Weitere Apps anbinden
 
@@ -79,3 +83,20 @@ im hellen Modus eine weiße Top Bar mit schwarzem Text und helle Menüvarianten.
 Quick Settings und Kalender behalten ihre nativen Radien, Abstände und
 Schriftmetriken. `tools/validate-shell-layout.py` prüft alle fünf Paletten, beide
 ChromaLeon-Varianten, Panelhöhe und Rücknahme gegen GNOMEs native Geometrie.
+
+## Vollständig helle Übersicht und Suche ohne Vignette
+
+Die festen Paletten erhalten im hellen Modus dieselbe vollständig helle
+GNOME-Farbvorlage wie ChromaLeon. `shellCss()` filtert sie weiterhin durch
+`colorOnly()`; anschließend folgen die palettenspezifischen Farben. So werden
+auch die im nativen Light-Stylesheet noch dunklen Overview-, Dash-, App-Raster-
+und Ordnerflächen hell. Abstände, Radien und Schriftmetriken bleiben nativ; die
+Farbregeln werden mit dem verwalteten Stylesheet zurückgenommen.
+
+`LightSearch` entfernt ausschließlich die eigene radiale Lightbox direkt nach
+der Dialogkonstruktion. Der native ModalGrab bleibt erhalten. Der transparente,
+monitorfüllende GNOME-Dialogcontainer fängt Außenklicks ab; die Koordinatenprüfung
+verwendet das sichtbare innere Dialogfeld. GNOMEs interner Event-Blocker bleibt
+ebenfalls erhalten. Ein Außenklick schließt die Suche, ohne die Anwendung
+darunter zu bedienen. `tools/validate-overview.py` prüft alle Farb-Engines und vergleicht
+Hintergrundpixel vor/nach dem Öffnen in beiden Darstellungsmodi.

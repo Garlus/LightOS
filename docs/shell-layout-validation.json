@@ -1,6 +1,6 @@
 {
   "platform": "GNOME Shell 50.5",
-  "version": 12,
+  "version": 14,
   "checks": {
     "allLightPalettesWhitePanel": true,
     "nativeMenuGeometryPreserved": true,
@@ -55,8 +55,7 @@
     "heightIndependentOfAppearanceAndEngine": true,
     "toggleOffRestoresNativeHeight": true,
     "disableRestoresNativeHeight": true,
-    "reenableRestores42": true,
-    "preferencesSwitchMouseActivation": true
+    "reenableRestores42": true
   },
   "palettes": {
     "ocean": {
@@ -412,18 +411,17 @@
     "screenshots/gnome/light-rose-calendar.png",
     "screenshots/gnome/light-rose-quick-settings.png",
     "screenshots/gnome/panel-42-light.png",
-    "screenshots/gnome/panel-42-dark.png",
-    "screenshots/gnome/panel-height-preferences.png"
+    "screenshots/gnome/panel-42-dark.png"
   ],
   "nativeBaseline": {
     "height": 32,
     "panel": {
-      "background": "#00000000",
+      "background": "#fafafbff",
       "foreground": "#222226ff"
     },
     "clock": {
       "background": "#00000000",
-      "foreground": "#fafafbff"
+      "foreground": "#222226ff"
     },
     "quick": {
       "background": "#fafafbff",

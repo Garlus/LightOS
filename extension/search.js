@@ -47,6 +47,9 @@ export class LightSearch {
         this._mode = 'search';
         this._dialog = new ModalDialog.ModalDialog({destroyOnClose: false,
             styleClass: 'lightos-search-dialog', actionMode: Shell.ActionMode.NORMAL});
+        // Remove the radial lightbox before it can paint; keep the modal grab.
+        this._dialog._lightbox?.destroy();
+        this._dialog._lightbox = null;
         this._dialog.buttonLayout.hide();
         this._dialog.contentLayout.set_style(`max-width: ${SEARCH_WIDTH}px;`);
         this._dialog.contentLayout.width = SEARCH_WIDTH;
@@ -74,10 +77,19 @@ export class LightSearch {
         this._dialog.contentLayout.add_child(footer);
         this._dialog.setInitialKeyFocus(this._entry.clutter_text);
         this._entry.clutter_text.connect('text-changed', () => this._queueSearch());
-        this._dialog.connect('captured-event', (_actor, event) => this._key(event));
-        this._dialog._eventBlocker.connect('button-press-event', () => {
-            this.close();
-            return Clutter.EVENT_STOP;
+        this._dialog.connect('captured-event', (_actor, event) => {
+            if (event.type() === Clutter.EventType.BUTTON_PRESS) {
+                // Dialog.Dialog fills the monitor; its inner box is the visible popup.
+                const box = this._dialog.dialogLayout._dialog;
+                const [left, top] = box.get_transformed_position();
+                const [width, height] = box.get_transformed_size();
+                const [x, y] = event.get_coords();
+                if (x < left || x >= left + width || y < top || y >= top + height) {
+                    this.close();
+                    return Clutter.EVENT_STOP;
+                }
+            }
+            return this._key(event);
         });
         this._dialog.connect('closed', () => this._cancel());
     }

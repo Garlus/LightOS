@@ -1,7 +1,7 @@
 {
   "date": "2026-11-01",
   "platform": "GNOME Shell 50.5",
-  "version": 12,
+  "version": 14,
   "checks": {
     "fuzzyAppSearch": [
       {
@@ -21,6 +21,7 @@
       "contentWidth": 480,
       "titlePresent": false
     },
+    "noVignetteWithModalGrab": true,
     "favoriteKeyboardAction": true,
     "aliasKeyboardEditAndRanking": true,
     "hideAndRestore": true,

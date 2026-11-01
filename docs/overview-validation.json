@@ -1,0 +1,335 @@
+{
+  "platform": "GNOME Shell 50.5",
+  "version": 14,
+  "palettes": {
+    "ocean": {
+      "overview": {
+        "background": "#e1e1e1ff",
+        "foreground": "#222226ff"
+      },
+      "dash": {
+        "background": "#cececeff",
+        "foreground": "#222226ff"
+      },
+      "dashGeometry": {
+        "radius": 28,
+        "padding": [
+          12,
+          10,
+          12,
+          10
+        ],
+        "fontSize": 15018
+      },
+      "appLabel": {
+        "background": "#00000000",
+        "foreground": "#222226ff"
+      }
+    },
+    "grove": {
+      "overview": {
+        "background": "#e1e1e1ff",
+        "foreground": "#222226ff"
+      },
+      "dash": {
+        "background": "#cececeff",
+        "foreground": "#222226ff"
+      },
+      "dashGeometry": {
+        "radius": 28,
+        "padding": [
+          12,
+          10,
+          12,
+          10
+        ],
+        "fontSize": 15018
+      },
+      "appLabel": {
+        "background": "#00000000",
+        "foreground": "#222226ff"
+      }
+    },
+    "ember": {
+      "overview": {
+        "background": "#e1e1e1ff",
+        "foreground": "#222226ff"
+      },
+      "dash": {
+        "background": "#cececeff",
+        "foreground": "#222226ff"
+      },
+      "dashGeometry": {
+        "radius": 28,
+        "padding": [
+          12,
+          10,
+          12,
+          10
+        ],
+        "fontSize": 15018
+      },
+      "appLabel": {
+        "background": "#00000000",
+        "foreground": "#222226ff"
+      }
+    },
+    "iris": {
+      "overview": {
+        "background": "#e1e1e1ff",
+        "foreground": "#222226ff"
+      },
+      "dash": {
+        "background": "#cececeff",
+        "foreground": "#222226ff"
+      },
+      "dashGeometry": {
+        "radius": 28,
+        "padding": [
+          12,
+          10,
+          12,
+          10
+        ],
+        "fontSize": 15018
+      },
+      "appLabel": {
+        "background": "#00000000",
+        "foreground": "#222226ff"
+      }
+    },
+    "rose": {
+      "overview": {
+        "background": "#e1e1e1ff",
+        "foreground": "#222226ff"
+      },
+      "dash": {
+        "background": "#cececeff",
+        "foreground": "#222226ff"
+      },
+      "dashGeometry": {
+        "radius": 28,
+        "padding": [
+          12,
+          10,
+          12,
+          10
+        ],
+        "fontSize": 15018
+      },
+      "appLabel": {
+        "background": "#00000000",
+        "foreground": "#222226ff"
+      }
+    },
+    "chromaleon-accent": {
+      "overview": {
+        "background": "#e1e1e1ff",
+        "foreground": "#222226ff"
+      },
+      "dash": {
+        "background": "#cececeff",
+        "foreground": "#222226ff"
+      },
+      "dashGeometry": {
+        "radius": 28,
+        "padding": [
+          12,
+          10,
+          12,
+          10
+        ],
+        "fontSize": 15018
+      },
+      "appLabel": {
+        "background": "#00000000",
+        "foreground": "#222226ff"
+      }
+    },
+    "chromaleon-tinted": {
+      "overview": {
+        "background": "#ced4e4ff",
+        "foreground": "#222226ff"
+      },
+      "dash": {
+        "background": "#bec3d3ff",
+        "foreground": "#222226ff"
+      },
+      "dashGeometry": {
+        "radius": 28,
+        "padding": [
+          12,
+          10,
+          12,
+          10
+        ],
+        "fontSize": 15018
+      },
+      "appLabel": {
+        "background": "#00000000",
+        "foreground": "#222226ff"
+      }
+    }
+  },
+  "checks": {
+    "darkOverviewPreserved": true,
+    "unchangedBackground-light": [
+      {
+        "region": [
+          16,
+          80,
+          96,
+          160
+        ],
+        "mean": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "maximum": 0
+      },
+      {
+        "region": [
+          1184,
+          80,
+          1264,
+          160
+        ],
+        "mean": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "maximum": 0
+      },
+      {
+        "region": [
+          16,
+          688,
+          96,
+          768
+        ],
+        "mean": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "maximum": 0
+      },
+      {
+        "region": [
+          1184,
+          688,
+          1264,
+          768
+        ],
+        "mean": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "maximum": 0
+      }
+    ],
+    "outsideClickClosesSearch": true,
+    "unchangedBackground-dark": [
+      {
+        "region": [
+          16,
+          80,
+          96,
+          160
+        ],
+        "mean": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "maximum": 0
+      },
+      {
+        "region": [
+          1184,
+          80,
+          1264,
+          160
+        ],
+        "mean": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "maximum": 0
+      },
+      {
+        "region": [
+          16,
+          688,
+          96,
+          768
+        ],
+        "mean": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "maximum": 0
+      },
+      {
+        "region": [
+          1184,
+          688,
+          1264,
+          768
+        ],
+        "mean": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "maximum": 0
+      }
+    ],
+    "escapeClosesSearch": true,
+    "modalGrabWithoutLightbox": true,
+    "disableRestoresNativeOverview": true
+  },
+  "evidence": [
+    "screenshots/gnome/overview-dark-regression.png",
+    "screenshots/gnome/overview-light-chromaleon-accent.png",
+    "screenshots/gnome/overview-light-chromaleon-tinted.png",
+    "screenshots/gnome/overview-light-ember.png",
+    "screenshots/gnome/overview-light-grove.png",
+    "screenshots/gnome/overview-light-iris.png",
+    "screenshots/gnome/overview-light-ocean.png",
+    "screenshots/gnome/overview-light-rose.png",
+    "screenshots/gnome/overview-light-windows.png",
+    "screenshots/gnome/search-undimmed-dark.png",
+    "screenshots/gnome/search-undimmed-light.png"
+  ],
+  "nativeBaseline": {
+    "overview": {
+      "background": "#222226ff",
+      "foreground": "#222226ff"
+    },
+    "dash": {
+      "background": "#38383bff",
+      "foreground": "#222226ff"
+    },
+    "dashGeometry": {
+      "radius": 28,
+      "padding": [
+        12,
+        10,
+        12,
+        10
+      ],
+      "fontSize": 15018
+    },
+    "appLabel": {
+      "background": "#00000000",
+      "foreground": "#fafafbff"
+    }
+  },
+  "shellEvalDisabled": true
+}

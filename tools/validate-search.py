@@ -82,7 +82,7 @@ def main():
               'version': evaluate(f'{EXT}.metadata.version'), 'checks': {}, 'evidence': []}
     checks = report['checks']
     try:
-        assert report['version'] == 12
+        assert report['version'] == 14
         evaluate(f'{SEARCH}.close(); {SEARCH}._store.state={{version:1,items:{{}},history:[]}}; true')
         query('firefx')
         assert rows()[0]['id'] == 'app:org.mozilla.firefox.desktop', rows()
@@ -95,6 +95,8 @@ def main():
         assert abs(geometry['entryWidth'] - geometry['rowWidth']) <= 1, geometry
         assert geometry['contentWidth'] == 480 and not geometry['titlePresent'], geometry
         checks['compactEqualWidthLayout'] = geometry
+        assert evaluate(f'!{SEARCH}._dialog._lightbox && {SEARCH}._dialog._hasModal')
+        checks['noVignetteWithModalGrab'] = True
         capture('oma-search-apps')
         key('ctrl', 'k')
         assert evaluate(f'{SEARCH}._mode') == 'actions'
@@ -182,7 +184,7 @@ def main():
         assert evaluate(f'{SEARCH}._store.state.items["app:org.mozilla.firefox.desktop"].alias') == 'fx'
         checks['personalizationSurvivesReload'] = True
         assert evaluate('Main.panel.statusArea.activities.visible')
-        assert not evaluate('!!Main.panel.statusArea["lightos-system"] || !!Main.panel.statusArea["lightos-active-app"]')
+        assert evaluate('!!Main.panel.statusArea["lightos-system"] && !Main.panel.statusArea["lightos-active-app"]')
         checks['nativePanelUnchanged'] = True
         report['evidence'] = sorted(str(p.relative_to(ROOT / 'docs')) for p in EVIDENCE.glob('oma-search-*.png'))
     finally:

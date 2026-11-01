@@ -164,7 +164,12 @@ export default class LightOS extends Extension {
         // neutral white panel; palette accents remain on interactive controls.
         const c = colors;
         const p = mode === 'light' ? {...colors, canvas: '#ffffff', text: '#000000'} : colors;
-        let css = `
+        // GNOME's standard light stylesheet deliberately keeps the overview dark.
+        // Reuse the fully light native color template; colorOnly strips geometry.
+        let css = mode === 'light' ? shellCss(this.dir, {
+            accent: c.accent, level: 1, tintShell: false, tintPanel: false, darker: false,
+        }, mode) : '';
+        css += `
             .lightos #panel { background-color: ${p.canvas}; color: ${p.text}; }
             .lightos #panel .panel-button { color: ${p.text}; }
             .lightos #panel .panel-button:hover, .lightos #panel .panel-button:active,

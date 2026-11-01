@@ -37,7 +37,9 @@ und gleich breit. In Suche, Aktionsmenü und Aliasbearbeitung gibt es keine
 Überschrift; die Bedienhinweise stehen unter den Treffern. Die zusätzlichen
 Abschnittseinzüge der GNOME-Übersicht werden nur innerhalb
 dieses Suchdialogs entfernt; Ergebnistext bleibt linksbündig. Schriftgrößen und
-Widgetradien bleiben nativ. Die Darstellung folgt
+Widgetradien bleiben nativ. Die Suche zeichnet keine Vignette und dunkelt den
+Desktop nicht ab; die transparente modale Eingabeabschirmung bleibt aktiv.
+Escape und Außenklick schließen den Dialog. Die Darstellung folgt
 der ausgewählten LightOS-Farbpalette und GNOMEs Hell-/Dunkelmodus.
 
 Lokale Ergebnisse erscheinen vor den asynchronen D-Bus-Antworten. Ergebnisse

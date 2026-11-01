@@ -37,7 +37,7 @@ und interaktive Tests erfolgen ausschließlich in der [isolierten VM](vm-access.
 Die Suche sichert eine kollidierende GNOME-Belegung für den Tastaturlayoutwechsel
 und stellt sie beim Deaktivieren wieder her. Die Top Bar bleibt GNOME-nativ:
 Activities, Quick Settings, Kalender und Benachrichtigungen behalten ihre nativen Widgets;
-LightOS fügt nur StatusNotifier-Einträge für laufende Anwendungen hinzu.
+LightOS fügt StatusNotifier-Einträge und das kompakte System-Icon direkt links neben Quick Settings hinzu.
 
 Aktueller VM-Nachweis: [native Schnelleinstellungen](screenshots/gnome/native-quick-settings.png),
 [LightOS-Einstellungen](screenshots/gnome/native-panel-preferences.png) und
@@ -102,7 +102,7 @@ Schriftauflösung und Wiederherstellung einschließlich abgeschaltetem Shell Eva
 gnome-extensions disable lightos@lightos.dev
 ```
 
-LightOS entfernt seine StatusNotifier-Einträge aus der Top Bar und stellt die
+LightOS entfernt seine StatusNotifier-Einträge und das System-Icon aus der Top Bar und stellt die
 verwalteten Farb-, App-, Schrift- und Tastenkürzeleinstellungen wieder her.
 Ursprüngliche Werte liegen unter `~/.local/state/lightos-gnome/`. Nachträgliche
 Benutzeränderungen werden respektiert; eigene CSS-Regeln bleiben erhalten.
@@ -123,8 +123,10 @@ Hell-/Dunkelmodus; GNOME passt den reservierten Arbeitsbereich an. Ausschalten
 oder Deaktivieren stellt die native Höhe wieder her. Schrift- und Symbolgrößen
 bleiben erhalten.
 
-Alle hellen Paletten einschließlich ChromaLeon verwenden helle Quick Settings
-und einen hellen Kalender. Die Top Bar ist weiß mit schwarzem Text. Die früheren
+Alle hellen Paletten einschließlich ChromaLeon verwenden eine durchgehend helle
+Übersicht einschließlich Dash, App-Raster, App-Ordnern und Overview-Suche sowie
+helle Quick Settings und einen hellen Kalender. Die Top Bar ist weiß mit
+schwarzem Text. Die früheren
 ChromaLeon-Schalter für teilweise helle Darstellung entfallen; gespeicherte
 Legacy-Werte können keine dunklen Menüs im hellen Modus erzwingen.
 
@@ -132,3 +134,29 @@ Nachweise: [Option in den Einstellungen](screenshots/gnome/panel-height-preferen
 [Panel mit 42 px](screenshots/gnome/panel-42-light.png),
 [Kalender](screenshots/gnome/light-ocean-calendar.png),
 [Laufzeit- und Rücknahmeprüfung](shell-layout-validation.json).
+
+Die LightOS-Suche legt keine Vignette und keine Abdunklung über den Desktop.
+Die transparente modale Eingabeabschirmung bleibt aktiv: Der Fokus bleibt im
+Suchdialog; Escape und ein Klick außerhalb schließen ihn. Die Hintergrundfarben
+bleiben im hellen und dunklen Modus unverändert.
+
+Nachweise: [helle Übersicht](screenshots/gnome/overview-light-ocean.png),
+[Suche ohne Vignette](screenshots/gnome/search-undimmed-light.png),
+[Hintergrundvergleich und Rücknahme](overview-validation.json).
+
+## Systemmenü und Werkzeuge
+
+Das Monitor-Icon direkt links neben Quick Settings öffnet das kompakte
+[Systemmenü](system-menu.md). System, Festplatten und Netzwerk sind aufklappbar;
+die fünf Werkzeuge starten native GTK-/libadwaita-Fenster.
+
+**Maximieren auf eigener Arbeitsfläche** ist standardmäßig aus. Der Schalter im
+Systemmenü und die gleichnamige Option unter Appearance sind synchronisiert.
+Er wirkt auf anschließend maximierte, normale Fenster. Wiederherstellen,
+Ausschalten oder Deaktivieren von LightOS führt selbst verschobene Fenster
+zurück. Eine manuell gewählte andere Arbeitsfläche wird respektiert.
+
+Python 3 mit PyGObject, GTK 4 und libadwaita wird für die Werkzeuge benötigt.
+Flatpak und Homebrew werden bei vorhandener Installation erkannt; Tesseract
+ist eine optionale Voraussetzung der lokalen Texterkennung. Fehlende
+Voraussetzungen werden angezeigt und nicht automatisch installiert.
