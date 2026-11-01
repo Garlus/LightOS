@@ -141,7 +141,7 @@ Die transparente modale Eingabeabschirmung bleibt aktiv: Der Fokus bleibt im
 Suchdialog; Escape und ein Klick außerhalb schließen ihn. Die Hintergrundfarben
 bleiben im hellen und dunklen Modus unverändert.
 
-Nachweise: [helle Übersicht](screenshots/gnome/overview-light-ocean.png),
+Nachweise: [helle Übersicht](screenshots/gnome/overview-unified-v16-20261101T130450Z.png),
 [Suche ohne Vignette](screenshots/gnome/search-undimmed-light.png),
 [Hintergrundvergleich und Rücknahme](overview-validation.json).
 

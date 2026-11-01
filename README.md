@@ -37,4 +37,4 @@ Panel height: [Preferences → LightOS → Top Bar mit 42 px](docs/screenshots/g
 
 [System menu and utilities](docs/system-menu.md) · [VM validation](docs/system-validation.json)
 
-[Light overview](docs/screenshots/gnome/overview-light-ocean.png) · [Overview and undimmed search validation](docs/overview-validation.json)
+[Light overview](docs/screenshots/gnome/overview-unified-v16-20261101T130450Z.png) · [Overview and undimmed search validation](docs/overview-validation.json)

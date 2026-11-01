@@ -407,5 +407,20 @@
       "foreground": "#fafafbff"
     }
   },
-  "shellEvalDisabled": true
+  "shellEvalDisabled": true,
+  "presentationRecheck": {
+    "capturedAtUtc": "20261101T130450Z",
+    "evidence": "screenshots/gnome/overview-unified-v16-20261101T130450Z.png",
+    "version": 16,
+    "panel": "#f5f7f8ff",
+    "overview": "#f5f7f8ff",
+    "height": 32,
+    "renderedRgb": [
+      245,
+      247,
+      248
+    ],
+    "uniformColumnAcrossPanelBoundary": true,
+    "shellEvalDisabled": true
+  }
 }

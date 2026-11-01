@@ -34,7 +34,7 @@ visually continuous; native controls, geometry and dark-mode shadows remain.
 Search must not draw a vignette or dim the desktop; keep a transparent outside-click shield
 and the native modal input grab, and close on Escape or outside click.
 
-When making changes, show every change with suitable screenshots or video recordings. For visual or interactive behavior, capture the running result; keep evidence in `docs/screenshots/gnome/` or `docs/videos/` and link it in your summary.
+When making changes, show every change with suitable screenshots or video recordings. For visual or interactive behavior, capture the running result; keep evidence in `docs/screenshots/gnome/` or `docs/videos/` and link it in your summary. Use a new filename containing the version and capture timestamp for user-facing evidence; repeatedly overwriting the same path can leave stale inline previews.
 
 All desktop installation and interactive testing must happen in the isolated GNOME VM, never on the live host desktop. Build with `python3 tools/build.py`; install the current ZIP in the VM with `python3 tools/vm.py install` before validating changes. Under Wayland, reload an updated extension through a VM session restart. Shell Eval is a VM-only test aid and must be disabled after validation.
 
