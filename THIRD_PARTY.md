@@ -1,100 +1,21 @@
-# Third-party source inventory
+# Sources and licenses
 
-LightOS' own code is GPL-3.0; original file notices and separately bundled
-licenses retain their original terms. Source revisions are pinned deliberately.
-This repository does not include the VM disks, SSH keys, viewer dependencies
-or the separate prototype repository.
+LightOS: [GPL-3.0](LICENSE). Bundled components retain their original notices and licenses.
 
-## Findus
+| Source | Use | License |
+| --- | --- | --- |
+| [Findus](https://github.com/Garlus/findus) | Window centering, font smoothing, press feedback | [GPL-3.0-or-later](extension/licenses/Findus-GPL-3.0.txt) |
+| [ChromaLeon](https://github.com/Fabito02/ChromaLeon) | Wallpaper colors and templates | [GPL-3.0](extension/licenses/ChromaLeon-GPL-3.0.txt); Shell templates: [LGPL-2.1](extension/licenses/ChromaLeon-Shell-LGPL-2.1.txt) |
+| [t3code](https://github.com/pingdotgg/t3code/tree/e803242d936af3e052757d59ab32bc7c4fcc2390) | Five palettes, converted from OKLCH to sRGB | [MIT](extension/licenses/T3-Code-MIT.txt) |
+| [Geist v1.8.1](https://github.com/vercel/geist-font/releases/tag/v1.8.1) | Unmodified Geist / Geist Mono fonts | [SIL OFL 1.1](extension/fonts/OFL.txt) |
+| [Night Theme Switcher](https://gitlab.com/rmnvgr/nightthemeswitcher-gnome-shell-extension) | Adapted NOAA solar calculations | [GPL-3.0-or-later](extension/licenses/Night-Theme-Switcher-GPL-3.0.txt) |
+| [KDE Syntax Highlighting](https://github.com/KDE/syntax-highlighting/tree/master/data/themes) | Breeze text formats; colors adapted | [MIT](extension/native/LICENSE-MIT.txt) |
 
-Source: https://github.com/Garlus/findus, revision
-`f92572baeacd408570d5ab2bfeedf64d49900599` plus the local working tree.
-Exact source-file hashes are recorded in `extension/findus/SOURCES.json`.
-License: GPL-3.0-or-later, included as `extension/licenses/Findus-GPL-3.0.txt`.
+Pinned revisions, hashes and adaptation details:
+[Findus](extension/findus/SOURCES.json), [ChromaLeon](extension/chromaleon/SOURCES.json),
+[Night Theme Switcher](extension/solar/SOURCES.json), [Geist](extension/fonts/README.md).
 
-- Window centering from `extension.js` and `modules/geometry.js` is adapted in
-  `extension/windowCentering.js`, with separate lifecycle, guarded Wayland
-  restore, cancellation and reduced-motion handling.
-- `modules/fontRendering.js` is adapted in `extension/fontRendering.js` with a
-  persistent journal retaining user overrides versus defaults and preserving
-  subsequent external changes. The option defaults to off.
-- `modules/interactionAnimations.js` is adapted in
-  `extension/interactionAnimations.js` with an independent off-by-default
-  switch, reduced-motion handling, key-repeat filtering and transform cleanup.
-- Findus's custom icons, notification styling, font selection,
-  Stage Manager, global menu and Quick Settings layout are not imported.
-
-## ChromaLeon
-
-Source: https://github.com/Fabito02/ChromaLeon, Fabito02,
-revision `b2c5cd2cf410c14c22278b894d04ab8d60f5eb59`.
-
-- `utils/colorUtils.js` → `extension/chromaleon/vendor/colorUtils.js`:
-  cancellable asynchronous reads with rejected errors, a three-color result,
-  distinct-color selection, original HSL/contrast/ranking algorithm retained.
-- `utils/recolorUtils.js` → `extension/chromaleon/vendor/recolorUtils.js`:
-  namespaced generated icon themes, separate folder opt-out, activation delegated
-  to LightOS' journal so the previous icon setting can be restored.
-- `utils/cancellation.js` copied without changes.
-- `templates/*.template.css` copied without changes. The adapter extracts color
-  declarations from Shell and GTK3 templates and never replaces GNOME's base
-  stylesheet. GTK4 templates contain only color declarations and variables.
-- `extension/chromaleon/engine.js`: LightOS adapter using the upstream template
-  substitutions and tint-strength formula; dynamic tokens for existing app adapters.
-- `extension/chromaleon/runtime.js`: wallpaper lifetime, isolated LightOS settings,
-  opt-in generated icons, stylesheet monitor and reversible launcher integration.
-
-License: `extension/licenses/ChromaLeon-GPL-3.0.txt`.
-The generated Shell templates retain Red Hat/Intel copyright and LGPL-2.1
-notices; that license is included separately as
-`extension/licenses/ChromaLeon-Shell-LGPL-2.1.txt`.
-ChromaLeon credits Tint My GNOME and other inspirations in its upstream README.
-
-## Existing palette source
-
-Source: https://github.com/pingdotgg/t3code, T3 Tools Inc.,
-revision `e803242d936af3e052757d59ab32bc7c4fcc2390`.
-The five palettes in `extension/palettes/` derive from
-`packages/shared/src/themePalettes.ts`, converted from OKLCH to sRGB.
-License: `extension/licenses/T3-Code-MIT.txt`.
-The pink palette is named Rose in LightOS. The former separate T3 Code
-selection is consolidated into Ocean; source attribution is retained.
-
-## Geist fonts
-
-Source: https://github.com/vercel/geist-font/releases/tag/v1.8.1,
-tag object `e1f671c727f6de7e97c1e1d26dbb44f349c19459`.
-Unmodified variable TTFs for Geist and Geist Mono, regular and italic,
-are bundled under `extension/fonts/` with the SIL Open Font License 1.1
-in `extension/fonts/OFL.txt`. File SHA-256 hashes are listed in
-`extension/fonts/README.md`. The extension registers these files for the
-current user only; font selection is an independent LightOS component.
-
-## Night Theme Switcher / Sonnenzeiten
-
-- Quelle: [rmnvgr/nightthemeswitcher-gnome-shell-extension](https://gitlab.com/rmnvgr/nightthemeswitcher-gnome-shell-extension), Revision `87ef3094137c7943b3d0a8fdf7420ea57827653b`.
-- Übernommen: der NOAA-basierte Formelblock aus `src/modules/Timer.js` in `extension/solar/solar.js`. Die SPDX-Autorenangabe bleibt erhalten.
-- Änderungen: reine UTC-Berechnung, lokaler Kalendertag, Koordinatenvalidierung, Polartag/-nacht, Datumsgrenze. Zeitplan, Zeitzonenschätzung, optionale GeoClue-Anbindung und LightOS-Einstellungen sind eigene Adapter.
-- Lizenz: GPL-3.0-or-later, im ZIP unter `licenses/Night-Theme-Switcher-GPL-3.0.txt`. Quellpfad und SHA-256 stehen in `solar/SOURCES.json`.
-- IANA-Zeitzonendaten: die installierten `zone1970.tab` und `zone.tab` werden nur gelesen. Diese Tabellendaten sind public domain; sie werden nicht mitkopiert. [IANA tzdb](https://www.iana.org/time-zones), [Tabellenformat](https://github.com/eggert/tz/blob/main/zone1970.tab).
-- GeoClue ist ein optionaler Systemdienst, kein mitkopierter Bestandteil. Ohne freigegebene Standortdienste, Bibliothek oder Standort bleibt die Zeitzonenschätzung aktiv.
-
-## Oma Cast (interaction reference)
-
-Source: https://github.com/typecraft-dev/oma-cast, revision
-`582bc73466ca25903630d2ebe76c4d63f7b86a68`. The documented launcher concepts
-(frecency, learned terms, aliases, favorites and action panel) inform the native
-GNOME search. No source code, assets or binary from this repository is bundled:
-the inspected `plugin/` tree has no license grant. The Rust subproject license
-does not establish a license for the QML/JavaScript plugin. LightOS implements
-these concepts independently in `search.js`, `searchModel.js` and `searchStore.js`
-under GPL-3.0.
-
-## Vorssaint (functional reference)
-
-Source: https://github.com/vorssaint/vorssaint-utils (README and Package.swift,
-inspected November 1, 2026). GPL-3.0-or-later upstream; its names, logo and
-appearance have separate trademark terms. No Swift source, assets, icon or
-binary is bundled. LightOS implements the selected features independently
-using GNOME Shell, Linux procfs/sysfs, Flatpak, optional Homebrew formulas and
-optional Tesseract.
+[Oma Cast](https://github.com/typecraft-dev/oma-cast/tree/582bc73466ca25903630d2ebe76c4d63f7b86a68)
+and [Vorssaint](https://github.com/vorssaint/vorssaint-utils) are interaction references
+only; no code, assets or binaries are bundled. The Oma Cast plugin has no license grant.
+Installed public-domain IANA timezone tables are read, not bundled.
