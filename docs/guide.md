@@ -36,7 +36,7 @@ und interaktive Tests erfolgen ausschließlich in der [isolierten VM](vm-access.
 
 Die Suche sichert eine kollidierende GNOME-Belegung für den Tastaturlayoutwechsel
 und stellt sie beim Deaktivieren wieder her. Die Top Bar bleibt GNOME-nativ:
-Activities, Quick Settings, Kalender und Benachrichtigungen sind unverändert;
+Activities, Quick Settings, Kalender und Benachrichtigungen behalten ihre nativen Widgets;
 LightOS fügt nur StatusNotifier-Einträge für laufende Anwendungen hinzu.
 
 Aktueller VM-Nachweis: [native Schnelleinstellungen](screenshots/gnome/native-quick-settings.png),
@@ -113,3 +113,22 @@ Für Entwicklung: [Architektur und Build](architecture.md),
 ## Erweiterte Suche
 
 Die Suche unter Super + Leertaste verwendet jetzt die in [Oma Cast](https://github.com/typecraft-dev/oma-cast) beschriebenen Launcher-Konzepte mit nativen GNOME-Widgets. Bedienung, Datenschutz und Umfang stehen in der [Suchdokumentation](oma-cast.md). Die [Bewertung der Themeninstallation](theme-installation-evaluation.md) beschreibt einen möglichen JSON-Farbpalettenimport; ein Importdialog ist noch nicht implementiert.
+
+## Panelhöhe und helle Shell
+
+Unter **LightOS → Top Bar und Suche → Top Bar mit 42 px** lässt sich die
+Panelhöhe auf 42 logische Pixel einstellen. Standardmäßig bleibt die native
+GNOME-Höhe aktiv. Die Option wirkt sofort, unabhängig von Palette und
+Hell-/Dunkelmodus; GNOME passt den reservierten Arbeitsbereich an. Ausschalten
+oder Deaktivieren stellt die native Höhe wieder her. Schrift- und Symbolgrößen
+bleiben erhalten.
+
+Alle hellen Paletten einschließlich ChromaLeon verwenden helle Quick Settings
+und einen hellen Kalender. Die Top Bar ist weiß mit schwarzem Text. Die früheren
+ChromaLeon-Schalter für teilweise helle Darstellung entfallen; gespeicherte
+Legacy-Werte können keine dunklen Menüs im hellen Modus erzwingen.
+
+Nachweise: [Option in den Einstellungen](screenshots/gnome/panel-height-preferences.png),
+[Panel mit 42 px](screenshots/gnome/panel-42-light.png),
+[Kalender](screenshots/gnome/light-ocean-calendar.png),
+[Laufzeit- und Rücknahmeprüfung](shell-layout-validation.json).

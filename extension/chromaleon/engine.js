@@ -42,22 +42,23 @@ export function renderTemplate(dir, name, accent, level) {
             `${strength(level,name.includes('light') ? 12 : 10)}%`);
 }
 export function shellCss(dir, options, mode) {
-    const light = options.preferLight && mode === 'light';
-    const name = options.tintShell ? (light ? (options.fullLight ? 'tinted_light_full' : 'tinted_light') :
+    const light = mode === 'light';
+    // Light appearance always includes native light menus and calendar. Legacy
+    // preferLight/fullLight settings no longer permit a mixed dark Shell.
+    const name = options.tintShell ? (light ? 'tinted_light_full' :
         (options.darker ? 'tinted_darker' : 'tinted_dark')) :
-        (light ? (options.fullLight ? 'light_full' : 'shell_accent_light') : 'shell_accent_dark');
+        (light ? 'light_full' : 'shell_accent_dark');
     let css = colorOnly(renderTemplate(dir,name,options.accent,options.level));
-    // Panel coloring is an independent setting. Avoid selectors containing #panel when off.
     css = css.replace(/([^{}]+)\{([^{}]*)\}/g, (block,sel) => sel.includes('#panel') ? '' : block);
-    const lightPanel = light && options.fullLight;
-    if ((options.tintShell && options.tintPanel) || lightPanel) {
-        const base = lightPanel ? '#fafafb' : options.darker ? '#0f0f10' : '#1b1b1d';
-        const background = options.tintShell && options.tintPanel ? mix(base, options.accent, strength(options.level,.1,true)) : base;
-        css += `\n#panel { background-color: ${background}; }`;
+    if (light) {
+        css += '\n#panel { background-color: #ffffff; }';
+    } else if (options.tintShell && options.tintPanel) {
+        const base = options.darker ? '#0f0f10' : '#1b1b1d';
+        css += `\n#panel { background-color: ${mix(base, options.accent, strength(options.level,.1,true))}; }`;
     }
-    // GNOME 50's panel stays dark in light mode unless explicitly made fully light.
-    const foreground = lightPanel ? '#222226' : '#fafafb';
-    css += `\n#panel, #panel .panel-button, #panel .clock-display, #panel .clock-display .clock { color: ${foreground}; }`;
+    const foreground = light ? '#000000' : '#fafafb';
+    css += `\n#panel, #panel .panel-button, #panel .clock-display, #panel .clock-display .clock { color: ${foreground}; }
+#panel .panel-button#panelActivities .workspace-dot { background-color: ${foreground}; }`;
     return css;
 }
 export function appCss(dir, options, mode) {

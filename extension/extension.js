@@ -158,16 +158,16 @@ export default class LightOS extends Extension {
             this._appThemes.restore();
         }
 
-        // GNOME 50 keeps the panel dark and follows appearance for native menus.
+        // Match the native Shell appearance in every palette. Light mode has a
+        // neutral white panel; palette accents remain on interactive controls.
         const c = colors;
-        const p = palette.variants.dark;
+        const p = mode === 'light' ? {...colors, canvas: '#ffffff', text: '#000000'} : colors;
         let css = `
             .lightos #panel { background-color: ${p.canvas}; color: ${p.text}; }
             .lightos #panel .panel-button { color: ${p.text}; }
             .lightos #panel .panel-button:hover, .lightos #panel .panel-button:active,
             .lightos #panel .panel-button:checked { background-color: ${p.secondary}; color: ${p.text}; }
-            /* GNOME colours the workspace indicator from the light theme; the recoloured
-               panel needs the dark variant's value so the native indicator stays legible. */
+            /* Keep native workspace dots legible against either panel background. */
             .lightos #panel .panel-button#panelActivities .workspace-dot
                 { background-color: ${p.text}; }
             .lightos .popup-menu-content, .lightos .modal-dialog {
@@ -187,6 +187,9 @@ export default class LightOS extends Extension {
             catch (error) {this._settings.set_string('chroma-error',error.message);}
         } else this._chroma.customCss('',false);
         this._chroma.extras(chroma ? options.accent : '#3584e4',chroma);
+        // User-approved geometry exception, independent of both color engines.
+        if (this._settings.get_boolean('panel-height-42'))
+            css += '\n.lightos #panel { height: 42px; }';
         const theme = St.ThemeContext.get_for_stage(global.stage).get_theme();
         const path = GLib.build_filenamev([GLib.get_user_cache_dir(), 'lightos-gnome', 'shell-colors.css']);
         const folder = Gio.File.new_for_path(GLib.path_get_dirname(path));

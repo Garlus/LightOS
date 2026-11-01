@@ -68,3 +68,14 @@ Der Build verpackt die Inhalte von `extension/` direkt an die Wurzel des GNOME-E
 ## Adaptive Suche
 
 `search.js` verbindet GNOME-Apps, Fenster, Rechner, zuletzt verwendete Dateien und D-Bus-Suchanbieter mit nativen ModalDialog-/St-Widgets. `searchModel.js` implementiert Matching und adaptive Rangfolge ohne GNOME-Abhängigkeiten; `searchStore.js` begrenzt und speichert den persönlichen Zustand atomar. Die Suchaktion erhält die Extension-Instanz für GSettings und Einstellungen. Oma Cast dient als dokumentierte Bedienreferenz, ohne Übernahme unlizenzierter Quelldateien. Siehe [Integrationsbericht](oma-cast.md).
+
+## Panelhöhe und Shell-Darstellung
+
+`panel-height-42` ist eine unabhängige GSettings-Option (Standard `false`). Nur
+bei Aktivierung ergänzt das verwaltete Stylesheet `height: 42px` für `#panel`;
+die native Layoutverwaltung aktualisiert daraus Struts und Arbeitsbereich. Das
+Entfernen des Stylesheets nimmt die Höhe zurück. Beide Farb-Engines verwenden
+im hellen Modus eine weiße Top Bar mit schwarzem Text und helle Menüvarianten.
+Quick Settings und Kalender behalten ihre nativen Radien, Abstände und
+Schriftmetriken. `tools/validate-shell-layout.py` prüft alle fünf Paletten, beide
+ChromaLeon-Varianten, Panelhöhe und Rücknahme gegen GNOMEs native Geometrie.

@@ -82,11 +82,19 @@ def main():
               'version': evaluate(f'{EXT}.metadata.version'), 'checks': {}, 'evidence': []}
     checks = report['checks']
     try:
-        assert report['version'] == 11
+        assert report['version'] == 12
         evaluate(f'{SEARCH}.close(); {SEARCH}._store.state={{version:1,items:{{}},history:[]}}; true')
         query('firefx')
         assert rows()[0]['id'] == 'app:org.mozilla.firefox.desktop', rows()
         checks['fuzzyAppSearch'] = rows()
+        geometry = evaluate(f'({{entryX:{SEARCH}._entry.get_transformed_position()[0],'
+            f'entryWidth:{SEARCH}._entry.width,rowX:{SEARCH}._rows[0].button.get_transformed_position()[0],'
+            f'rowWidth:{SEARCH}._rows[0].button.width,contentWidth:{SEARCH}._dialog.contentLayout.width,'
+            f'titlePresent:!!{SEARCH}._title}})')
+        assert abs(geometry['entryX'] - geometry['rowX']) <= 1, geometry
+        assert abs(geometry['entryWidth'] - geometry['rowWidth']) <= 1, geometry
+        assert geometry['contentWidth'] == 480 and not geometry['titlePresent'], geometry
+        checks['compactEqualWidthLayout'] = geometry
         capture('oma-search-apps')
         key('ctrl', 'k')
         assert evaluate(f'{SEARCH}._mode') == 'actions'

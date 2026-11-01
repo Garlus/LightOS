@@ -30,10 +30,14 @@ Provider-Ergebnisse sind weiterhin nutzbar, aber keine personalisierbaren Befehl
 ## Darstellung und Lebenszyklus
 
 Die Oberfläche nutzt `ModalDialog`, `St.Entry`, `St.Button` und die vorhandenen
-GNOME-Klassen `search-entry`, `list-search-result`, `message-dialog-title` und
-`run-dialog-description`. Der genehmigte kompakte Suchdialog bleibt 560 Pixel
-breit, auf kleinen Monitoren begrenzt. Es werden keine zusätzlichen CSS-Regeln,
-Schriftgrößen, Widgetradien oder Top-Bar-Elemente eingeführt. Die Darstellung folgt
+GNOME-Klassen `search-entry`, `list-search-result` und
+`run-dialog-description`. Der genehmigte kompakte Suchdialog verwendet 480 Pixel
+Inhaltsbreite, auf kleinen Monitoren begrenzt. Suchfeld und Treffer sind bündig
+und gleich breit. In Suche, Aktionsmenü und Aliasbearbeitung gibt es keine
+Überschrift; die Bedienhinweise stehen unter den Treffern. Die zusätzlichen
+Abschnittseinzüge der GNOME-Übersicht werden nur innerhalb
+dieses Suchdialogs entfernt; Ergebnistext bleibt linksbündig. Schriftgrößen und
+Widgetradien bleiben nativ. Die Darstellung folgt
 der ausgewählten LightOS-Farbpalette und GNOMEs Hell-/Dunkelmodus.
 
 Lokale Ergebnisse erscheinen vor den asynchronen D-Bus-Antworten. Ergebnisse

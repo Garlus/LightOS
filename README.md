@@ -2,13 +2,14 @@
 
 A GNOME Shell extension for GNOME 50 / Wayland.
 
-![LightOS 11 native search actions on GNOME 50.5, captured on November 1, 2026](docs/screenshots/gnome/oma-search-actions.png)
+![LightOS 12 compact native search on GNOME 50.5, captured on November 1, 2026](docs/screenshots/gnome/oma-search-apps.png)
 
 ## Features
 
-- Native GNOME top bar and Quick Settings; no additional menus or Activities replacement.
+- Native GNOME top bar with optional **42 px** height; no additional menus or Activities replacement.
+- Light palettes also apply to Quick Settings and calendar, with a white top bar and black text.
 - StatusNotifier tray for running applications.
-- Oma Cast-inspired native search with **Super + Space**: adaptive ranking, favorites, aliases, GNOME commands, apps, windows, files, calculations and web addresses.
+- Compact, titleless search with **Super + Space**: equal-width input and results, adaptive ranking, favorites, aliases, GNOME commands, apps, windows, files and calculations.
 - Five color palettes and ChromaLeon colors from your wallpaper, also applied to supported apps.
 - Automatic light/dark switching at sunrise and sunset.
 - Geist and Geist Mono by default, with an Adwaita / Geist selector and reversible font settings.
@@ -26,3 +27,7 @@ A GNOME Shell extension for GNOME 50 / Wayland.
 [Installation and usage](docs/guide.md) · [Attribution and licenses](THIRD_PARTY.md) · [GPL-3.0](LICENSE)
 
 [Search controls and integration](docs/oma-cast.md) · [Theme installation assessment](docs/theme-installation-evaluation.md)
+
+Panel height: [Preferences → LightOS → Top Bar mit 42 px](docs/screenshots/gnome/panel-height-preferences.png). Disabled by default; switching it off or disabling LightOS restores the native height.
+
+[Layout and Shell validation](docs/shell-layout-validation.json) · [Light Quick Settings](docs/screenshots/gnome/panel-42-light.png) · [Light calendar](docs/screenshots/gnome/light-ocean-calendar.png)

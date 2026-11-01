@@ -1,7 +1,7 @@
 {
   "date": "2026-11-01",
   "platform": "GNOME Shell 50.5",
-  "version": 11,
+  "version": 12,
   "checks": {
     "fuzzyAppSearch": [
       {
@@ -13,6 +13,14 @@
         "name": "Im Web suchen: firefx"
       }
     ],
+    "compactEqualWidthLayout": {
+      "entryX": 400,
+      "entryWidth": 480,
+      "rowX": 400,
+      "rowWidth": 480,
+      "contentWidth": 480,
+      "titlePresent": false
+    },
     "favoriteKeyboardAction": true,
     "aliasKeyboardEditAndRanking": true,
     "hideAndRestore": true,

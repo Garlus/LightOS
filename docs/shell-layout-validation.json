@@ -1,0 +1,467 @@
+{
+  "platform": "GNOME Shell 50.5",
+  "version": 12,
+  "checks": {
+    "allLightPalettesWhitePanel": true,
+    "nativeMenuGeometryPreserved": true,
+    "panel42AndWorkarea": {
+      "height": 42,
+      "panel": {
+        "background": "#ffffffff",
+        "foreground": "#000000ff"
+      },
+      "clock": {
+        "background": "#00000000",
+        "foreground": "#000000ff"
+      },
+      "quick": {
+        "background": "#edeff1ff",
+        "foreground": "#241523ff"
+      },
+      "calendar": {
+        "background": "#edeff1ff",
+        "foreground": "#241523ff"
+      },
+      "quickGeometry": {
+        "radius": 36,
+        "padding": [
+          18,
+          18,
+          18,
+          18
+        ],
+        "fontSize": 15018,
+        "fontWeight": 400
+      },
+      "calendarGeometry": {
+        "radius": 12,
+        "padding": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "fontSize": 15018,
+        "fontWeight": 400
+      },
+      "workarea": {
+        "x": 0,
+        "y": 42,
+        "width": 1280,
+        "height": 758
+      },
+      "nativeActivities": true
+    },
+    "heightIndependentOfAppearanceAndEngine": true,
+    "toggleOffRestoresNativeHeight": true,
+    "disableRestoresNativeHeight": true,
+    "reenableRestores42": true,
+    "preferencesSwitchMouseActivation": true
+  },
+  "palettes": {
+    "ocean": {
+      "height": 32,
+      "panel": {
+        "background": "#ffffffff",
+        "foreground": "#000000ff"
+      },
+      "clock": {
+        "background": "#00000000",
+        "foreground": "#000000ff"
+      },
+      "quick": {
+        "background": "#edeff1ff",
+        "foreground": "#241523ff"
+      },
+      "calendar": {
+        "background": "#edeff1ff",
+        "foreground": "#241523ff"
+      },
+      "quickGeometry": {
+        "radius": 36,
+        "padding": [
+          18,
+          18,
+          18,
+          18
+        ],
+        "fontSize": 15018,
+        "fontWeight": 400
+      },
+      "calendarGeometry": {
+        "radius": 12,
+        "padding": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "fontSize": 15018,
+        "fontWeight": 400
+      },
+      "workarea": {
+        "x": 0,
+        "y": 32,
+        "width": 1280,
+        "height": 768
+      },
+      "nativeActivities": true
+    },
+    "grove": {
+      "height": 32,
+      "panel": {
+        "background": "#ffffffff",
+        "foreground": "#000000ff"
+      },
+      "clock": {
+        "background": "#00000000",
+        "foreground": "#000000ff"
+      },
+      "quick": {
+        "background": "#ecefedff",
+        "foreground": "#241523ff"
+      },
+      "calendar": {
+        "background": "#ecefedff",
+        "foreground": "#241523ff"
+      },
+      "quickGeometry": {
+        "radius": 36,
+        "padding": [
+          18,
+          18,
+          18,
+          18
+        ],
+        "fontSize": 15018,
+        "fontWeight": 400
+      },
+      "calendarGeometry": {
+        "radius": 12,
+        "padding": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "fontSize": 15018,
+        "fontWeight": 400
+      },
+      "workarea": {
+        "x": 0,
+        "y": 32,
+        "width": 1280,
+        "height": 768
+      },
+      "nativeActivities": true
+    },
+    "ember": {
+      "height": 32,
+      "panel": {
+        "background": "#ffffffff",
+        "foreground": "#000000ff"
+      },
+      "clock": {
+        "background": "#00000000",
+        "foreground": "#000000ff"
+      },
+      "quick": {
+        "background": "#f1efeeff",
+        "foreground": "#241523ff"
+      },
+      "calendar": {
+        "background": "#f1efeeff",
+        "foreground": "#241523ff"
+      },
+      "quickGeometry": {
+        "radius": 36,
+        "padding": [
+          18,
+          18,
+          18,
+          18
+        ],
+        "fontSize": 15018,
+        "fontWeight": 400
+      },
+      "calendarGeometry": {
+        "radius": 12,
+        "padding": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "fontSize": 15018,
+        "fontWeight": 400
+      },
+      "workarea": {
+        "x": 0,
+        "y": 32,
+        "width": 1280,
+        "height": 768
+      },
+      "nativeActivities": true
+    },
+    "iris": {
+      "height": 32,
+      "panel": {
+        "background": "#ffffffff",
+        "foreground": "#000000ff"
+      },
+      "clock": {
+        "background": "#00000000",
+        "foreground": "#000000ff"
+      },
+      "quick": {
+        "background": "#f0eff2ff",
+        "foreground": "#241523ff"
+      },
+      "calendar": {
+        "background": "#f0eff2ff",
+        "foreground": "#241523ff"
+      },
+      "quickGeometry": {
+        "radius": 36,
+        "padding": [
+          18,
+          18,
+          18,
+          18
+        ],
+        "fontSize": 15018,
+        "fontWeight": 400
+      },
+      "calendarGeometry": {
+        "radius": 12,
+        "padding": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "fontSize": 15018,
+        "fontWeight": 400
+      },
+      "workarea": {
+        "x": 0,
+        "y": 32,
+        "width": 1280,
+        "height": 768
+      },
+      "nativeActivities": true
+    },
+    "rose": {
+      "height": 32,
+      "panel": {
+        "background": "#ffffffff",
+        "foreground": "#000000ff"
+      },
+      "clock": {
+        "background": "#00000000",
+        "foreground": "#000000ff"
+      },
+      "quick": {
+        "background": "#fdfafdff",
+        "foreground": "#501854ff"
+      },
+      "calendar": {
+        "background": "#fdfafdff",
+        "foreground": "#501854ff"
+      },
+      "quickGeometry": {
+        "radius": 36,
+        "padding": [
+          18,
+          18,
+          18,
+          18
+        ],
+        "fontSize": 15018,
+        "fontWeight": 400
+      },
+      "calendarGeometry": {
+        "radius": 12,
+        "padding": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "fontSize": 15018,
+        "fontWeight": 400
+      },
+      "workarea": {
+        "x": 0,
+        "y": 32,
+        "width": 1280,
+        "height": 768
+      },
+      "nativeActivities": true
+    },
+    "chromaleon-accent": {
+      "height": 42,
+      "panel": {
+        "background": "#ffffffff",
+        "foreground": "#000000ff"
+      },
+      "clock": {
+        "background": "#00000000",
+        "foreground": "#000000ff"
+      },
+      "quick": {
+        "background": "#fafafbff",
+        "foreground": "#222226ff"
+      },
+      "calendar": {
+        "background": "#fafafbff",
+        "foreground": "#222226ff"
+      },
+      "quickGeometry": {
+        "radius": 36,
+        "padding": [
+          18,
+          18,
+          18,
+          18
+        ],
+        "fontSize": 15018,
+        "fontWeight": 400
+      },
+      "calendarGeometry": {
+        "radius": 12,
+        "padding": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "fontSize": 15018,
+        "fontWeight": 400
+      },
+      "workarea": {
+        "x": 0,
+        "y": 42,
+        "width": 1280,
+        "height": 758
+      },
+      "nativeActivities": true
+    },
+    "chromaleon-tinted": {
+      "height": 42,
+      "panel": {
+        "background": "#ffffffff",
+        "foreground": "#000000ff"
+      },
+      "clock": {
+        "background": "#00000000",
+        "foreground": "#000000ff"
+      },
+      "quick": {
+        "background": "#e4eafbff",
+        "foreground": "#222226ff"
+      },
+      "calendar": {
+        "background": "#e4eafbff",
+        "foreground": "#222226ff"
+      },
+      "quickGeometry": {
+        "radius": 36,
+        "padding": [
+          18,
+          18,
+          18,
+          18
+        ],
+        "fontSize": 15018,
+        "fontWeight": 400
+      },
+      "calendarGeometry": {
+        "radius": 12,
+        "padding": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "fontSize": 15018,
+        "fontWeight": 400
+      },
+      "workarea": {
+        "x": 0,
+        "y": 42,
+        "width": 1280,
+        "height": 758
+      },
+      "nativeActivities": true
+    }
+  },
+  "evidence": [
+    "screenshots/gnome/light-chromaleon-accent.png",
+    "screenshots/gnome/light-chromaleon-calendar-accent.png",
+    "screenshots/gnome/light-chromaleon-calendar-tinted.png",
+    "screenshots/gnome/light-chromaleon-tinted.png",
+    "screenshots/gnome/light-ember-calendar.png",
+    "screenshots/gnome/light-ember-quick-settings.png",
+    "screenshots/gnome/light-grove-calendar.png",
+    "screenshots/gnome/light-grove-quick-settings.png",
+    "screenshots/gnome/light-iris-calendar.png",
+    "screenshots/gnome/light-iris-quick-settings.png",
+    "screenshots/gnome/light-ocean-calendar.png",
+    "screenshots/gnome/light-ocean-quick-settings.png",
+    "screenshots/gnome/light-rose-calendar.png",
+    "screenshots/gnome/light-rose-quick-settings.png",
+    "screenshots/gnome/panel-42-light.png",
+    "screenshots/gnome/panel-42-dark.png",
+    "screenshots/gnome/panel-height-preferences.png"
+  ],
+  "nativeBaseline": {
+    "height": 32,
+    "panel": {
+      "background": "#00000000",
+      "foreground": "#222226ff"
+    },
+    "clock": {
+      "background": "#00000000",
+      "foreground": "#fafafbff"
+    },
+    "quick": {
+      "background": "#fafafbff",
+      "foreground": "#222226ff"
+    },
+    "calendar": {
+      "background": "#fafafbff",
+      "foreground": "#222226ff"
+    },
+    "quickGeometry": {
+      "radius": 36,
+      "padding": [
+        18,
+        18,
+        18,
+        18
+      ],
+      "fontSize": 15018,
+      "fontWeight": 400
+    },
+    "calendarGeometry": {
+      "radius": 12,
+      "padding": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "fontSize": 15018,
+      "fontWeight": 400
+    },
+    "workarea": {
+      "x": 0,
+      "y": 32,
+      "width": 1280,
+      "height": 768
+    },
+    "nativeActivities": true
+  },
+  "shellEvalDisabled": true
+}

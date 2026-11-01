@@ -19,8 +19,13 @@ user, and restore owned font settings and registration on disable.
 Keep GNOME's top bar native. Do not add custom system or application menus,
 replace the Activities button, or hide native panel items. LightOS contributes
 only StatusNotifier tray items from `tray.js`; Quick Settings, calendar and
-notifications stay untouched. Palette-based panel colouring must not change the
-panel structure or introduce new top bar actors.
+notifications keep their native widgets. Light appearance also applies to Quick
+Settings and calendar; its top bar is white with black text. Palette-based panel colouring must not change the
+panel structure or introduce new top bar actors. The user-approved optional
+`panel-height-42` switch sets only the top bar height to 42 logical pixels; it
+defaults to false and removing its stylesheet restores the native height. The
+search dialog is titleless, uses 480 px content width and equal-width input/result
+rows; its nested overview-section gutters are explicitly removed.
 
 When making changes, show every change with suitable screenshots or video recordings. For visual or interactive behavior, capture the running result; keep evidence in `docs/screenshots/gnome/` or `docs/videos/` and link it in your summary.
 

@@ -119,8 +119,6 @@ export default class LightOSPreferences extends ExtensionPreferences {
         const colors=group('ChromaLeon · Farben');
         toggle(colors,'chroma-gnome-colors','GNOME Farben','Native GNOME-Akzentfarbe anstelle der Hintergrundbildfarbe verwenden.');
         toggle(colors,'chroma-persistent','Persistent Choices','Die gewählte Farbe für jedes Hintergrundbild merken.');
-        toggle(colors,'chroma-prefer-light','Bevorzuge den hellen Stil','Shell im hellen GNOME-Design ebenfalls hell einfärben.');
-        const fullLight=toggle(colors,'chroma-full-light','Durchgehend hell','Auch die obere Leiste im hellen Stil einfärben.');
         const tint=group('ChromaLeon · GNOME einfärben','Farbregeln aus ChromaLeon; native Formen und Abstände bleiben erhalten.');
         toggle(tint,'chroma-tint-shell','Shell einfärben','Hintergrundflächen der GNOME Shell in die Akzentfarbe mischen.');
         const panel=toggle(tint,'chroma-tint-panel','Obere Leiste im dunklen Stil einfärben');
@@ -152,6 +150,8 @@ export default class LightOSPreferences extends ExtensionPreferences {
         toggle(misc,'chroma-create-shortcut','Tastenkürzel aktivieren','Eine LightOS-Appearance-Verknüpfung im Anwendungsraster erstellen.');
         const layout=new Adw.PreferencesPage({title:'LightOS',icon_name:'preferences-system-symbolic'}); window.add(layout);
         const search=new Adw.PreferencesGroup({title:'Top Bar und Suche'}); layout.add(search);
+        const panelHeight=new Adw.SwitchRow({title:'Top Bar mit 42 px',subtitle:'Ausgeschaltet verwendet GNOME die native Panelhöhe.'});
+        settings.bind('panel-height-42',panelHeight,'active',Gio.SettingsBindFlags.DEFAULT); search.add(panelHeight);
         search.add(new Adw.ActionRow({title:'Suche öffnen',subtitle:'Super + Leertaste'}));
         search.add(new Adw.ActionRow({title:'GNOME-Suchanbieter',subtitle:'Dateien, Rechner und Einstellungen unter GNOME Einstellungen → Suchen aktivieren.'}));
         const interaction=new Adw.PreferencesGroup({title:'Fenster und Bedienung'}); layout.add(interaction);
@@ -197,7 +197,6 @@ export default class LightOSPreferences extends ExtensionPreferences {
             }
             status.subtitle=settings.get_string('chroma-error') || (extracted.length ? `${extracted.length} Farben · Auswahl in der dritten Theme-Zeile` : 'Keine Farben verfügbar');
             for(const row of toggles) row.sensitive=isChroma;
-            fullLight.sensitive=isChroma && settings.get_boolean('chroma-prefer-light');
             panel.sensitive=isChroma && settings.get_boolean('chroma-tint-shell');
             gtk3.sensitive=isChroma && settings.get_boolean('color-apps');
             const moreInstalled=['/usr/share/icons/MoreWaita',`${GLib.get_user_data_dir()}/icons/MoreWaita`].some(path=>Gio.File.new_for_path(path).query_exists(null));

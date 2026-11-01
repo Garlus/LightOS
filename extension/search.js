@@ -31,6 +31,7 @@ export function recentFiles() {
     }
 }
 
+const SEARCH_WIDTH = 480;
 const HINT = 'Apps, Dateien, Fenster oder Befehle';
 const HELP = '↑ ↓ Auswählen   ·   Enter Öffnen   ·   Strg K Aktionen';
 const launchUri = uri => Gio.AppInfo.launch_default_for_uri(uri, global.create_app_launch_context(0, -1));
@@ -47,11 +48,9 @@ export class LightSearch {
         this._dialog = new ModalDialog.ModalDialog({destroyOnClose: false,
             styleClass: 'lightos-search-dialog', actionMode: Shell.ActionMode.NORMAL});
         this._dialog.buttonLayout.hide();
-        this._dialog.contentLayout.set_style('max-width: 560px;');
-        this._dialog.contentLayout.width = 560;
+        this._dialog.contentLayout.set_style(`max-width: ${SEARCH_WIDTH}px;`);
+        this._dialog.contentLayout.width = SEARCH_WIDTH;
         this._dialog.contentLayout.add_style_class_name('message-dialog-content');
-        this._title = new St.Label({text: 'Suche', style_class: 'message-dialog-title'});
-        this._dialog.contentLayout.add_child(this._title);
         this._entry = new St.Entry({style_class: 'search-entry', can_focus: true,
             hint_text: HINT, x_expand: true});
         this._entry.set_primary_icon(new St.Icon({icon_name: 'edit-find-symbolic',
@@ -59,10 +58,14 @@ export class LightSearch {
         this._dialog.contentLayout.add_child(this._entry);
         this._list = new St.BoxLayout({orientation: Clutter.Orientation.VERTICAL,
             style_class: 'search-section-content', x_expand: true});
+        // The approved compact search has a single horizontal content edge.
+        // GNOME's overview section adds nested gutters that would narrow every row.
+        this._list.set_style('padding: 0; margin: 0; border-width: 0;');
         this._dialog.contentLayout.add_child(this._list);
         const footer = new St.BoxLayout({x_expand: true});
         this._status = new St.Label({text: HELP, style_class: 'run-dialog-description',
             x_expand: true, y_align: Clutter.ActorAlign.CENTER});
+        this._status.clutter_text.ellipsize = Pango.EllipsizeMode.END;
         footer.add_child(this._status);
         this._actionsButton = new St.Button({label: 'Aktionen', style_class: 'button',
             can_focus: true, accessible_name: 'Aktionen für den ausgewählten Treffer'});
@@ -133,12 +136,11 @@ export class LightSearch {
         this._providers = RemoteSearch.loadRemoteSearchProviders(this._settings)
             .filter(p => this._parental.shouldShowApp(p.appInfo));
         this._mode = 'search';
-        this._title.text = 'Suche';
         this._entry.hint_text = HINT;
         this._entry.clutter_text.editable = true;
         this._entry.set_text('');
         const monitor = Main.layoutManager.currentMonitor;
-        this._dialog.contentLayout.width = Math.max(240, Math.min(560, monitor.width - 96));
+        this._dialog.contentLayout.width = Math.max(240, Math.min(SEARCH_WIDTH, monitor.width - 96));
         this._dialog.open();
         this._queueSearch();
     }
@@ -188,18 +190,19 @@ export class LightSearch {
             const button = new St.Button({style_class: 'list-search-result', can_focus: false,
                 reactive: true, track_hover: true, x_expand: true,
                 accessible_name: `${result.name}, ${result.description ?? ''}`});
-            const box = new St.BoxLayout({style_class: 'list-search-result-content', x_expand: true});
+            const box = new St.BoxLayout({style_class: 'list-search-result-content', x_expand: true,
+                style: 'text-align: left;'});
             box.add_child(result.createIcon?.(24) ?? new St.Icon({
                 icon_name: result.icon ?? 'application-x-executable-symbolic', icon_size: 24}));
             const labels = new St.BoxLayout({orientation: Clutter.Orientation.VERTICAL,
-                x_expand: true, x_align: Clutter.ActorAlign.START, y_align: Clutter.ActorAlign.CENTER});
+                x_expand: true, y_align: Clutter.ActorAlign.CENTER});
             const title = new St.Label({text: `${result.favorite ? '★ ' : ''}${result.name}`,
-                style_class: 'list-search-result-title', x_align: Clutter.ActorAlign.START});
+                style_class: 'list-search-result-title', x_expand: true});
             title.clutter_text.ellipsize = Pango.EllipsizeMode.END;
             labels.add_child(title);
             if (result.description) {
                 const description = new St.Label({text: result.description + (result.alias ? ` · Alias: ${result.alias}` : ''),
-                    style_class: 'list-search-result-description', x_align: Clutter.ActorAlign.START});
+                    style_class: 'list-search-result-description', x_expand: true});
                 description.clutter_text.ellipsize = Pango.EllipsizeMode.END;
                 labels.add_child(description);
             }
@@ -241,7 +244,6 @@ export class LightSearch {
         this._cancel();
         this._rootQuery = this._entry.get_text();
         this._mode = 'actions';
-        this._title.text = 'Aktionen';
         this._entry.clutter_text.editable = false;
         const actions = [{id: 'open', name: 'Öffnen', description: result.name,
             icon: 'go-next-symbolic', keepOpen: true, activate: () => {
@@ -262,7 +264,6 @@ export class LightSearch {
                 icon: 'document-edit-symbolic', keepOpen: true, activate: () => {
                     this._aliasResult = result;
                     this._mode = 'alias';
-                    this._title.text = 'Alias bearbeiten';
                     this._entry.clutter_text.editable = true;
                     this._entry.hint_text = 'Suchkürzel eingeben';
                     this._entry.set_text(saved.alias);
@@ -308,7 +309,6 @@ export class LightSearch {
     _back() {
         this._mode = 'search';
         this._aliasResult = null;
-        this._title.text = 'Suche';
         this._entry.hint_text = HINT;
         this._entry.clutter_text.editable = true;
         this._entry.set_text(this._rootQuery ?? '');

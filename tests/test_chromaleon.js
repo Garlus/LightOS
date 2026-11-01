@@ -19,6 +19,12 @@ for(const mode of ['light','dark']) for(const level of [0,1,2,3]) for(const dark
  assert(!/@@|padding:|margin:|radius:|font-size:|box-shadow:/.test(shell),'Native Shell geometry preserved');
  assert(shell.includes('st-mix(') && app['4.0'].includes('mix('),'Real upstream tint templates used');
 }
+for (const tintShell of [false,true]) for (const preferLight of [false,true]) {
+ const light=shellCss(dir,{...options,tintShell,preferLight,fullLight:false},'light');
+ assert(light.includes('#panel { background-color: #ffffff; }') && light.includes('color: #000000;'),
+   'Light panel remains white/black independently of legacy Shell switches');
+ assert(!/padding:|margin:|height:|width:|radius:|font-size:/.test(light), 'Shell colors do not change panel geometry');
+}
 assert(!/#panel \{ background-color:/.test(shellCss(dir,{...options,tintPanel:false},'dark')),'Panel tint can be disabled');
 assert(!('3.0' in appCss(dir,{...options,tintGtk3:false},'light')),'GTK3 opt-out removes override');
 const palette=dynamicPalette(dir,options);
