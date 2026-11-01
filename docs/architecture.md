@@ -79,7 +79,8 @@ Der Build verpackt die Inhalte von `extension/` direkt an die Wurzel des GNOME-E
 bei Aktivierung ergänzt das verwaltete Stylesheet `height: 42px` für `#panel`;
 die native Layoutverwaltung aktualisiert daraus Struts und Arbeitsbereich. Das
 Entfernen des Stylesheets nimmt die Höhe zurück. Beide Farb-Engines verwenden
-im hellen Modus eine weiße Top Bar mit schwarzem Text und helle Menüvarianten.
+im hellen Modus dieselbe Grundfläche für Top Bar und Übersicht, schwarzen
+Paneltext und helle Menüvarianten.
 Quick Settings und Kalender behalten ihre nativen Radien, Abstände und
 Schriftmetriken. `tools/validate-shell-layout.py` prüft alle fünf Paletten, beide
 ChromaLeon-Varianten, Panelhöhe und Rücknahme gegen GNOMEs native Geometrie.
@@ -92,8 +93,11 @@ GNOME-Farbvorlage wie ChromaLeon. `shellCss()` filtert sie weiterhin durch
 auch die im nativen Light-Stylesheet noch dunklen Overview-, Dash-, App-Raster-
 und Ordnerflächen hell. Abstände, Radien und Schriftmetriken bleiben nativ; die
 Farbregeln werden mit dem verwalteten Stylesheet zurückgenommen. Top Bar und
-Overview-Hintergrund erhalten in beiden Farb-Engines gemeinsam `#ffffff`;
-auch die getönte ChromaLeon-Variante übernimmt diesen neutralen Hintergrund.
+Overview-Hintergrund erhalten die jeweilige helle Themenfarbe: bei festen
+Paletten `canvas`, bei ChromaLeon die native beziehungsweise getönte
+Overview-Fläche. Die explizit freigegebene Regel `box-shadow: none` entfernt
+ausschließlich im hellen Modus den feinen nativen Panel-Innenschatten. Die
+Pixelprüfung am Panelrand stellt einen nahtlosen Übergang sicher.
 
 `LightSearch` entfernt ausschließlich die eigene radiale Lightbox direkt nach
 der Dialogkonstruktion. Der native ModalGrab bleibt erhalten. Der transparente,

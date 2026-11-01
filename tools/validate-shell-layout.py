@@ -31,7 +31,7 @@ def measure():
         const geometry = actor => {const t=actor.get_theme_node(); return {
             radius:t.get_border_radius(0), padding:[0,1,2,3].map(side=>t.get_padding(side)),
             fontSize:t.get_font().get_size(),fontWeight:t.get_font().get_weight()};};
-        return {height:Main.panel.height,panel:color(Main.panel),
+        return {height:Main.panel.height,panel:color(Main.panel),overview:color(Main.layoutManager.overviewGroup),
             clock:color(date._clockDisplay),quick:color(quick.menu.box),calendar:{...color(date.menu.box),
                 foreground:date._calendar.get_theme_node().get_foreground_color().to_string()},
             quickGeometry:geometry(quick.menu.box),calendarGeometry:geometry(date._calendar),
@@ -75,7 +75,7 @@ def main():
             v.evaluate('Main.panel.statusArea.quickSettings.menu.open(); true')
             time.sleep(.3)
             colors = measure()
-            assert colors['panel']['background'] == '#ffffffff', colors
+            assert colors['panel']['background'] == colors['overview']['background'] and light(colors['panel']['background']), colors
             assert colors['clock']['foreground'] == '#000000ff', colors
             assert light(colors['quick']['background']), colors
             assert dark(colors['quick']['foreground']), colors
@@ -111,7 +111,7 @@ def main():
             v.evaluate('Main.panel.statusArea.quickSettings.menu.open(); true')
             time.sleep(.3)
             current = measure()
-            assert current['height'] == 42 and current['panel']['background'] == '#ffffffff', current
+            assert current['height'] == 42 and current['panel']['background'] == current['overview']['background'] and light(current['panel']['background']), current
             assert current['clock']['foreground'] == '#000000ff' and light(current['quick']['background']), current
             assert current['quickGeometry'] == baseline['quickGeometry'], current
             v.capture('light-chromaleon-' + ('tinted' if tinted else 'accent'))
@@ -131,7 +131,7 @@ def main():
         v.shell('gnome-extensions enable lightos@lightos.dev')
         time.sleep(.7)
         assert measure()['height'] == 42, measure()
-        report['checks'] = {'allLightPalettesWhitePanel':True,'nativeMenuGeometryPreserved':True,
+        report['checks'] = {'allLightPalettesSeamlessPanel':True,'nativeMenuGeometryPreserved':True,
             'panel42AndWorkarea':expanded,'heightIndependentOfAppearanceAndEngine':True,
             'toggleOffRestoresNativeHeight':True,'disableRestoresNativeHeight':True,'reenableRestores42':True}
         report['evidence'] = sorted('screenshots/gnome/' + p.name for p in v.EVIDENCE.glob('light-*-*.png')) + [

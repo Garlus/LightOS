@@ -125,8 +125,9 @@ bleiben erhalten.
 
 Alle hellen Paletten einschließlich ChromaLeon verwenden eine durchgehend helle
 Übersicht einschließlich Dash, App-Raster, App-Ordnern und Overview-Suche sowie
-helle Quick Settings und einen hellen Kalender. Die Top Bar ist weiß mit
-schwarzem Text. Die früheren
+helle Quick Settings und einen hellen Kalender. Top Bar und Übersicht bilden
+eine durchgehende Fläche in der jeweiligen hellen Themenfarbe; der
+Panel-Randschatten entfällt. Der Paneltext bleibt schwarz. Die früheren
 ChromaLeon-Schalter für teilweise helle Darstellung entfallen; gespeicherte
 Legacy-Werte können keine dunklen Menüs im hellen Modus erzwingen.
 

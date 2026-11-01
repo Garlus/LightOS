@@ -21,15 +21,17 @@ menu directly beside Quick Settings, do not add custom system or application men
 replace the Activities button, or hide native panel items. LightOS contributes
 StatusNotifier tray items from `tray.js` and the compact `systemMenu.js`; Quick Settings, calendar and
 notifications keep their native widgets. Light appearance also applies to Quick
-Settings and calendar; its top bar is white with black text. Palette-based panel colouring must not change the
+Settings and calendar; its top bar uses the overview surface with black text. Palette-based panel colouring must not change the
 panel structure or introduce new top bar actors. The user-approved optional
 `panel-height-42` switch sets only the top bar height to 42 logical pixels; it
 defaults to false and removing its stylesheet restores the native height. The
 search dialog is titleless, uses 480 px content width and equal-width input/result
 rows; its nested overview-section gutters are explicitly removed. The light overview,
 dash, app grid and folders use the fully light color template. The light overview
-background and top bar both use pure white (#ffffff). Search must not
-draw a vignette or dim the desktop; keep a transparent outside-click shield
+background and top bar share the theme's surface color. The user-approved light
+panel exception removes only its native bottom-edge shadow to make that surface
+visually continuous; native controls, geometry and dark-mode shadows remain.
+Search must not draw a vignette or dim the desktop; keep a transparent outside-click shield
 and the native modal input grab, and close on Escape or outside click.
 
 When making changes, show every change with suitable screenshots or video recordings. For visual or interactive behavior, capture the running result; keep evidence in `docs/screenshots/gnome/` or `docs/videos/` and link it in your summary.

@@ -1,19 +1,20 @@
 {
   "platform": "GNOME Shell 50.5",
-  "version": 15,
+  "version": 16,
   "palettes": {
     "ocean": {
+      "panelHeight": 32,
       "panel": {
-        "background": "#ffffffff",
+        "background": "#f5f7f8ff",
         "foreground": "#000000ff"
       },
       "overview": {
-        "background": "#ffffffff",
-        "foreground": "#222226ff"
+        "background": "#f5f7f8ff",
+        "foreground": "#000000ff"
       },
       "dash": {
         "background": "#cececeff",
-        "foreground": "#222226ff"
+        "foreground": "#000000ff"
       },
       "dashGeometry": {
         "radius": 28,
@@ -28,20 +29,26 @@
       "appLabel": {
         "background": "#00000000",
         "foreground": "#222226ff"
-      }
+      },
+      "panelEdgePixels": [
+        245,
+        247,
+        248
+      ]
     },
     "grove": {
+      "panelHeight": 32,
       "panel": {
-        "background": "#ffffffff",
+        "background": "#f3f7f4ff",
         "foreground": "#000000ff"
       },
       "overview": {
-        "background": "#ffffffff",
-        "foreground": "#222226ff"
+        "background": "#f3f7f4ff",
+        "foreground": "#000000ff"
       },
       "dash": {
         "background": "#cececeff",
-        "foreground": "#222226ff"
+        "foreground": "#000000ff"
       },
       "dashGeometry": {
         "radius": 28,
@@ -56,20 +63,26 @@
       "appLabel": {
         "background": "#00000000",
         "foreground": "#222226ff"
-      }
+      },
+      "panelEdgePixels": [
+        243,
+        247,
+        244
+      ]
     },
     "ember": {
+      "panelHeight": 32,
       "panel": {
-        "background": "#ffffffff",
+        "background": "#f9f7f5ff",
         "foreground": "#000000ff"
       },
       "overview": {
-        "background": "#ffffffff",
-        "foreground": "#222226ff"
+        "background": "#f9f7f5ff",
+        "foreground": "#000000ff"
       },
       "dash": {
         "background": "#cececeff",
-        "foreground": "#222226ff"
+        "foreground": "#000000ff"
       },
       "dashGeometry": {
         "radius": 28,
@@ -84,20 +97,26 @@
       "appLabel": {
         "background": "#00000000",
         "foreground": "#222226ff"
-      }
+      },
+      "panelEdgePixels": [
+        249,
+        247,
+        245
+      ]
     },
     "iris": {
+      "panelHeight": 32,
       "panel": {
-        "background": "#ffffffff",
+        "background": "#f8f7f9ff",
         "foreground": "#000000ff"
       },
       "overview": {
-        "background": "#ffffffff",
-        "foreground": "#222226ff"
+        "background": "#f8f7f9ff",
+        "foreground": "#000000ff"
       },
       "dash": {
         "background": "#cececeff",
-        "foreground": "#222226ff"
+        "foreground": "#000000ff"
       },
       "dashGeometry": {
         "radius": 28,
@@ -112,20 +131,26 @@
       "appLabel": {
         "background": "#00000000",
         "foreground": "#222226ff"
-      }
+      },
+      "panelEdgePixels": [
+        248,
+        247,
+        249
+      ]
     },
     "rose": {
+      "panelHeight": 32,
       "panel": {
-        "background": "#ffffffff",
+        "background": "#fdf7fdff",
         "foreground": "#000000ff"
       },
       "overview": {
-        "background": "#ffffffff",
-        "foreground": "#222226ff"
+        "background": "#fdf7fdff",
+        "foreground": "#000000ff"
       },
       "dash": {
         "background": "#cececeff",
-        "foreground": "#222226ff"
+        "foreground": "#000000ff"
       },
       "dashGeometry": {
         "radius": 28,
@@ -140,15 +165,21 @@
       "appLabel": {
         "background": "#00000000",
         "foreground": "#222226ff"
-      }
+      },
+      "panelEdgePixels": [
+        253,
+        247,
+        253
+      ]
     },
     "chromaleon-accent": {
+      "panelHeight": 32,
       "panel": {
-        "background": "#ffffffff",
+        "background": "#e1e1e1ff",
         "foreground": "#000000ff"
       },
       "overview": {
-        "background": "#ffffffff",
+        "background": "#e1e1e1ff",
         "foreground": "#222226ff"
       },
       "dash": {
@@ -168,15 +199,21 @@
       "appLabel": {
         "background": "#00000000",
         "foreground": "#222226ff"
-      }
+      },
+      "panelEdgePixels": [
+        225,
+        225,
+        225
+      ]
     },
     "chromaleon-tinted": {
+      "panelHeight": 32,
       "panel": {
-        "background": "#ffffffff",
+        "background": "#ced4e4ff",
         "foreground": "#000000ff"
       },
       "overview": {
-        "background": "#ffffffff",
+        "background": "#ced4e4ff",
         "foreground": "#222226ff"
       },
       "dash": {
@@ -196,11 +233,16 @@
       "appLabel": {
         "background": "#00000000",
         "foreground": "#222226ff"
-      }
+      },
+      "panelEdgePixels": [
+        206,
+        212,
+        228
+      ]
     }
   },
   "checks": {
-    "overviewMatchesWhitePanelAllPalettes": true,
+    "overviewMatchesPanelWithoutVisibleEdgeAllPalettes": true,
     "darkOverviewPreserved": true,
     "unchangedBackground-light": [
       {
@@ -337,6 +379,7 @@
     "screenshots/gnome/search-undimmed-light.png"
   ],
   "nativeBaseline": {
+    "panelHeight": 32,
     "panel": {
       "background": "#00000000",
       "foreground": "#222226ff"

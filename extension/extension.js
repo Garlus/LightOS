@@ -161,16 +161,17 @@ export default class LightOS extends Extension {
         }
 
         // Match the native Shell appearance in every palette. Light mode has a
-        // neutral white panel; palette accents remain on interactive controls.
+        // shared panel/overview surface; palette accents remain on controls.
         const c = colors;
-        const p = mode === 'light' ? {...colors, canvas: '#ffffff', text: '#000000'} : colors;
+        const p = mode === 'light' ? {...colors, text: '#000000'} : colors;
         // GNOME's standard light stylesheet deliberately keeps the overview dark.
         // Reuse the fully light native color template; colorOnly strips geometry.
         let css = mode === 'light' ? shellCss(this.dir, {
             accent: c.accent, level: 1, tintShell: false, tintPanel: false, darker: false,
         }, mode) : '';
         css += `
-            .lightos #panel { background-color: ${p.canvas}; color: ${p.text}; }
+            .lightos #panel${mode === 'light' ? ', .lightos #overviewGroup' : ''}
+                { background-color: ${p.canvas}; color: ${p.text}; }
             .lightos #panel .panel-button { color: ${p.text}; }
             .lightos #panel .panel-button:hover, .lightos #panel .panel-button:active,
             .lightos #panel .panel-button:checked { background-color: ${p.secondary}; color: ${p.text}; }
@@ -193,6 +194,8 @@ export default class LightOS extends Extension {
             try {css = shellCss(this.dir,options,mode) + '\n' + this._chroma.customCss(options.accent);}
             catch (error) {this._settings.set_string('chroma-error',error.message);}
         } else this._chroma.customCss('',false);
+        // User-approved seamless light surface: remove GNOME's panel edge shadow.
+        if (mode === 'light') css += '\n.lightos #panel { box-shadow: none; }';
         this._chroma.extras(chroma ? options.accent : '#3584e4',chroma);
         // User-approved geometry exception, independent of both color engines.
         if (this._settings.get_boolean('panel-height-42'))

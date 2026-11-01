@@ -1,13 +1,17 @@
 {
   "platform": "GNOME Shell 50.5",
-  "version": 14,
+  "version": 16,
   "checks": {
-    "allLightPalettesWhitePanel": true,
+    "allLightPalettesSeamlessPanel": true,
     "nativeMenuGeometryPreserved": true,
     "panel42AndWorkarea": {
       "height": 42,
       "panel": {
-        "background": "#ffffffff",
+        "background": "#f5f7f8ff",
+        "foreground": "#000000ff"
+      },
+      "overview": {
+        "background": "#f5f7f8ff",
         "foreground": "#000000ff"
       },
       "clock": {
@@ -61,7 +65,11 @@
     "ocean": {
       "height": 32,
       "panel": {
-        "background": "#ffffffff",
+        "background": "#f5f7f8ff",
+        "foreground": "#000000ff"
+      },
+      "overview": {
+        "background": "#f5f7f8ff",
         "foreground": "#000000ff"
       },
       "clock": {
@@ -109,7 +117,11 @@
     "grove": {
       "height": 32,
       "panel": {
-        "background": "#ffffffff",
+        "background": "#f3f7f4ff",
+        "foreground": "#000000ff"
+      },
+      "overview": {
+        "background": "#f3f7f4ff",
         "foreground": "#000000ff"
       },
       "clock": {
@@ -157,7 +169,11 @@
     "ember": {
       "height": 32,
       "panel": {
-        "background": "#ffffffff",
+        "background": "#f9f7f5ff",
+        "foreground": "#000000ff"
+      },
+      "overview": {
+        "background": "#f9f7f5ff",
         "foreground": "#000000ff"
       },
       "clock": {
@@ -205,7 +221,11 @@
     "iris": {
       "height": 32,
       "panel": {
-        "background": "#ffffffff",
+        "background": "#f8f7f9ff",
+        "foreground": "#000000ff"
+      },
+      "overview": {
+        "background": "#f8f7f9ff",
         "foreground": "#000000ff"
       },
       "clock": {
@@ -253,7 +273,11 @@
     "rose": {
       "height": 32,
       "panel": {
-        "background": "#ffffffff",
+        "background": "#fdf7fdff",
+        "foreground": "#000000ff"
+      },
+      "overview": {
+        "background": "#fdf7fdff",
         "foreground": "#000000ff"
       },
       "clock": {
@@ -301,8 +325,12 @@
     "chromaleon-accent": {
       "height": 42,
       "panel": {
-        "background": "#ffffffff",
+        "background": "#e1e1e1ff",
         "foreground": "#000000ff"
+      },
+      "overview": {
+        "background": "#e1e1e1ff",
+        "foreground": "#222226ff"
       },
       "clock": {
         "background": "#00000000",
@@ -349,8 +377,12 @@
     "chromaleon-tinted": {
       "height": 42,
       "panel": {
-        "background": "#ffffffff",
+        "background": "#ced4e4ff",
         "foreground": "#000000ff"
+      },
+      "overview": {
+        "background": "#ced4e4ff",
+        "foreground": "#222226ff"
       },
       "clock": {
         "background": "#00000000",
@@ -417,6 +449,10 @@
     "height": 32,
     "panel": {
       "background": "#fafafbff",
+      "foreground": "#222226ff"
+    },
+    "overview": {
+      "background": "#222226ff",
       "foreground": "#222226ff"
     },
     "clock": {
