@@ -36,7 +36,7 @@ def measure():
             radius:t.get_border_radius(0),padding:[0,1,2,3].map(side=>t.get_padding(side)),
             fontSize:t.get_font().get_size()};};
         const item=Main.overview._overview.controls._appDisplay._orderedItems.find(item=>item.icon?.label);
-        return {overview:color(overview),dash:color(dash),dashGeometry:geometry(dash),
+        return {panel:color(Main.panel),overview:color(overview),dash:color(dash),dashGeometry:geometry(dash),
             appLabel:item ? color(item.icon.label) : null};
     })()''')
 
@@ -94,6 +94,7 @@ def main():
             time.sleep(.6)
             current=measure()
             assert light(current['overview']['background']) and light(current['dash']['background']),current
+            assert current['overview']['background']==current['panel']['background']=='#ffffffff',current
             assert current['appLabel'] and dark(current['appLabel']['foreground']),current
             assert current['dashGeometry']==baseline['dashGeometry'],current
             v.capture('overview-light-'+palette)
@@ -104,11 +105,13 @@ def main():
             time.sleep(.4)
             current=measure()
             assert light(current['overview']['background']) and light(current['dash']['background']),current
+            assert current['overview']['background']==current['panel']['background']=='#ffffffff',current
             assert current['appLabel'] and dark(current['appLabel']['foreground']),current
             assert current['dashGeometry']==baseline['dashGeometry'],current
             name='chromaleon-tinted' if tinted else 'chromaleon-accent'
             report['palettes'][name]=current
             v.capture('overview-light-'+name)
+        report['checks']['overviewMatchesWhitePanelAllPalettes']=True
         option('color-engine','t3');option('palette','ocean')
         v.evaluate('Main.overview.dash.showAppsButton.checked=false; true')
         v.capture('overview-light-windows')

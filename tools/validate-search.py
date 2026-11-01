@@ -82,7 +82,7 @@ def main():
               'version': evaluate(f'{EXT}.metadata.version'), 'checks': {}, 'evidence': []}
     checks = report['checks']
     try:
-        assert report['version'] == 14
+        assert report['version'] == 15
         evaluate(f'{SEARCH}.close(); {SEARCH}._store.state={{version:1,items:{{}},history:[]}}; true')
         query('firefx')
         assert rows()[0]['id'] == 'app:org.mozilla.firefox.desktop', rows()

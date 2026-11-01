@@ -91,7 +91,9 @@ GNOME-Farbvorlage wie ChromaLeon. `shellCss()` filtert sie weiterhin durch
 `colorOnly()`; anschließend folgen die palettenspezifischen Farben. So werden
 auch die im nativen Light-Stylesheet noch dunklen Overview-, Dash-, App-Raster-
 und Ordnerflächen hell. Abstände, Radien und Schriftmetriken bleiben nativ; die
-Farbregeln werden mit dem verwalteten Stylesheet zurückgenommen.
+Farbregeln werden mit dem verwalteten Stylesheet zurückgenommen. Top Bar und
+Overview-Hintergrund erhalten in beiden Farb-Engines gemeinsam `#ffffff`;
+auch die getönte ChromaLeon-Variante übernimmt diesen neutralen Hintergrund.
 
 `LightSearch` entfernt ausschließlich die eigene radiale Lightbox direkt nach
 der Dialogkonstruktion. Der native ModalGrab bleibt erhalten. Der transparente,

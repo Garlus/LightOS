@@ -51,7 +51,8 @@ export function shellCss(dir, options, mode) {
     let css = colorOnly(renderTemplate(dir,name,options.accent,options.level));
     css = css.replace(/([^{}]+)\{([^{}]*)\}/g, (block,sel) => sel.includes('#panel') ? '' : block);
     if (light) {
-        css += '\n#panel { background-color: #ffffff; }';
+        // Keep the light overview seamless with the native white top bar.
+        css += '\n#panel, #overviewGroup { background-color: #ffffff; }';
     } else if (options.tintShell && options.tintPanel) {
         const base = options.darker ? '#0f0f10' : '#1b1b1d';
         css += `\n#panel { background-color: ${mix(base, options.accent, strength(options.level,.1,true))}; }`;

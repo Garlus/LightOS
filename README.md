@@ -2,12 +2,12 @@
 
 A GNOME Shell extension for GNOME 50 / Wayland.
 
-![LightOS 14 native search without background dimming on GNOME 50.5, captured on November 1, 2026](docs/screenshots/gnome/search-undimmed-light.png)
+![LightOS 15 native search without background dimming on GNOME 50.5, captured on November 1, 2026](docs/screenshots/gnome/search-undimmed-light.png)
 
 ## Features
 
 - Native GNOME top bar with optional **42 px** height, a compact system menu beside Quick Settings, and native Activities.
-- Light palettes cover the overview, app grid, Quick Settings and calendar, with a white top bar and black text.
+- Light palettes cover the overview, app grid, Quick Settings and calendar, with matching white top bar and overview backgrounds, and black top bar text.
 - StatusNotifier tray for running applications.
 - Compact system, disk and network monitoring; App Updates, cache cleanup, Homebrew formulas, app removal and offline screen OCR.
 - Optional maximization onto a separate workspace, with return when restored.

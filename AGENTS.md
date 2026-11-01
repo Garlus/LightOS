@@ -27,7 +27,8 @@ panel structure or introduce new top bar actors. The user-approved optional
 defaults to false and removing its stylesheet restores the native height. The
 search dialog is titleless, uses 480 px content width and equal-width input/result
 rows; its nested overview-section gutters are explicitly removed. The light overview,
-dash, app grid and folders use the fully light color template. Search must not
+dash, app grid and folders use the fully light color template. The light overview
+background and top bar both use pure white (#ffffff). Search must not
 draw a vignette or dim the desktop; keep a transparent outside-click shield
 and the native modal input grab, and close on Escape or outside click.
 
