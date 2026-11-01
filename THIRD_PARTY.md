@@ -24,10 +24,6 @@ License: GPL-3.0-or-later, included as `extension/licenses/Findus-GPL-3.0.txt`.
 - Findus's custom icons, notification styling, font selection,
   Stage Manager, global menu and Quick Settings layout are not imported.
 
-The complete Findus repository, including uncommitted files and nested Git
-history, is preserved in the external archive referenced by
-`docs/findus-archive.json`. No source repository or disk image is deleted.
-
 ## ChromaLeon
 
 Source: https://github.com/Fabito02/ChromaLeon, Fabito02,
@@ -74,12 +70,6 @@ in `extension/fonts/OFL.txt`. File SHA-256 hashes are listed in
 `extension/fonts/README.md`. The extension registers these files for the
 current user only; font selection is an independent LightOS component.
 
-## References and separately downloaded development tooling
-
-noVNC v1.6.0 is downloaded to `.cache/novnc` only by the local viewer tool,
-retaining its original MPL-2.0 license files. QEMU provides the WebSocket
-transport. None of these tools install a desktop theme on the host.
-
 ## Night Theme Switcher / Sonnenzeiten
 
 - Quelle: [rmnvgr/nightthemeswitcher-gnome-shell-extension](https://gitlab.com/rmnvgr/nightthemeswitcher-gnome-shell-extension), Revision `87ef3094137c7943b3d0a8fdf7420ea57827653b`.
@@ -98,7 +88,7 @@ GNOME search. No source code, assets or binary from this repository is bundled:
 the inspected `plugin/` tree has no license grant. The Rust subproject license
 does not establish a license for the QML/JavaScript plugin. LightOS implements
 these concepts independently in `search.js`, `searchModel.js` and `searchStore.js`
-under GPL-3.0. See [integration details](docs/oma-cast.md).
+under GPL-3.0.
 
 ## Vorssaint (functional reference)
 
@@ -107,4 +97,4 @@ inspected November 1, 2026). GPL-3.0-or-later upstream; its names, logo and
 appearance have separate trademark terms. No Swift source, assets, icon or
 binary is bundled. LightOS implements the selected features independently
 using GNOME Shell, Linux procfs/sysfs, Flatpak, optional Homebrew formulas and
-optional Tesseract. See [scope and validation](docs/system-menu.md).
+optional Tesseract.

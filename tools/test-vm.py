@@ -13,12 +13,9 @@ REMOTE_PROJECT = '~/LightOS-GNOME-project'
 def main():
     with tempfile.TemporaryFile() as stream:
         with tarfile.open(fileobj=stream, mode='w') as archive:
-            for name in ['extension', 'tools', 'tests', 'README.md', 'AGENTS.md', 'LICENSE']:
+            for name in ['extension', 'tools', 'tests', 'README.md', 'LICENSE']:
                 archive.add(ROOT / name, arcname=name, filter=lambda member:
                             None if '__pycache__' in Path(member.name).parts or member.name.endswith('.pyc') else member)
-            for path in sorted((ROOT / 'docs').glob('*')):
-                if path.is_file():
-                    archive.add(path, arcname=str(path.relative_to(ROOT)))
         stream.seek(0)
         # Replace only this dedicated VM test snapshot; the active installed
         # extension and ~/Documents are outside it. Preserve the previous copy.

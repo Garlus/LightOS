@@ -6,3 +6,19 @@ dist/
 
 # Separate prototype repositories are not part of LightOS.
 /prototypes/
+
+# Local agent instructions and development evidence stay on this machine.
+/AGENTS.md
+/docs/*
+!/docs/guide.md
+!/docs/screenshots/
+/docs/screenshots/*
+!/docs/screenshots/gnome/
+/docs/screenshots/gnome/*
+!/docs/screenshots/gnome/search-undimmed-light.png
+
+# Keep only packaging and the isolated VM test entry points in Git.
+/tools/*
+!/tools/build.py
+!/tools/test-vm.py
+!/tools/vm.py

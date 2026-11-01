@@ -2,39 +2,27 @@
 
 A GNOME Shell extension for GNOME 50 / Wayland.
 
-![LightOS 16 native search without background dimming on GNOME 50.5, captured on November 1, 2026](docs/screenshots/gnome/search-undimmed-light.png)
+![LightOS 17 native search without background dimming on GNOME 50.5, captured on November 1, 2026](docs/screenshots/gnome/search-undimmed-light.png)
 
 ## Features
 
-- Native GNOME top bar with optional **42 px** height, a compact system menu beside Quick Settings, and native Activities.
-- Light palettes cover the overview, app grid, Quick Settings and calendar, with one continuous theme-colored surface across the top bar and overview, without a panel edge shadow.
-- StatusNotifier tray for running applications.
-- Compact system, disk and network monitoring; App Updates, cache cleanup, Homebrew formulas, app removal and offline screen OCR.
-- Optional maximization onto a separate workspace, with return when restored.
-- Compact, titleless search with **Super + Space**: equal-width input and results, no desktop dimming, adaptive ranking, favorites, aliases, GNOME commands, apps, windows, files and calculations.
-- Five color palettes and ChromaLeon colors from your wallpaper, also applied to supported apps.
-- Automatic light/dark switching at sunrise and sunset.
-- Geist and Geist Mono by default, with an Adwaita / Geist selector and reversible font settings.
-- Window centering with **Ctrl + Super + C**, optional font smoothing, and press feedback animations.
+- Native GNOME top bar, StatusNotifier tray and compact system menu; optional **42 px** panel height.
+- Search with **Super + Space**: apps, windows, files, calculations, favorites and aliases, without desktop dimming.
+- Five palettes, wallpaper colors via ChromaLeon, supported app colors and automatic light/dark switching.
+- System monitoring, app updates, cache cleanup and offline OCR.
+- Geist / Adwaita font selection, window centering and optional workspace and interaction controls.
 
-## Sources
+## Installation
 
-- [Oma Cast](https://github.com/typecraft-dev/oma-cast) – interaction reference for the native GJS launcher; [integration and license boundary](docs/oma-cast.md).
-- [Vorssaint](https://github.com/vorssaint/vorssaint-utils) – functional reference for the Linux-native system utilities; [scope and validation](docs/system-menu.md).
-- [Findus](https://github.com/Garlus/findus) – window centering, font smoothing, and press feedback animations.
-- [ChromaLeon](https://github.com/Fabito02/ChromaLeon) – wallpaper colors and color engine.
-- [t3code](https://github.com/pingdotgg/t3code) – color palettes.
-- [Geist](https://github.com/vercel/geist-font) – bundled sans and monospace fonts, SIL OFL 1.1.
-- [Night Theme Switcher](https://gitlab.com/rmnvgr/nightthemeswitcher-gnome-shell-extension) – sunrise and sunset calculations.
+```bash
+python3 tools/build.py
+gnome-extensions install --force dist/lightos@lightos.dev.shell-extension.zip
+```
 
-[Installation and usage](docs/guide.md) · [Attribution and licenses](THIRD_PARTY.md) · [GPL-3.0](LICENSE)
+Log out and back in under Wayland, then enable LightOS:
 
-[Search controls and integration](docs/oma-cast.md) · [Theme installation assessment](docs/theme-installation-evaluation.md)
+```bash
+gnome-extensions enable lightos@lightos.dev
+```
 
-Panel height: [Preferences → LightOS → Top Bar mit 42 px](docs/screenshots/gnome/panel-height-preferences.png). Disabled by default; switching it off or disabling LightOS restores the native height.
-
-[Layout and Shell validation](docs/shell-layout-validation.json) · [Light Quick Settings](docs/screenshots/gnome/panel-42-light.png) · [Light calendar](docs/screenshots/gnome/light-ocean-calendar.png)
-
-[System menu and utilities](docs/system-menu.md) · [VM validation](docs/system-validation.json)
-
-[Light overview](docs/screenshots/gnome/overview-unified-v16-20261101T130450Z.png) · [Overview and undimmed search validation](docs/overview-validation.json)
+[Usage and requirements](docs/guide.md) · [Sources and licenses](THIRD_PARTY.md) · [GPL-3.0](LICENSE)
