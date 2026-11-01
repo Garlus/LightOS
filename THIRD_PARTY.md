@@ -99,3 +99,12 @@ the inspected `plugin/` tree has no license grant. The Rust subproject license
 does not establish a license for the QML/JavaScript plugin. LightOS implements
 these concepts independently in `search.js`, `searchModel.js` and `searchStore.js`
 under GPL-3.0. See [integration details](docs/oma-cast.md).
+
+## Vorssaint (functional reference)
+
+Source: https://github.com/vorssaint/vorssaint-utils (README and Package.swift,
+inspected November 1, 2026). GPL-3.0-or-later upstream; its names, logo and
+appearance have separate trademark terms. No Swift source, assets, icon or
+binary is bundled. LightOS implements the selected features independently
+using GNOME Shell, Linux procfs/sysfs, Flatpak, optional Homebrew formulas and
+optional Tesseract. See [scope and validation](docs/system-menu.md).

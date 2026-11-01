@@ -12,6 +12,7 @@ import {LightSearch} from './search.js';
 import {AppThemes} from './appThemes.js';
 import {NativeTray} from './tray.js';
 import {WindowCentering} from './windowCentering.js';
+import {SystemMenu} from './systemMenu.js';
 import FontRendering from './fontRendering.js';
 import FontProfile from './fontProfile.js';
 import InteractionAnimations from './interactionAnimations.js';
@@ -38,6 +39,7 @@ export default class LightOS extends Extension {
         this._interfaceBackup = JSON.parse(readFile(this._savedInterfacePath) ?? '{}');
         this._chroma = new ChromaLeon(this);
         this._tray = new NativeTray();
+        this._systemMenu = new SystemMenu(this);
         this._shortcutSettings = new Gio.Settings({schema_id: 'org.gnome.desktop.wm.keybindings'});
         this._shortcutBackupPath = GLib.build_filenamev([
             GLib.get_user_state_dir(), 'lightos-gnome', 'shortcut-backup.json']);
@@ -69,7 +71,7 @@ export default class LightOS extends Extension {
         });
         this._connect(this._settings, 'changed', (_settings, key) => {
             if (key === 'palette') migratePalette(this._settings);
-            if (['center-window', 'font-profile', 'font-smoothing-enabled', 'press-animations-enabled'].includes(key)) return;
+            if (['center-window', 'font-profile', 'font-smoothing-enabled', 'press-animations-enabled', 'maximize-new-workspace'].includes(key)) return;
             if (['chroma-colors','chroma-wallpaper','chroma-choices','chroma-error','auto-appearance','solar-status'].includes(key)) return;
             if (key === 'search-shortcut') this._removeShortcutConflicts();
             else {
@@ -207,6 +209,7 @@ export default class LightOS extends Extension {
     }
 
     disable() {
+        this._systemMenu?.destroy(); this._systemMenu = null;
         this._pressAnimations?.destroy(); this._pressAnimations = null;
         this._fontRendering?.destroy(); this._fontRendering = null;
         this._fontProfile?.destroy(); this._fontProfile = null;

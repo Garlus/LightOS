@@ -6,6 +6,7 @@
     <key name="auto-appearance" type="b"><default>false</default><summary>Switch light and dark at sunrise and sunset</summary></key>
     <key name="solar-status" type="s"><default>'{"enabled":false}'</default><summary>Computed solar schedule for preferences</summary></key>
     <key name="color-apps" type="b"><default>true</default><summary>Apply color variables to GTK apps</summary></key>
+    <key name="maximize-new-workspace" type="b"><default>false</default><summary>Maximierte Fenster auf eine eigene Arbeitsfläche verschieben</summary></key>
     <key name="panel-height-42" type="b"><default>false</default><summary>Use a 42 px top panel instead of the native height</summary></key>
     <key name="search-shortcut" type="as"><default>['&lt;Super&gt;space']</default><summary>Open search</summary></key>
     <key name="color-engine" type="s"><default>'t3'</default><summary>color-engine</summary></key>

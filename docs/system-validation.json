@@ -1,0 +1,78 @@
+{
+  "platform": "GNOME Shell 50.5",
+  "checks": {
+    "nativePanelAndAdjacentIcon": {
+      "adjacent": true,
+      "nativeActivities": true,
+      "panelHeight": 32,
+      "quickType": "QuickSettings",
+      "icon": "computer-symbolic"
+    },
+    "liveKernelCountersAndReadableRows": {
+      "cpu": "1 %",
+      "memory": "1,6 GiB / 5,8 GiB",
+      "temperature": "Keine Sensoren",
+      "gpu": "Kein Sensor",
+      "history": 3,
+      "fg": "#241523ff",
+      "rowWidth": 338
+    },
+    "networkRatesAndIPv4": {
+      "download": "0 B/s",
+      "ipv4": "10.0.2.15"
+    },
+    "closedMenuStopsSampling": true,
+    "nativeUtilityWindows": true,
+    "maximizeMovesAndRestoreReturns": {
+      "maximized": true,
+      "different": true,
+      "owned": true
+    },
+    "toggleOffRestoresOwnedWindow": true,
+    "disableRemovesIndicatorSignalsAndRestoresWorkspace": true,
+    "reenableSuccessful": true,
+    "realFlatpakRemovalWithCancelAndConfirmation": {
+      "app": "dev.lightos.Validation",
+      "cancelPreservedPackage": true,
+      "confirmationRemovedPackage": true,
+      "existingCalculatorPreserved": true
+    },
+    "staticWorkspaces": {
+      "maximizeAddsOne": true,
+      "unmaximizeRemovesOwnedEmptyWorkspace": true,
+      "close": {
+        "before": 4,
+        "current": 4
+      }
+    },
+    "ocrAreaCancelReleasesGrab": true,
+    "offlineOCRToClipboard": {
+      "tested": true,
+      "textContains": "Dokumente, App-Einstellungen und Projekt-Caches bleiben erhalten.",
+      "temporaryImageRemoved": true
+    }
+  },
+  "evidence": [
+    "screenshots/gnome/system-app-updates.png",
+    "screenshots/gnome/system-cleanup.png",
+    "screenshots/gnome/system-disks-light.png",
+    "screenshots/gnome/system-final-idle.png",
+    "screenshots/gnome/system-homebrew.png",
+    "screenshots/gnome/system-maximize-overview.png",
+    "screenshots/gnome/system-maximize-workspace.png",
+    "screenshots/gnome/system-menu-light.png",
+    "screenshots/gnome/system-monitor-dark.png",
+    "screenshots/gnome/system-monitor-light.png",
+    "screenshots/gnome/system-network-light.png",
+    "screenshots/gnome/system-ocr.png",
+    "screenshots/gnome/system-preferences.png",
+    "screenshots/gnome/system-uninstall-after-confirmation.png",
+    "screenshots/gnome/system-uninstall-confirm-test.png",
+    "screenshots/gnome/system-uninstall-confirmation.png",
+    "screenshots/gnome/system-uninstall.png"
+  ],
+  "shellEvalDisabled": true,
+  "newUnitTestsPassed": 29,
+  "existingGJSChecksPassed": 979,
+  "archiveSHA256": "d8fffb9041e11cf165cc3280a2ef29317996699bc700b7d823ded4e0f1d995e0"
+}

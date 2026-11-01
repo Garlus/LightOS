@@ -1,0 +1,5 @@
+/* Geometry exception requested for LightOS' compact system menu only. */
+.lightos-system-menu { min-width: 340px; }
+.lightos-system-menu .popup-menu-item { padding: 5px 12px; }
+/* Measurements are informational, not disabled controls. */
+.lightos-system-menu .popup-menu-item:insensitive { color: inherit; }

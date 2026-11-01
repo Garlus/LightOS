@@ -80,6 +80,9 @@ export default class LightOSPreferences extends ExtensionPreferences {
         fontChoice.add(new Adw.Toggle({name:'geist',label:'Geist'}));
         settings.bind('font-profile',fontChoice,'active-name',Gio.SettingsBindFlags.DEFAULT);
         fontRow.add_suffix(fontChoice); appearanceOptions.add(fontRow);
+        const maximizeWorkspace=new Adw.SwitchRow({title:'Maximieren auf eigener Arbeitsfläche',
+            subtitle:'Beim Wiederherstellen kehrt das Fenster auf seine vorherige Arbeitsfläche zurück.'});
+        settings.bind('maximize-new-workspace',maximizeWorkspace,'active',Gio.SettingsBindFlags.DEFAULT); appearanceOptions.add(maximizeWorkspace);
         const automatic=new Adw.SwitchRow({title:'Tag-Nacht-Zyklus'});
         settings.bind('auto-appearance',automatic,'active',Gio.SettingsBindFlags.DEFAULT); appearanceOptions.add(automatic);
         const themes=group('Themes','Fünf Paletten · drei zusätzliche ChromaLeon-Farben aus dem Hintergrundbild.');

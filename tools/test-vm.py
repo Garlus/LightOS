@@ -40,6 +40,7 @@ export XDG_CONFIG_HOME="$test_root/config"
 export XDG_DATA_HOME="$test_root/data"
 export XDG_STATE_HOME="$test_root/state"
 export GSETTINGS_BACKEND=memory
+python3 -m unittest discover -s tests -p 'test_system_*.py'
 gjs -m tests/test_search_model.js
 gjs -m tests/test_search_store.js
 gjs -m tests/test_gnome.js
