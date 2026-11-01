@@ -32,6 +32,7 @@ export function recentFiles() {
 }
 
 const SEARCH_WIDTH = 480;
+const SEARCH_SCALE = 0.7;
 const HINT = 'Apps, Dateien, Fenster oder Befehle';
 const HELP = '↑ ↓ Auswählen   ·   Enter Öffnen   ·   Strg K Aktionen';
 const launchUri = uri => Gio.AppInfo.launch_default_for_uri(uri, global.create_app_launch_context(0, -1));
@@ -50,6 +51,13 @@ export class LightSearch {
         // Remove the radial lightbox before it can paint; keep the modal grab.
         this._dialog._lightbox?.destroy();
         this._dialog._lightbox = null;
+        // Scale the complete popup, including native text, icons and spacing.
+        // Keep the monitor-sized modal input shield at its original scale.
+        const popup = this._dialog.dialogLayout._dialog;
+        // Render directly at rest so scaled glyphs stay sharp.
+        popup.set_offscreen_redirect(Clutter.OffscreenRedirect.AUTOMATIC_FOR_OPACITY);
+        popup.set_pivot_point(0.5, 0.5);
+        popup.set_scale(SEARCH_SCALE, SEARCH_SCALE);
         this._dialog.buttonLayout.hide();
         // Drop the stacked native content/overview top insets in this compact dialog.
         this._dialog.contentLayout.set_style(`max-width: ${SEARCH_WIDTH}px; padding-top: 0;`);
