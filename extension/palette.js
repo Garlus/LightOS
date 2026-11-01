@@ -1,12 +1,24 @@
 import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 
-export const PALETTES = ['ocean', 'grove', 'ember', 'iris', 't3-chat', 't3-code'];
+export const PALETTES = ['ocean', 'grove', 'ember', 'iris', 'rose'];
 export const LABELS = ['Ocean · Blau / Türkis', 'Grove · Grün', 'Ember · Orange',
-    'Iris · Violett', 'T3 Chat · Rosa', 'T3 Code · Neutral / Blau'];
+    'Iris · Violett', 'Rose · Rosa'];
+
+export function normalizePaletteId(id) {
+    if (id === 't3-code') return 'ocean';
+    if (id === 't3-chat') return 'rose';
+    return PALETTES.includes(id) ? id : 'ocean';
+}
+
+export function migratePalette(settings) {
+    const current = settings.get_string('palette');
+    const canonical = normalizePaletteId(current);
+    if (current !== canonical) settings.set_string('palette', canonical);
+}
 
 export function readPalette(dir, id) {
-    const safeId = PALETTES.includes(id) ? id : 'ocean';
+    const safeId = normalizePaletteId(id);
     const [, contents] = dir.get_child(`palettes/${safeId}.json`).load_contents(null);
     return JSON.parse(new TextDecoder().decode(contents));
 }
@@ -42,7 +54,7 @@ export function gtkColors(c, modern = true) {
         unfocused_theme_selected_fg_color: c.accentForeground,
         unfocused_insensitive_color: c.textMuted, unfocused_borders: c.border,
     };
-    let css = '/* LightOS: T3 Code colors, stock Adwaita dimensions. */\n';
+    let css = '/* LightOS colors, stock Adwaita dimensions. */\n';
     css += Object.entries(colors).map(([key, color]) => `@define-color ${key} ${color};`).join('\n');
     if (modern) {
         const variables = Object.entries(colors).filter(([key]) => !key.startsWith('theme_') &&

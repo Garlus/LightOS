@@ -10,11 +10,25 @@ owned state on disable, and never change font families or sizes. Press feedback
 must respect GNOME's reduced-motion preference. Keep these options independent
 of palette selection.
 
+The user-approved font profile defaults to Geist / Geist Mono, with an Adwaita /
+Geist segmented selector. It may replace interface, document and monospace font
+families in the user profile, preserving sizes and styles. Keep this independent
+of palettes and smoothing. Bundle the OFL fonts, register them only for the current
+user, and restore owned font settings and registration on disable.
+
+Keep GNOME's top bar native. Do not add custom system or application menus,
+replace the Activities button, or hide native panel items. LightOS contributes
+only StatusNotifier tray items from `tray.js`; Quick Settings, calendar and
+notifications stay untouched. Palette-based panel colouring must not change the
+panel structure or introduce new top bar actors.
+
 When making changes, show every change with suitable screenshots or video recordings. For visual or interactive behavior, capture the running result; keep evidence in `docs/screenshots/gnome/` or `docs/videos/` and link it in your summary.
 
 All desktop installation and interactive testing must happen in the isolated GNOME VM, never on the live host desktop. Build with `python3 tools/build.py`; install the current ZIP in the VM with `python3 tools/vm.py install` before validating changes. Under Wayland, reload an updated extension through a VM session restart. Shell Eval is a VM-only test aid and must be disabled after validation.
 
-Keep `.cache/` intact during VM, SSH or recording work. It contains live disk images, backing images, credentials, logs, captures and recovery archives. In particular, do not delete or alter `.cache/vm/` or existing QCOW2 backing files. `prototypes/orb-lab/`, if present, is a separate Git repository; do not alter it unless the task specifically targets that prototype.
+Keep `.cache/` intact during VM, SSH or recording work. It contains live disk images, backing images, credentials, logs, captures and recovery archives. In particular, do not delete or alter `.cache/vm/` or existing QCOW2 backing files.
+
+Separate repositories under `prototypes/` are outside the LightOS source tree; do not alter them unless the task explicitly targets that repository.
 
 Qt/KDE application color adapters, native syntax color assets and `org.kde.StatusNotifier*` D-Bus identifiers are GNOME integration features, not Plasma dependencies. Do not reintroduce Plasma widgets, KWin effects, a Qt widget style, global font/icon replacements or a system-wide desktop installer.
 

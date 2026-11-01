@@ -1,0 +1,24 @@
+{
+  "platform": "GNOME Shell 50.5",
+  "startupMigration": {
+    "t3-code": "ocean"
+  },
+  "runtimeMigration": {
+    "t3-chat": {
+      "palette": "rose",
+      "editorScheme": "lightos-rose-light"
+    },
+    "t3-code": {
+      "palette": "ocean",
+      "editorScheme": "lightos-ocean-light"
+    }
+  },
+  "visiblePalettes": [
+    "Ocean · Blau / Türkis",
+    "Grove · Grün",
+    "Ember · Orange",
+    "Iris · Violett",
+    "Rose · Rosa"
+  ],
+  "shellEvalDisabled": true
+}

@@ -6,16 +6,17 @@ LightOS wird als eine GNOME-Shell-Erweiterung mit stabiler UUID `lightos@lightos
 
 | Modul in `extension/` | Aufgabe |
 |---|---|
-| `extension.js` | Panel-Elemente, Lebenszyklus, Einstellungen und GNOMEs native Aktionen |
+| `extension.js` | Lebenszyklus, Einstellungen, Such-Tastenkürzel und Shell-Farben |
 | `search.js`, `calculator.js` | Suchdialog, lokale Treffer, GNOME-Suchanbieter und sicherer Rechenparser |
-| `palette.js`, `palettes/` | Sechs feste T3-Paletten, Farbvariablen und GTK-CSS-Journal |
+| `palette.js`, `palettes/` | Fünf feste LightOS-Paletten, Migration älterer Auswahlen, Farbvariablen und GTK-CSS-Journal |
 | `appThemes.js` | Koordiniert optionale App-Farben und native Editor-/Terminaleinstellungen |
 | `terminalThemes.js` | Ptyxis-Paletten und dessen bestehendes Standardprofil |
 | `extraThemes.js` | Farb-Schnittstellen für Qt/KDE-Apps, Code/VSCodium und private Flatpak-Konfigurationen |
 | `tray.js` | StatusNotifier und DBusMenu mit nativen GNOME-Menüs |
 | `prefs.js`, `schemas/` | Native Adwaita-Einstellungen und benutzerspezifisches GSettings-Schema |
-| `windowCentering.js` | Tastenkürzel und App-Menü-Aktion, Wayland-Größenbestätigung und bereinigbare Fensterbewegung |
+| `windowCentering.js` | Tastenkürzel, Wayland-Größenbestätigung und bereinigbare Fensterbewegung |
 | `fontRendering.js` | Optionales globales Schriftglättungsprofil mit persistentem, defaultbewusstem Rücknahmejournal |
+| `fontProfile.js`, `fontAssets.js`, `fonts/` | Reversibler Wechsel zwischen Adwaita und dem Standard Geist / Geist Mono; benutzerspezifische Registrierung mitgelieferter OFL-Schriften |
 | `interactionAnimations.js` | Optionale Druckrückmeldung an nativen Panel-/Quick-Settings-Actors, Eingabe- und Transform-Lifecycle |
 
 Alle Farb-Anbindungen verwenden vorhandene App-Schnittstellen. Die Farb-Anbindungen enthalten keinen Plasma-/KWin-Unterbau, keinen nativen Desktop-Plugin-Build und keine systemweiten Style-, Schrift- oder Icon-Ersetzungen. Die Qt-/KDE-App-Anbindung unterstützt solche Anwendungen unter GNOME. Die `org.kde.StatusNotifier*`-Namen stammen aus dem Tray-Protokoll und erfordern keine Plasma-Sitzung.
@@ -28,6 +29,24 @@ ursprüngliche Benutzerwerte von Schema-Standardwerten. Nur noch unverändert
 LightOS-eigene Werte werden zurückgenommen. Druckrückmeldung verwendet temporäre
 Actor-Transformationen, lässt native CSS-Maße unverändert und beendet alle
 Eingabe-Hooks/Transformationen bei ausgeschalteten Systemanimationen.
+
+Das freigegebene Schriftprofil (`font-profile`, Standard `geist`) arbeitet
+getrennt von Farbanbindungen und Schriftglättung. Pango ersetzt nur die Familie
+von `font-name`, `document-font-name` und `monospace-font-name`; Größen und Stile
+bleiben erhalten. `font-profile-backup.json` sichert explizite Benutzerwerte und
+ursprünglich ungesetzte Werte vor jeder Änderung. Ein expliziter Profilwechsel
+übernimmt externe Änderungen als neue Wiederherstellungsbasis; Sitzungswiederaufnahme
+und Deaktivierung respektieren externe Werte. Fontconfig erhält einen ausschließlich
+LightOS gehörenden symbolischen Link unter `$XDG_DATA_HOME/fonts/lightos-geist`.
+Fremde Dateien werden weder ersetzt noch entfernt. Gesperrte Rücknahmen bleiben
+einschließlich Schriftregistrierung für eine spätere Wiederherstellung erhalten.
+Externe Schriftwerte mit Geist behalten ebenfalls die benötigte Registrierung.
+
+Die Top Bar bleibt GNOME-nativ. `extension.js` ersetzt weder die
+Activities-Schaltfläche noch fügt es eigene System- oder Anwendungsmenüs hinzu.
+Eigene Panel-Indikatoren beschränken sich auf die StatusNotifier-Einträge aus
+`tray.js`; Quick Settings, Kalender und Benachrichtigungen bleiben unverändert.
+Damit entfallen auch strukturelle Laufzeitänderungen an der Top Bar.
 
 ## Weitere Apps anbinden
 
@@ -43,3 +62,9 @@ python3 tools/test-vm.py
 ```
 
 Der Build verpackt die Inhalte von `extension/` direkt an die Wurzel des GNOME-Extension-ZIP. Die Teststeuerung synchronisiert ausschließlich den Projektstand in die isolierte VM; das Host-Desktopprofil wird nicht verändert. Interaktive Prüfung und Aufnahmen erfolgen über `tools/vm.py` und `tools/validate-vm.py`. Vor einer neuen visuellen Prüfung muss die VM das aktuelle ZIP verwenden.
+
+`tools/validate-vm.py` prüft die native GNOME-Top-Bar samt Quick Settings und Kalender. Es erwartet eine sichtbare Activities-Schaltfläche und keine LightOS-Indikatoren außer StatusNotifier-Einträgen; eigene Menüs und Ausblendungen der Top Bar existieren nicht.
+
+## Adaptive Suche
+
+`search.js` verbindet GNOME-Apps, Fenster, Rechner, zuletzt verwendete Dateien und D-Bus-Suchanbieter mit nativen ModalDialog-/St-Widgets. `searchModel.js` implementiert Matching und adaptive Rangfolge ohne GNOME-Abhängigkeiten; `searchStore.js` begrenzt und speichert den persönlichen Zustand atomar. Die Suchaktion erhält die Extension-Instanz für GSettings und Einstellungen. Oma Cast dient als dokumentierte Bedienreferenz, ohne Übernahme unlizenzierter Quelldateien. Siehe [Integrationsbericht](oma-cast.md).

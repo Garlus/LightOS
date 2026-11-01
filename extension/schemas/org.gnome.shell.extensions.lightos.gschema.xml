@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
   <schema id="org.gnome.shell.extensions.lightos" path="/org/gnome/shell/extensions/lightos/">
-    <key name="palette" type="s"><default>'ocean'</default><summary>T3 Code palette</summary></key>
+    <key name="palette" type="s"><default>'ocean'</default><summary>LightOS color palette</summary></key>
     <key name="appearance" type="s"><default>'light'</default><summary>light, dark, or system</summary></key>
     <key name="auto-appearance" type="b"><default>false</default><summary>Switch light and dark at sunrise and sunset</summary></key>
     <key name="solar-status" type="s"><default>'{"enabled":false}'</default><summary>Computed solar schedule for preferences</summary></key>
@@ -33,6 +33,7 @@
     <key name="chroma-create-shortcut" type="b"><default>false</default><summary>chroma-create-shortcut</summary></key>
     <key name="center-window" type="as"><default>['&lt;Control&gt;&lt;Super&gt;c']</default><summary>Aktives Fenster auf seinem Monitor zentrieren</summary></key>
     <key name="font-smoothing-enabled" type="b"><default>false</default><summary>Globale Graustufen-Schriftglättung ohne Hinting</summary></key>
+    <key name="font-profile" type="s"><choices><choice value="adwaita"/><choice value="geist"/></choices><default>'geist'</default><summary>Schriftfamilien für Oberfläche, Dokumente und Monospace</summary></key>
     <key name="press-animations-enabled" type="b"><default>false</default><summary>Druckanimationen in Top Bar und Schnelleinstellungen</summary></key>
   </schema>
 </schemalist>

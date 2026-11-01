@@ -2,8 +2,8 @@
 
 LightOS' own code is GPL-3.0; original file notices and separately bundled
 licenses retain their original terms. Source revisions are pinned deliberately.
-This repository does not include the VM disks, SSH keys, generated AirDrop
-identities, viewer dependencies or the separate prototype repository.
+This repository does not include the VM disks, SSH keys, viewer dependencies
+or the separate prototype repository.
 
 ## Findus
 
@@ -21,8 +21,7 @@ License: GPL-3.0-or-later, included as `extension/licenses/Findus-GPL-3.0.txt`.
 - `modules/interactionAnimations.js` is adapted in
   `extension/interactionAnimations.js` with an independent off-by-default
   switch, reduced-motion handling, key-repeat filtering and transform cleanup.
-- The additional system-menu actions use GNOME's own SystemActions and
-  screenshot UI. Findus's custom icons, notification styling, font selection,
+- Findus's custom icons, notification styling, font selection,
   Stage Manager, global menu and Quick Settings layout are not imported.
 
 The complete Findus repository, including uncommitted files and nested Git
@@ -55,31 +54,31 @@ notices; that license is included separately as
 `extension/licenses/ChromaLeon-Shell-LGPL-2.1.txt`.
 ChromaLeon credits Tint My GNOME and other inspirations in its upstream README.
 
-## Omdrop
-
-Source: https://github.com/brentkearney/omdrop-plugin, Brent Kearney,
-revision `58fca678b08d3a7c875c83c7dfc2f0d3251cce44`.
-License: `extension/licenses/Omdrop-MIT.txt`.
-Imported receiver, identity, contacts, debug support and public Apple CA
-certificates are described in `extension/airdrop/README.md`.
-LightOS adds explicit consent IPC, isolated state paths, one-use upload approval,
-archive-name checks and its own GTK interface and sender transport.
-
 ## Existing palette source
 
 Source: https://github.com/pingdotgg/t3code, T3 Tools Inc.,
 revision `e803242d936af3e052757d59ab32bc7c4fcc2390`.
-The six palettes in `extension/palettes/` derive from
+The five palettes in `extension/palettes/` derive from
 `packages/shared/src/themePalettes.ts`, converted from OKLCH to sRGB.
 License: `extension/licenses/T3-Code-MIT.txt`.
+The pink palette is named Rose in LightOS. The former separate T3 Code
+selection is consolidated into Ocean; source attribution is retained.
+
+## Geist fonts
+
+Source: https://github.com/vercel/geist-font/releases/tag/v1.8.1,
+tag object `e1f671c727f6de7e97c1e1d26dbb44f349c19459`.
+Unmodified variable TTFs for Geist and Geist Mono, regular and italic,
+are bundled under `extension/fonts/` with the SIL Open Font License 1.1
+in `extension/fonts/OFL.txt`. File SHA-256 hashes are listed in
+`extension/fonts/README.md`. The extension registers these files for the
+current user only; font selection is an independent LightOS component.
 
 ## References and separately downloaded development tooling
 
-OWL and OpenDrop remain references / external radio prerequisites; their source
-is not copied into LightOS. noVNC v1.6.0 is downloaded to `.cache/novnc` only
-by the local viewer tool, retaining its original MPL-2.0 license files. QEMU
-provides the WebSocket transport. None of these tools install a desktop theme
-on the host.
+noVNC v1.6.0 is downloaded to `.cache/novnc` only by the local viewer tool,
+retaining its original MPL-2.0 license files. QEMU provides the WebSocket
+transport. None of these tools install a desktop theme on the host.
 
 ## Night Theme Switcher / Sonnenzeiten
 
@@ -89,3 +88,14 @@ on the host.
 - Lizenz: GPL-3.0-or-later, im ZIP unter `licenses/Night-Theme-Switcher-GPL-3.0.txt`. Quellpfad und SHA-256 stehen in `solar/SOURCES.json`.
 - IANA-Zeitzonendaten: die installierten `zone1970.tab` und `zone.tab` werden nur gelesen. Diese Tabellendaten sind public domain; sie werden nicht mitkopiert. [IANA tzdb](https://www.iana.org/time-zones), [Tabellenformat](https://github.com/eggert/tz/blob/main/zone1970.tab).
 - GeoClue ist ein optionaler Systemdienst, kein mitkopierter Bestandteil. Ohne freigegebene Standortdienste, Bibliothek oder Standort bleibt die Zeitzonenschätzung aktiv.
+
+## Oma Cast (interaction reference)
+
+Source: https://github.com/typecraft-dev/oma-cast, revision
+`582bc73466ca25903630d2ebe76c4d63f7b86a68`. The documented launcher concepts
+(frecency, learned terms, aliases, favorites and action panel) inform the native
+GNOME search. No source code, assets or binary from this repository is bundled:
+the inspected `plugin/` tree has no license grant. The Rust subproject license
+does not establish a license for the QML/JavaScript plugin. LightOS implements
+these concepts independently in `search.js`, `searchModel.js` and `searchStore.js`
+under GPL-3.0. See [integration details](docs/oma-cast.md).

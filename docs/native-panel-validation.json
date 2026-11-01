@@ -1,0 +1,119 @@
+{
+  "platform": "GNOME Shell 50.5",
+  "native": {
+    "activitiesVisible": true,
+    "leftChildren": 1,
+    "quickSettingsTypes": [
+      "SystemItem",
+      "OutputStreamSlider",
+      "InputStreamSlider",
+      "BrightnessItem",
+      "NMWiredToggle",
+      "NMWirelessToggle",
+      "NMModemToggle",
+      "NMBluetoothToggle",
+      "NMVpnToggle",
+      "BluetoothToggle",
+      "PowerProfilesToggle",
+      "NightLightToggle",
+      "DarkModeToggle",
+      "DoNotDisturbToggle",
+      "KeyboardBrightnessToggle",
+      "RfkillToggle",
+      "RotationToggle",
+      "Clutter_Actor",
+      "BackgroundAppsToggle"
+    ]
+  },
+  "enabled": {
+    "activitiesVisible": true,
+    "leftChildren": 1,
+    "quickSettingsTypes": [
+      "SystemItem",
+      "OutputStreamSlider",
+      "InputStreamSlider",
+      "BrightnessItem",
+      "NMWiredToggle",
+      "NMWirelessToggle",
+      "NMModemToggle",
+      "NMBluetoothToggle",
+      "NMVpnToggle",
+      "BluetoothToggle",
+      "PowerProfilesToggle",
+      "NightLightToggle",
+      "DarkModeToggle",
+      "DoNotDisturbToggle",
+      "KeyboardBrightnessToggle",
+      "RfkillToggle",
+      "RotationToggle",
+      "Clutter_Actor",
+      "BackgroundAppsToggle"
+    ]
+  },
+  "nativeStructureSurvivesDisableAndReenable": true,
+  "settingsKeys": [
+    "appearance",
+    "auto-appearance",
+    "center-window",
+    "chroma-accent",
+    "chroma-choices",
+    "chroma-colors",
+    "chroma-create-shortcut",
+    "chroma-custom-css",
+    "chroma-custom-path",
+    "chroma-darker",
+    "chroma-error",
+    "chroma-flatpak",
+    "chroma-full-light",
+    "chroma-gnome-colors",
+    "chroma-hot-reload",
+    "chroma-morewaita",
+    "chroma-persistent",
+    "chroma-prefer-light",
+    "chroma-recolor-apps",
+    "chroma-recolor-folders",
+    "chroma-strength",
+    "chroma-tint-apps",
+    "chroma-tint-gtk3",
+    "chroma-tint-panel",
+    "chroma-tint-shell",
+    "chroma-wallpaper",
+    "color-apps",
+    "color-engine",
+    "font-profile",
+    "font-smoothing-enabled",
+    "palette",
+    "press-animations-enabled",
+    "search-shortcut",
+    "solar-status"
+  ],
+  "searchShortcutCalculator": [
+    {
+      "id": "calculation",
+      "label": "= 84, 12 * (3 + 4) \u00b7 Enter kopiert das Ergebnis"
+    },
+    {
+      "id": "org.gnome.Nautilus.desktop:file:///home/lightos/LightOS-GNOME-previous.hvWaLe/project/docs/theme-installation-evaluation.md",
+      "label": "theme-installation-evaluation.md, Files \u00b7 /home/lightos/LightOS-GNOME-previous.hvWaLe/project/docs"
+    },
+    {
+      "id": "org.gnome.Nautilus.desktop:file:///home/lightos/LightOS-GNOME-project/extension/licenses/Night-Theme-Switcher-GPL-3.0.txt",
+      "label": "Night-Theme-Switcher-GPL-3.0.txt, Files \u00b7 /home/lightos/LightOS-GNOME-project/extension/licenses"
+    },
+    {
+      "id": "org.gnome.Nautilus.desktop:file:///home/lightos/LightOS-GNOME-previous.hvWaLe/project/extension/licenses/Night-Theme-Switcher-GPL-3.0.txt",
+      "label": "Night-Theme-Switcher-GPL-3.0.txt, Files \u00b7 /home/lightos/LightOS-GNOME-previous.hvWaLe/project/extension/licenses"
+    },
+    {
+      "id": "web",
+      "label": "Im Web suchen: 12 * (3 + 4), DuckDuckGo \u00b7 Enter \u00f6ffnet den Standardbrowser"
+    }
+  ],
+  "archiveSha256": "31628a5be995da25fb16e089f7d0f69dd31e6d34ae7f885616285971f494f4b0",
+  "isolatedGjsChecks": 954,
+  "windowCenteringMockTests": "passed",
+  "installedFilesMatchArchive": true,
+  "shellEvalDisabled": true,
+  "extensionState": "ACTIVE",
+  "testRunner": "python3 tools/test-vm.py: passed"
+}

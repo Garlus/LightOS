@@ -49,9 +49,8 @@ erreichbar. QMP liegt unter `.cache/vm-gnome/`. `lightos` verfügt innerhalb der
 VM über passwortloses sudo. Nach `stop` das vollständige Herunterfahren abwarten.
 
 Die [aktuelle Aufnahme](screenshots/gnome/lightos.png) stammt vom 18. Oktober 2026:
-LightOS 9, GNOME Shell 50.5, aus dem aktuellen ZIP installiert und nach
-Sitzungsneustart als ACTIVE bestätigt. Die VM besitzt keine AWDL-fähige WLAN-Karte;
-echte AirDrop-Funktransfers lassen sich darin nicht prüfen.
+LightOS 10, GNOME Shell 50.5, aus dem aktuellen ZIP installiert und nach
+Sitzungsneustart als ACTIVE bestätigt. Sie zeigt die native GNOME-Top-Bar.
 
 Viewer: [noVNC](https://github.com/novnc/noVNC), MPL-2.0,
 Revision `a8dfd6a3ea3c74244f5ebdaa5a7f1023007a7820`;

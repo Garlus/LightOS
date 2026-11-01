@@ -110,35 +110,11 @@ def main():
         vm_key('ctrl', 'super', 'c')
         report['restoredGeometry'] = assert_centered()
         checks['waylandUnmaximizeCentersRestoredFrame'] = True
-        evaluate(f'{EXT}._activeApp.menu.open(); true')
-        capture('findus-app-menu.png')
-        evaluate(f'{EXT}._activeApp.menu.close();{EXT}._system.menu.open();true')
-        report['systemActions'] = evaluate(f'{EXT}._systemActions.map(a=>({{label:a.item.label.text,capability:a.capability,available:{EXT}._actions[a.capability],sensitive:a.item.sensitive}}))')
-        assert len(report['systemActions']) == 6
-        assert all(a['available'] == a['sensitive'] for a in report['systemActions'])
-        checks['nativeActionCapabilities'] = True
-        capture('findus-system-menu.png')
-        # Dispatch every system action against a temporary method spy, never
-        # suspend or log out the VM during this controller wiring check.
-        methods = ['activateLockScreen', 'activateSuspend', 'activateSwitchUser', 'activateLogout', 'activateRestart', 'activatePowerOff']
-        for index, method in enumerate(methods):
-            result = evaluate(f'(()=>{{const e={EXT};const a=e._actions;const old=a.{method};let called=false;'
-                              f'try{{a.{method}=()=>{{called=true;}};e._systemActions[{index}].item.activate(null);'
-                              f'return {{called,available:a[e._systemActions[{index}].capability]}};}}finally{{a.{method}=old;}}}})()')
-            assert result['called'] == result['available'], (method, result)
-        checks['systemActionDispatchAndUnavailableGuards'] = True
-        evaluate(f'{EXT}._system.menu.open();{EXT}._system.menu._getMenuItems().find(i=>i.label?.text==="Bildschirmfoto …").activate(null);true')
-        time.sleep(.6)
-        assert evaluate('Main.screenshotUI.visible')
-        capture('findus-screenshot-ui.png')
-        vm_key('esc')
-        checks['nativeScreenshotUIOpens'] = True
-
         set_option('press-animations-enabled', True)
         evaluate(f'{EXT}._interface.set_boolean("enable-animations",true);true')
         assert evaluate(f'!!{EXT}._pressAnimations._captureId')
         # Send a real VM input event and observe the production actor transform.
-        point = evaluate(f'(()=>{{const a={EXT}._system;const [x,y]=a.get_transformed_position();return {{x:x+a.width/2,y:y+a.height/2}};}})()')
+        point = evaluate('(()=>{const a=Main.panel.statusArea.quickSettings;const [x,y]=a.get_transformed_position();return {x:x+a.width/2,y:y+a.height/2};})()')
         with Monitor() as monitor:
             monitor.call('input-send-event', events=[{'type': 'abs', 'data': {'axis': 'x', 'value': round(point['x'] * 32767 / 1279)}}, {'type': 'abs', 'data': {'axis': 'y', 'value': round(point['y'] * 32767 / 799)}}])
             monitor.call('input-send-event', events=[{'type': 'btn', 'data': {'button': 'left', 'down': True}}])
@@ -152,7 +128,7 @@ def main():
         assert not evaluate(f'!!{EXT}._pressAnimations._captureId')
         assert evaluate(f'{EXT}._pressAnimations._actors.size') == 0
         checks['reducedMotionStopsCaptureAndTransforms'] = True
-        evaluate(f'{EXT}._interface.set_boolean("enable-animations",true);{EXT}._system.menu.close();true')
+        evaluate(f'{EXT}._interface.set_boolean("enable-animations",true);Main.panel.statusArea.quickSettings.menu.close();true')
         set_option('font-smoothing-enabled', True)
         evaluate(f'global._lightosMigrationOld={{centering:{EXT}._centering,press:{EXT}._pressAnimations,font:{EXT}._fontRendering}};true')
         shell('gnome-extensions disable lightos@lightos.dev')

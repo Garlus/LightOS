@@ -40,15 +40,16 @@ export XDG_CONFIG_HOME="$test_root/config"
 export XDG_DATA_HOME="$test_root/data"
 export XDG_STATE_HOME="$test_root/state"
 export GSETTINGS_BACKEND=memory
+gjs -m tests/test_search_model.js
+gjs -m tests/test_search_store.js
 gjs -m tests/test_gnome.js
 gjs -m tests/test_gnome_terminal.js
 gjs -m tests/test_gnome_extra.js
 gjs -m tests/test_chromaleon.js
 gjs -m tests/test_solar.js
-gjs -m tests/test_orb_motion.js
 gjs -m tests/test_font_rendering.js
+gjs -m tests/test_font_profile.js
 gjs -m tests/test_interaction_animations.js
-python3 -B tests/test_airdrop.py
 '''
     subprocess.run(ssh_args() + [command], check=True)
 

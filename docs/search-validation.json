@@ -1,0 +1,50 @@
+{
+  "date": "2026-11-01",
+  "platform": "GNOME Shell 50.5",
+  "version": 11,
+  "checks": {
+    "fuzzyAppSearch": [
+      {
+        "id": "app:org.mozilla.firefox.desktop",
+        "name": "Firefox"
+      },
+      {
+        "id": "web",
+        "name": "Im Web suchen: firefx"
+      }
+    ],
+    "favoriteKeyboardAction": true,
+    "aliasKeyboardEditAndRanking": true,
+    "hideAndRestore": true,
+    "quickPickAndHistory": true,
+    "paletteCommandApplied": true,
+    "calculatorAndPrivateHistory": true,
+    "fileAndProviderSearch": [
+      {
+        "id": "org.gnome.Nautilus.desktop:file:///home/lightos/Documents/LightOS/Willkommen.md",
+        "name": "Willkommen.md"
+      },
+      {
+        "id": "web",
+        "name": "Im Web suchen: Willkommen"
+      }
+    ],
+    "explicitWebFallback": true,
+    "lateProviderCannotReplaceActions": true,
+    "disableDestroysDialogAndTimer": true,
+    "personalizationSurvivesReload": true,
+    "nativePanelUnchanged": true
+  },
+  "evidence": [
+    "screenshots/gnome/oma-search-actions.png",
+    "screenshots/gnome/oma-search-alias.png",
+    "screenshots/gnome/oma-search-apps.png",
+    "screenshots/gnome/oma-search-calculator.png",
+    "screenshots/gnome/oma-search-commands.png",
+    "screenshots/gnome/oma-search-dark.png",
+    "screenshots/gnome/oma-search-favorite.png",
+    "screenshots/gnome/oma-search-files.png",
+    "screenshots/gnome/oma-search-web.png"
+  ],
+  "shellEvalDisabled": true
+}

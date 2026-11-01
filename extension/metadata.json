@@ -1,10 +1,10 @@
 {
   "uuid": "lightos@lightos.dev",
   "name": "LightOS",
-  "description": "LightOS panel, native GNOME search, AirDrop Quick Settings, Appearance and ChromaLeon color palettes. Adwaita geometry stays intact.",
+  "description": "LightOS adaptive native GNOME search, Appearance and ChromaLeon color palettes. Adwaita geometry stays intact.",
   "shell-version": [
     "50"
   ],
-  "version": 9,
+  "version": 11,
   "settings-schema": "org.gnome.shell.extensions.lightos"
 }

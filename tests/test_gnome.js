@@ -2,7 +2,7 @@
 import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 import {calculate} from '../extension/calculator.js';
-import {AppColors, PALETTES, gtkColors, readPalette, readFile, writeFile} from '../extension/palette.js';
+import {AppColors, PALETTES, LABELS, gtkColors, readPalette, readFile, writeFile, migratePalette} from '../extension/palette.js';
 import {AppThemes, sourceScheme} from '../extension/appThemes.js';
 
 let checks = 0;
@@ -33,6 +33,15 @@ for (const id of PALETTES) {
     }
 }
 assert(readPalette(dir, '../../invalid').id === 'ocean', 'Palette paths bounded');
+assert(!LABELS.some(label => /T3/i.test(label)), 'Palette names contain no source-product branding');
+assert(readPalette(dir, 't3-code').id === 'ocean', 'Legacy blue selection resolves to Ocean');
+assert(readPalette(dir, 't3-chat').id === 'rose', 'Legacy pink selection resolves to Rose');
+for (const [previous, expected] of [['t3-code', 'ocean'], ['t3-chat', 'rose'], ['iris', 'iris']]) {
+    let selected = previous, writes = 0;
+    const settings = {get_string: () => selected, set_string: (_key, value) => { selected = value; writes++; }};
+    migratePalette(settings); migratePalette(settings);
+    assert(selected === expected && writes === (previous === expected ? 0 : 1), `Idempotent selection migration: ${previous}`);
+}
 const c = readPalette(dir, 'ocean').variants.light;
 const path3 = GLib.build_filenamev([GLib.get_user_config_dir(), 'gtk-3.0', 'gtk.css']);
 const path4 = GLib.build_filenamev([GLib.get_user_config_dir(), 'gtk-4.0', 'gtk.css']);

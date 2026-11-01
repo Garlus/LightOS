@@ -1,0 +1,40 @@
+{
+  "platform": "GNOME Shell 50.5",
+  "checks": {
+    "defaultGeist": true,
+    "adwaitaRuntimeSwitch": true,
+    "geistRuntimeSwitch": true,
+    "bundledFontsResolved": true,
+    "paletteAndSmoothingIndependent": true,
+    "disableRestoresOriginalsAndFontRegistration": true,
+    "reenableGeist": true
+  },
+  "adwaita": {
+    "settings": {
+      "font-name": "Adwaita Sans 11",
+      "document-font-name": "Adwaita Sans 12",
+      "monospace-font-name": "Adwaita Mono 11"
+    },
+    "shell": "Adwaita Sans 11",
+    "clock": "Adwaita Sans Bold 14.666px"
+  },
+  "geist": {
+    "settings": {
+      "font-name": "Geist 11",
+      "document-font-name": "Geist 12",
+      "monospace-font-name": "Geist Mono 11"
+    },
+    "shell": "Geist 11",
+    "clock": "Geist Bold 14.666px"
+  },
+  "fontconfig": {
+    "Geist": "Geist",
+    "Geist Mono": "Geist Mono"
+  },
+  "restoredUserValues": {
+    "font-name": null,
+    "document-font-name": null,
+    "monospace-font-name": null
+  },
+  "shellEvalDisabled": true
+}

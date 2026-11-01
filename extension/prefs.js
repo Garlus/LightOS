@@ -6,7 +6,7 @@ import Gdk from 'gi://Gdk';
 import GdkPixbuf from 'gi://GdkPixbuf';
 import Cairo from 'cairo';
 import {ExtensionPreferences} from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
-import {readPalette, PALETTES} from './palette.js';
+import {readPalette, PALETTES, LABELS, migratePalette} from './palette.js';
 import {chooseColor, validColor, ACCENTS, mix} from './chromaleon/engine.js';
 
 function rgb(hex) {return hex.slice(1).match(/../g).map(c => parseInt(c,16)/255);}
@@ -53,6 +53,7 @@ export default class LightOSPreferences extends ExtensionPreferences {
     fillPreferencesWindow(window) {
         window.set_default_size(980,820);
         const settings = this.getSettings();
+        migratePalette(settings);
         const iface = new Gio.Settings({schema_id:'org.gnome.desktop.interface'});
         const page = new Adw.PreferencesPage({title:'Appearance',icon_name:'preferences-desktop-appearance-symbolic'});
         window.add(page);
@@ -72,18 +73,22 @@ export default class LightOSPreferences extends ExtensionPreferences {
             schemeGrid.attach(button,i,0,1,1);
             buttons.push([button,art,() => settings.get_string('appearance')===id]);
         });
-        const schedule=group('Automatischer Darstellungsmodus');
-        const automatic=new Adw.SwitchRow({title:'Bei Sonnenaufgang und Sonnenuntergang wechseln',
-            subtitle:'Tagsüber hell, nachts dunkel. Eine manuelle Wahl gilt bis zum nächsten Sonnenwechsel.'});
-        settings.bind('auto-appearance',automatic,'active',Gio.SettingsBindFlags.DEFAULT); schedule.add(automatic);
-        const solarInfo=new Adw.ActionRow({title:'Sonnenzeiten'}); schedule.add(solarInfo);
-        const themes=group('Themes','Sechs vorhandene Paletten · drei zusätzliche ChromaLeon-Farben aus dem Hintergrundbild.');
+        const appearanceOptions=group('');
+        const fontRow=new Adw.ActionRow({title:'Schriftfamilie'});
+        const fontChoice=new Adw.ToggleGroup({valign:Gtk.Align.CENTER});
+        fontChoice.add(new Adw.Toggle({name:'adwaita',label:'Adwaita'}));
+        fontChoice.add(new Adw.Toggle({name:'geist',label:'Geist'}));
+        settings.bind('font-profile',fontChoice,'active-name',Gio.SettingsBindFlags.DEFAULT);
+        fontRow.add_suffix(fontChoice); appearanceOptions.add(fontRow);
+        const automatic=new Adw.SwitchRow({title:'Tag-Nacht-Zyklus'});
+        settings.bind('auto-appearance',automatic,'active',Gio.SettingsBindFlags.DEFAULT); appearanceOptions.add(automatic);
+        const themes=group('Themes','Fünf Paletten · drei zusätzliche ChromaLeon-Farben aus dem Hintergrundbild.');
         const grid=new Gtk.Grid({column_spacing:12,row_spacing:12,margin_top:12,column_homogeneous:true}); themes.add(grid);
-        ['t3-code','t3-chat','grove','ocean','ember','iris'].forEach((id,i) => {
+        PALETTES.forEach((id,i) => {
             const p=readPalette(this.dir,id);
             const selected=() => settings.get_string('color-engine')==='t3' && settings.get_string('palette')===id;
             const art=preview([p.variants.light,p.variants.dark],false,selected);
-            const button=choice({'t3-code':'T3 Code','t3-chat':'T3 Chat',grove:'Grove',ocean:'Ocean',ember:'Ember',iris:'Iris'}[id],art,() => {
+            const button=choice(LABELS[i].split(' · ')[0],art,() => {
                 settings.set_string('palette',id); settings.set_string('color-engine','t3');
             });
             grid.attach(button,i%3,Math.floor(i/3),1,1); buttons.push([button,art,selected]);
@@ -99,7 +104,7 @@ export default class LightOSPreferences extends ExtensionPreferences {
             });
             grid.attach(button,i,2,1,1); chromaButtons.push({button,box,label,art:null});
         }
-        const engine=new Adw.ComboRow({title:'Farb-Engine',model:Gtk.StringList.new(['T3 Code','ChromaLeon'])});
+        const engine=new Adw.ComboRow({title:'Farb-Engine',model:Gtk.StringList.new(['Paletten','ChromaLeon'])});
         themes.add(engine);
         engine.connect('notify::selected',() => settings.set_string('color-engine',engine.selected===1 ? 'chromaleon' : 't3'));
         const wallpaper=group('ChromaLeon · Hintergrundbild','Farben werden lokal aus dem aktuellen GNOME-Hintergrundbild berechnet.');
@@ -150,19 +155,16 @@ export default class LightOSPreferences extends ExtensionPreferences {
         search.add(new Adw.ActionRow({title:'Suche öffnen',subtitle:'Super + Leertaste'}));
         search.add(new Adw.ActionRow({title:'GNOME-Suchanbieter',subtitle:'Dateien, Rechner und Einstellungen unter GNOME Einstellungen → Suchen aktivieren.'}));
         const interaction=new Adw.PreferencesGroup({title:'Fenster und Bedienung'}); layout.add(interaction);
-        const centerRow=new Adw.ActionRow({title:'Fenster zentrieren',subtitle:'Auf der Arbeitsfläche des aktuellen Monitors. Auch im Menü der aktiven Anwendung verfügbar.'});
+        const centerRow=new Adw.ActionRow({title:'Fenster zentrieren',subtitle:'Auf der Arbeitsfläche des aktuellen Monitors.'});
         const centerKey=new Gtk.ShortcutLabel({accelerator:settings.get_strv('center-window')[0] ?? '',valign:Gtk.Align.CENTER});
         centerRow.add_suffix(centerKey); interaction.add(centerRow);
         const smoothing=new Adw.SwitchRow({title:'Graustufen-Schriftglättung ohne Hinting',subtitle:'Globale GNOME-/GTK-Einstellung. Schriftfamilien und Schriftgrößen bleiben erhalten. Ausgangswerte werden beim Ausschalten wiederhergestellt.'});
         settings.bind('font-smoothing-enabled',smoothing,'active',Gio.SettingsBindFlags.DEFAULT); interaction.add(smoothing);
         const presses=new Adw.SwitchRow({title:'Druckanimationen',subtitle:'Kurze Druckrückmeldung für Schaltflächen in Top Bar und Schnelleinstellungen. Beachtet GNOMEs Einstellung für reduzierte Bewegung.'});
         settings.bind('press-animations-enabled',presses,'active',Gio.SettingsBindFlags.DEFAULT); interaction.add(presses);
-        const restore=new Adw.PreferencesGroup({title:'Wiederherstellung',description:'Beim Deaktivieren werden verwaltete Farben und Icon-Einstellungen wiederhergestellt. Eigene CSS-Regeln bleiben erhalten.'}); layout.add(restore);
+        const restore=new Adw.PreferencesGroup({title:'Wiederherstellung',description:'Beim Deaktivieren werden verwaltete Farben, Schriftfamilien und Icon-Einstellungen wiederhergestellt. Eigene CSS-Regeln bleiben erhalten.'}); layout.add(restore);
         const sync=() => {
             centerKey.accelerator=settings.get_strv('center-window')[0] ?? '';
-            let solar; try {solar=JSON.parse(settings.get_string('solar-status'));} catch {solar={enabled:false};}
-            solarInfo.visible=settings.get_boolean('auto-appearance');
-            solarInfo.subtitle=solar.enabled ? `${solar.source}\n${solar.date} · ${solar.polar ? (solar.polar==='day' ? 'Polartag: durchgehend hell' : 'Polarnacht: durchgehend dunkel') : `Sonnenaufgang ${solar.sunrise} · Sonnenuntergang ${solar.sunset}`}\n${solar.manual ? 'Manuell bis zum nächsten Sonnenwechsel' : (solar.next==='—' ? 'Sonnenzeiten werden täglich neu berechnet' : `Nächster Wechsel ${solar.next}`)}` : 'Sonnenzeiten werden berechnet …';
             for(const [button,art,selected] of buttons) {
                 const label=button.get_child().get_last_child();
                 if(selected()) label.add_css_class('accent'); else label.remove_css_class('accent');

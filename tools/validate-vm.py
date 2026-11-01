@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Capture real GNOME VM evidence. Shell Eval is enabled only inside this VM."""
+"""Capture real GNOME VM evidence for the native top bar and Quick Settings.
+
+Shell Eval is enabled only inside this VM.
+"""
 import ast
 import json
 from pathlib import Path
@@ -84,6 +87,18 @@ def main():
     capture('before')
     shell('gnome-extensions enable lightos@lightos.dev')
     time.sleep(.5)
+    # LightOS must leave GNOME's native top bar untouched: no LightOS-owned
+    # indicators besides StatusNotifier tray items, Activities stays visible.
+    report['checks']['nativeTopBar'] = {
+        'activitiesVisible': bool(evaluate('Main.panel.statusArea.activities.visible')),
+        'lightosIndicators': evaluate(
+            'Object.keys(Main.panel.statusArea).filter(k => k.startsWith("lightos-") '
+            '&& !k.startsWith("lightos-tray-"))'),
+        'quickSettings': bool(evaluate('!!Main.panel.statusArea.quickSettings')),
+        'dateMenu': bool(evaluate('!!Main.panel.statusArea.dateMenu')),
+    }
+    assert report['checks']['nativeTopBar'] == {
+        'activitiesVisible': True, 'lightosIndicators': [], 'quickSettings': True, 'dateMenu': True}
     for mode in ['light', 'dark']:
         set_option('appearance', mode)
         if mode == 'dark':
@@ -93,7 +108,7 @@ def main():
             report['geometryBaselineDark'] = geometry()
             shell('gnome-extensions enable lightos@lightos.dev')
             time.sleep(.3)
-        for palette in ['ocean', 'grove', 'ember', 'iris', 't3-chat', 't3-code']:
+        for palette in ['ocean', 'grove', 'ember', 'iris', 'rose']:
             set_option('palette', palette)
             launch_apps()
             key = f'{palette}-{mode}'
@@ -110,15 +125,11 @@ def main():
     set_option('appearance', 'light')
     launch_apps()
     capture('desktop')
-    evaluate(f'{EXTENSION}._system.menu.open()')
-    capture('system-menu')
-    evaluate(f'{EXTENSION}._system.menu.close()')
-    evaluate(f'{EXTENSION}._system.menu.open(); {EXTENSION}._system.menu._getMenuItems()'
-             '.find(i=>i.label?.text === "Farbpalette").menu.open()')
-    capture('palette-menu')
-    evaluate(f'{EXTENSION}._system.menu.close()')
     evaluate('Main.panel.statusArea.quickSettings.menu.open()')
     capture('quick-settings')
+    report['checks']['quickSettingsMenu'] = bool(
+        evaluate('Main.panel.statusArea.quickSettings.menu.isOpen'))
+    assert report['checks']['quickSettingsMenu'], 'Native Quick Settings did not open'
     evaluate('Main.panel.statusArea.quickSettings.menu.close()')
     evaluate('Main.panel.statusArea.dateMenu.menu.open()')
     capture('calendar')

@@ -30,22 +30,33 @@ und interaktive Tests erfolgen ausschließlich in der [isolierten VM](vm-access.
   das Ergebnis. Dateisuche außerhalb zuletzt verwendeter Dateien benötigt einen
   aktivierten GNOME-Suchanbieter samt Index.
 - **Super:** GNOME-Übersicht öffnen.
-- **Strg + Super + C:** aktives Fenster auf seinem Monitor zentrieren. Die Aktion
-  steht auch im App-Menü. Maximierte Fenster werden vorher wiederhergestellt;
-  Vollbildfenster und nicht verschiebbare Fenster bleiben ausgenommen.
-- **Orb-Menü:** Systemaktionen und Farbwahl. Rechts befinden sich GNOMEs native
-  Quick Settings, Kalender und Benachrichtigungen.
+- **Strg + Super + C:** aktives Fenster auf seinem Monitor zentrieren. Maximierte
+  Fenster werden vorher wiederhergestellt; Vollbildfenster und nicht verschiebbare
+  Fenster bleiben ausgenommen.
 
 Die Suche sichert eine kollidierende GNOME-Belegung für den Tastaturlayoutwechsel
-und stellt sie beim Deaktivieren wieder her. Das App-Menü bietet Fensteraktionen;
-es ist kein universelles globales GTK-Anwendungsmenü.
+und stellt sie beim Deaktivieren wieder her. Die Top Bar bleibt GNOME-nativ:
+Activities, Quick Settings, Kalender und Benachrichtigungen sind unverändert;
+LightOS fügt nur StatusNotifier-Einträge für laufende Anwendungen hinzu.
+
+Aktueller VM-Nachweis: [native Schnelleinstellungen](screenshots/gnome/native-quick-settings.png),
+[LightOS-Einstellungen](screenshots/gnome/native-panel-preferences.png) und
+[Suche per Tastenkürzel](screenshots/gnome/native-panel-search.png).
+Der [Prüfbericht](native-panel-validation.json) enthält den Strukturvergleich
+mit deaktivierter und erneut aktivierter Erweiterung.
 
 ## Farben und Einstellungen
 
 Im Reiter **Appearance** stehen System, Hell und Dunkel zur Wahl. Die festen
-Paletten heißen Ocean, Grove, Ember, Iris, T3 Chat und T3 Code. ChromaLeon liefert
+Paletten heißen Ocean, Grove, Ember, Iris und Rose. ChromaLeon liefert
 zusätzlich bis zu drei Farben aus dem aktuellen Hintergrundbild. System stellt
 die ursprüngliche GNOME-Darstellung wieder her.
+
+Die Farb-Engine **Paletten** verwendet Ocean, Grove, Ember, Iris oder Rose.
+Die frühere Auswahl „T3 Code“ wird beim Update zu Ocean, „T3 Chat“ zu Rose.
+Die Herkunft der Farbwerte ist weiterhin im Lizenzverzeichnis dokumentiert.
+[Bereinigte Farbauswahl](screenshots/gnome/appearance-palettes-clean.png) und
+[Migrationsprüfung in GNOME 50.5](palette-validation.json).
 
 Die App-Farbanbindung unterstützt GTK 3/4, libadwaita, GtkSourceView, Ptyxis,
 GNOME Terminal, Qt/KDE-Anwendungen, Kate/KWrite und Code/VSCodium sowie vorhandene
@@ -63,35 +74,27 @@ Hinting und Druckanimationen unabhängig aktivierbar. Beide sind standardmäßig
 ausgeschaltet. Die Schriftoption lässt Familien und Größen unverändert;
 Druckanimationen beachten GNOMEs Einstellung für reduzierte Bewegung.
 
-## AirDrop
+Direkt unter der Darstellungswahl schaltet **Schriftfamilie → Adwaita / Geist** die Schriftfamilien
+für Oberfläche, Dokumente und Festbreitentext gemeinsam um. Standardmäßig sind
+**Geist** und **Geist Mono** aktiv; Adwaita verwendet **Adwaita Sans** und
+**Adwaita Mono**. Schriftgrößen, Gewicht und Kursivstellung bleiben erhalten.
+Die Auswahl wirkt sofort auf GNOME und Anwendungen, die deren Systemschrift
+verwenden; eigene Anwendungsschriften bleiben anwendungsspezifisch.
+Schriftdateien einschließlich Kursivschnitten sind im ZIP enthalten und werden
+ausschließlich im Benutzerprofil registriert. Die Auswahl ist unabhängig von
+Farbpalette und Schriftglättung. Beim Deaktivieren stellt LightOS die vorherigen
+Schrifteinstellungen wieder her und entfernt seine Schriftregistrierung, sofern
+keine gesperrten Einstellungen oder externen Geist-Schriftwerte sie noch benötigen.
 
-Die Quick-Settings-Kachel schaltet den Empfang ein oder aus; ihr Pfeil öffnet
-**Dateien senden …**. AirDrop startet ausgeschaltet. Empfangene Dateien benötigen
-eine Bestätigung und landen im XDG-Downloads-Verzeichnis; vorhandene Dateien
-werden nicht überschrieben.
+Schriftfamilie und **Tag-Nacht-Zyklus** stehen gemeinsam unmittelbar unter der
+Darstellungswahl, ohne eigene Überschrift oder Beschreibung:
+[aktuelle Einstellungsansicht](screenshots/gnome/appearance-palettes-clean.png).
 
-Erforderlich sind Python ≥ 3.11, libadwaita ≥ 1.5 und ein bereits laufendes
-`awdl0` mit lokaler IPv6-Adresse, etwa über OWL mit geeigneter WLAN-Hardware.
-LightOS installiert keine Funkdienste oder Treiber.
-
-Fedora:
-
-```bash
-sudo dnf install python3-libarchive-c python3-zeroconf python3-gobject gtk4 libadwaita openssl
-```
-
-Debian/Ubuntu:
-
-```bash
-sudo apt install python3-libarchive-c python3-zeroconf python3-gi gir1.2-gtk-4.0 gir1.2-adw-1 openssl
-```
-
-Die Firewall muss mDNS und TCP 8771 auf der AWDL-Schnittstelle zulassen;
-LightOS verändert keine Firewall-Regeln. Am Apple-Empfänger AirDrop auf
-**Für jeden** stellen. Bluetooth-Wecksignal und **Nur Kontakte** sind nicht
-implementiert. Ein Funktransfer zu echten Apple-Geräten ist bisher ungeprüft;
-die normale Test-VM besitzt keine AWDL-Hardware.
-Details zur [Implementierung und Quellherkunft](../extension/airdrop/README.md).
+Geprüft in GNOME Shell 50.5 / Wayland: [Geist-Auswahl](screenshots/gnome/font-geist-preferences.png),
+[Adwaita-Auswahl](screenshots/gnome/font-adwaita-preferences.png),
+[Geist Mono im Terminal](screenshots/gnome/font-geist-mono-terminal.png).
+Der [Laufzeitbericht](font-validation.json) dokumentiert Profilwechsel,
+Schriftauflösung und Wiederherstellung einschließlich abgeschaltetem Shell Eval.
 
 ## Deaktivierung
 
@@ -99,10 +102,14 @@ Details zur [Implementierung und Quellherkunft](../extension/airdrop/README.md).
 gnome-extensions disable lightos@lightos.dev
 ```
 
-LightOS entfernt seine Panel-Elemente und stellt die verwalteten Farb-, App-,
-Schrift- und Tastenkürzeleinstellungen wieder her. Ursprüngliche Werte liegen
-unter `~/.local/state/lightos-gnome/`. Nachträgliche Benutzeränderungen werden
-respektiert; eigene CSS-Regeln bleiben erhalten. Laufende AirDrop-Vorgänge enden.
+LightOS entfernt seine StatusNotifier-Einträge aus der Top Bar und stellt die
+verwalteten Farb-, App-, Schrift- und Tastenkürzeleinstellungen wieder her.
+Ursprüngliche Werte liegen unter `~/.local/state/lightos-gnome/`. Nachträgliche
+Benutzeränderungen werden respektiert; eigene CSS-Regeln bleiben erhalten.
 
 Für Entwicklung: [Architektur und Build](architecture.md),
 [VM-Zugang und Prüfung](vm-access.md), [Quellnachweise](../THIRD_PARTY.md).
+
+## Erweiterte Suche
+
+Die Suche unter Super + Leertaste verwendet jetzt die in [Oma Cast](https://github.com/typecraft-dev/oma-cast) beschriebenen Launcher-Konzepte mit nativen GNOME-Widgets. Bedienung, Datenschutz und Umfang stehen in der [Suchdokumentation](oma-cast.md). Die [Bewertung der Themeninstallation](theme-installation-evaluation.md) beschreibt einen möglichen JSON-Farbpalettenimport; ein Importdialog ist noch nicht implementiert.
