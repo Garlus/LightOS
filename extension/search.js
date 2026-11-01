@@ -51,10 +51,11 @@ export class LightSearch {
         this._dialog._lightbox?.destroy();
         this._dialog._lightbox = null;
         this._dialog.buttonLayout.hide();
-        this._dialog.contentLayout.set_style(`max-width: ${SEARCH_WIDTH}px;`);
+        // Drop the stacked native content/overview top insets in this compact dialog.
+        this._dialog.contentLayout.set_style(`max-width: ${SEARCH_WIDTH}px; padding-top: 0;`);
         this._dialog.contentLayout.width = SEARCH_WIDTH;
         this._dialog.contentLayout.add_style_class_name('message-dialog-content');
-        this._entry = new St.Entry({style_class: 'search-entry', can_focus: true,
+        this._entry = new St.Entry({style_class: 'search-entry', style: 'margin-top: 0;', can_focus: true,
             hint_text: HINT, x_expand: true});
         this._entry.set_primary_icon(new St.Icon({icon_name: 'edit-find-symbolic',
             style_class: 'search-entry-icon', icon_size: 16}));
